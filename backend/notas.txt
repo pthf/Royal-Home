@@ -1,0 +1,7 @@
+bannersHome : Slider principal.
+items: Arroja todos los productos que tiene la base de datos, cuando consultes un unico producto deberas de hace
+un filtro del json que el archivo items.php te proporcionara. 
+menu: menu con categorias y subcategorias.
+new_products: Listado filtrado del carrusel. 
+new_products_featured: Listado filtrado del carrusel. 
+search: te arroja la informacion de la busqueda encontrada. 

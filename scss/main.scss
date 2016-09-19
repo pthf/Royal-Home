@@ -1,0 +1,251 @@
+@import 'home';
+@import 'proyectos';
+@import 'contacto';
+@import 'footer';
+@import 'select';
+
+/*.quienesomos, .proyectos, .filosofia, .img  { display:none; }  */
+
+.vertical-align{
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+}
+.in-view{
+    opacity: 1 !important;
+    transform: translateY(0);
+}
+.header-leyend{
+    .search{
+        position: relative;
+        top: 39%;
+        z-index: 9999;
+        .form-group{
+            div{
+                padding: 0;
+            }
+        }
+    }
+    .leyends{
+        margin-top: 0;
+        padding-top: 650px;
+        .content-hr{
+            position: relative;
+            margin-top: -2px;
+            left: 220px;
+        }
+    }
+}
+.leyends{
+    margin-top: 0;
+    padding-top: 650px;
+    .content-hr{
+        position: static;
+        margin-top: 8px;
+    }
+}
+
+
+
+
+/* Extra Small Devices, .visible-xs-* */
+@media (max-width: 767px) {
+    .navbar-brand{
+        padding-top: 0;
+        padding-left: 15px;
+    }
+    .navbar-default .navbar-nav>li>a{
+        font-size: 15px;
+    }
+    .navbar{
+        padding:0;
+        ul{
+            height: auto;
+            margin: 0;
+            li{
+               line-height: 50px;
+               text-align:center;
+               border-top: 1px solid #fff;
+               &:last-child{
+                   border-bottom: 1px solid #fff;
+               }
+               a{
+                   height: auto;
+                   width: 100%;
+                   padding: 0;
+               }
+           }
+        }
+
+    }
+
+
+    .logo{
+        height: 75px;
+    }
+    .header-leyend{
+        .img{
+            height: 250px;
+            background-size: cover;
+            .leyends{
+                padding-top: 0;
+                font-size:15px;
+                text-align: right;
+                padding-top:125px;
+                .text{
+                    div{
+                        float: right;
+                    }
+
+                    p{
+                        font-size:15px;
+                    }
+                }
+            }
+        }
+
+    }
+    .quienesomos{
+        height: 300px;
+        background-size: inherit;
+        .text{
+            .head{
+                margin-top: 10px;
+                text-align: center;
+                font-size: 25px;
+                img{
+                    height: 30px;
+                }
+            }
+            .body{
+                font-size: 12px;
+            }
+        }
+    }
+
+    .filosofia{
+        height: auto;
+        padding-bottom: 15px;
+        font-size: 25px;
+        .head{
+            margin-top:10px;
+            text-align:center;
+        }
+    }
+    .proyectos, .desarrollos, .propiedades{
+        .body-head{
+            .leyends {
+                padding-top: 10px;
+                font-size: 25px;
+                p{
+                    text-align: center;
+                    font-size: 25px;
+                    margin-bottom: 0;
+                }
+                .content-hr{
+                    margin-top: 0;
+                }
+            }
+            .img-header{
+                height: 200px;
+                background-size: inherit;
+            }
+        }
+    }
+    .propiedades{
+        .body-head{
+            .leyends {
+                p{
+                    padding-top: 10px;
+                    font-size: 17px;
+                    word-spacing: 2px;
+                }
+            }
+        }
+    }
+
+    .footer{
+        .h1{
+            img{
+                width: 65px;
+            }
+            .long{
+                img{
+                    width: 105px;
+                    margin-bottom: 43px;
+                }
+            }
+        }
+        .vertical-align{
+            div{
+
+            }
+        }
+        .c-arrow{
+            padding-top:60px;
+        }
+
+    }
+
+    .modal{
+        .modal-header{}
+
+        .modal-body{
+            .fotos{
+                height: 300px;
+            }
+            .contenido{
+                padding-right:15px !important;
+            }
+        }
+    }
+
+    .navbar-default .navbar-toggle .icon-bar{
+        background-color: #fff;
+
+    }
+    .navbar-default .navbar-toggle{
+        border-color: #fff;
+        margin-top: 15px;
+        margin-right: 30px;
+
+    }
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
+        background-color: rgba(221, 221, 221, 0);
+    }
+    .navbar-default .navbar-collapse, .navbar-default .navbar-form{
+        border-color: rgba(231, 231, 231, 0);
+        background-color: #6EB253;
+    }
+
+
+}
+
+@media (min-width: 767px) and (max-width: 989px)  {
+    .navbar-default{
+        .navbar-nav{
+            li{
+                a{
+                    font-size: 12px !important;
+                }
+                &:hover{
+                    a{
+                        color: #fff !important;
+                    }
+                }
+            }
+        }
+    }
+    .leyends{
+        hr{
+            margin: 0;
+        }
+    }
+    .logo{
+        width: 180px;
+    }
+    .glyphicon {
+        display: none;
+    }
+}

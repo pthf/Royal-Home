@@ -1,0 +1,99 @@
+<header id="header">
+
+    <!--nav class="navbar navbar-default navbar-fixed-top header">
+
+    <div class="container">
+
+    <div class="navbar-header">
+    <a class="navbar-brand" href="#"><img class="logo" src="./assets/images/logo.svg" /></a>
+</div>
+
+<ul class="nav navbar-nav navbar-right" ng-controller="scroll">
+<li><a ng-click="scrollTo('quienesomos')" ><i class="fa fa-home"></i> QUIÉNES SOMOS</a></li>
+<li><a ng-click="scrollTo('proyectos')"><i class="fa fa-shield"></i> PROYÉCTOS</a></li>
+<li><a ng-click="scrollTo('desarrollos')"><i class="fa fa-comment"></i> DESARROLLOS</a></li>
+<li><a ng-click="scrollTo('propiedades')"><i class="fa fa-comment"></i> PROPIEDADES</a></li>
+<li><a ng-click="scrollTo('contacto')" ng-href="#"><i class="fa fa-comment"></i> CONTACTO</a></li>
+</ul>
+
+</div>
+</nav-->
+<nav class="navbar navbar-default navbar-fixed-top header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img onclick="window.scrollTo(0, 0);" class="logo" src="./assets/images/logo.svg" /></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+
+            <ul class="nav navbar-nav navbar-right visible-md visible-sm visible-lg hidden-xs" ng-controller="scroll">
+                <li class="quienesomosli"><a ng-click="scrollTo($event, 'quienesomos')" ><i class="fa fa-home"></i> QUIÉNES SOMOS</a></li>
+                <li class="proyectosli"><a ng-click="scrollTo($event, 'proyectos')"><i class="fa fa-shield"></i> PROYECTOS</a></li>
+                <li class="desarrollosli"><a ng-click="scrollTo($event, 'desarrollos')"><i class="fa fa-comment"></i> DESARROLLOS</a></li>
+                <li class="propiedadesli"><a ng-click="scrollTo($event, 'propiedades')"><i class="fa fa-comment"></i> PROPIEDADES</a></li>
+                <li class="contactoli"><a ng-click="scrollTo($event, 'contacto')" ng-href="#"><i class="fa fa-comment"></i> CONTACTO</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right visible-xs hidden-lg hidden-md" ng-controller="scroll">
+                <li class="col-xs-12"><a ng-click="scrollTo($event, 'quienesomos')" ><i class="fa fa-home"></i> QUIÉNES SOMOS</a></li>
+                <li class="col-xs-12"><a ng-click="scrollTo($event, 'proyectos')"><i class="fa fa-shield"></i> PROYECTOS</a></li>
+                <li class="col-xs-12"><a ng-click="scrollTo($event, 'desarrollos')"><i class="fa fa-comment"></i> DESARROLLOS</a></li>
+                <li class="col-xs-12"><a ng-click="scrollTo($event, 'propiedades')"><i class="fa fa-comment"></i> PROPIEDADES</a></li>
+                <li class="col-xs-12"><a ng-click="scrollTo($event, 'contacto')" ng-href="#"><i class="fa fa-comment"></i> CONTACTO</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
+</header>
+<div class="header-leyend">
+    <div class="img" parallaxs-background parallax-ratio="-0.4">
+        <div class="search container text-right">
+            <form class="form-inline" method="post">
+                <div class="hidden-xs">
+
+
+                    <div class="form-group">
+                        <select class="selectpicker show-menu-arrow show-tick" title="Tipo">
+
+                          <option>Local</option>
+                          <option>Oficina</option>
+                          <option>Bodega</option>
+                          <option>Departamento</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="selectpicker show-menu-arrow col-md-12 show-tick" title="Operación">
+                          <option>Venta</option>
+                          <option>Renta</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="selectpicker show-menu-arrow " title="Ciudad" show-tick show-menu-arrow data-live-search="true">
+                          <option>Guadalajara</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success ">BUSCAR</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="leyends container">
+            <div class="col-md-3 text col-md-offset-7 col-xs-12">
+                <div class="col-md-6 col-xs-12">
+                    <p>DESARROLLADORA INMOBILIARIA </p>
+                </div>
+                <div class="content-hr col-md-3 visible-md">
+                    <hr>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

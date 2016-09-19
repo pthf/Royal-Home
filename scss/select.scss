@@ -1,0 +1,33 @@
+.select{
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+    .select-body{
+        padding: 0;
+        .glyphicon{
+            position: absolute;
+            right: 80px;
+            top: 14px;
+            color: #ababab;
+            -webkit-text-stroke: 3px white;
+            font-size: 20px;
+        }
+        .sl{
+            background-color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            cursor: pointer;
+
+            height: 50px;
+        }
+        .opt, .optp, .optd{
+            display:none;
+            border-bottom: 1px solid #ababab;
+            &:last-child{ border: none;}
+        }
+    }
+}
+.mask{
+    height: 50px !important;
+    background-color: #000 !important;
+}
