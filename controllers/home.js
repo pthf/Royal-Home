@@ -54,7 +54,8 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
                     nextButton: '.swiper-button-next',
                     prevButton: '.swiper-button-prev',
                     spaceBetween: 10,
-                    setWrapperSize: true
+                    setWrapperSize: true,
+                    keyboardControl: true
                 });
 
                 galleryThumbs.params.control = galleryTop2;

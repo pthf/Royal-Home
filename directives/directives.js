@@ -12,7 +12,7 @@ angular.module('rhome.directives', [])
                     if (distanceY > shrinkOn) {
                         $('.header').addClass('down');
                         $('.header').find('.logo').attr('src','./assets/images/logo2.svg');
-                        $( ".logo-right img" ).attr( "src", "./assets/images/s-logo2.png" );
+                        $( ".logo-right img" ).attr( "src", "./assets/images/s-logo2.svg" );
                         $('.navbar-default .navbar-toggle').css('border-color', '#6EB253');
                         $('.navbar-default .navbar-toggle .icon-bar').css('background-color','#6EB253')
                         if (document.documentElement.clientWidth < 750){
@@ -29,7 +29,7 @@ angular.module('rhome.directives', [])
                         $('.container ul li a').css('color', '#fff')
                         $('.header').removeClass('down');
                         $('.logo').attr('src','./assets/images/logo.svg');
-                        $( ".logo-right img" ).attr( "src", "./assets/images/s-logo.png" );
+                        $( ".logo-right img" ).attr( "src", "./assets/images/s-logo.svg" );
                         $('.navbar-nav').find('li').removeClass('focus');
                         $('.navbar-default .navbar-toggle .icon-bar').css('background-color','#fff')
                         $('.navbar-default .navbar-toggle').css('border-color', '#fff');

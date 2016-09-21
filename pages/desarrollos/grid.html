@@ -267,7 +267,6 @@
                     <div class="col-md-12 foto text-center ">
                         <div class="swiper-container gallery-top2">
                             <div class="swiper-wrapper">
-
                                 <div class="swiper-slide" style="background-image:url(http://www.canonistas.com/galerias/data/500/panoramica-guggenheim.jpg)"></div>
                                 <div class="swiper-slide" style="background-image:url(./assets/images/grid/2.png)"></div>
                                 <div class="swiper-slide" style="background-image:url(./assets/images/grid/3.png)"></div>
@@ -279,12 +278,14 @@
                                 <div class="swiper-slide" style="background-image:url(./assets/images/grid/9.png)"></div>
                                 <div class="swiper-slide" style="background-image:url(./assets/images/grid/10.png)"></div>
                             </div>
+                            <div class="swiper-button-next swiper-button-white"></div>
+                            <div class="swiper-button-prev swiper-button-white"></div>
 
                         </div>
 
                     </div>
-                    <div class="col-md-9 contenido">
-                        <div class="titulo col-md-offset-1">
+                    <div class="col-md-9 contenido proyect-wrapper-content">
+                        <div class="titulo col-md-offset-1 title-wrapper">
                             PROYECTO 1
                         </div>
                         <hr>
@@ -309,11 +310,11 @@
                         </div>
                     </div>
                     <div class="col-md-3 info">
-                        <div class="text-center">
+                        <div class="text-center logo-wrapper">
                             <img class="img-responsive foot-modal" src="./assets/images/footer/f1.png" alt="" />
                         </div>
 
-                        <div class="">
+                        <div class="address-wrapper">
                             <address>
                                 Dirección 1971 int. 6 <br>
                                 Fracc. Andares <br>
@@ -325,8 +326,8 @@
                                 <br>
                             </address>
                         </div>
-                        <div class="text-left">
-                            <button class="btn btn-success btn-lg" ng-click="form = true">DISPONIBILIDAD</button>
+                        <div class="text-left button-wrapper">
+                            <button class="btn btn-success btn-lg available-button" ng-click="form = true"></button>
                         </div>
                     </div>
 
@@ -334,7 +335,7 @@
 
                 <div class="container frm-contacto" ng-show="form">
                     <div class="texto col-md-7">
-                        <h1>DEJANOS TUS DATOS PARA COMUNICARNOS CONTIGO</h1>
+                        <h1 class="contact-title">DEJANOS TUS DATOS PARA COMUNICARNOS CONTIGO</h1>
                         <br><br>
                     </div>
 
@@ -360,6 +361,8 @@
                         </form>
                     </div>
                 </div>
+
+                <ng-map class="map-project" center="[20.710079593340588, -103.40774611976781]" scrollwheel="false" draggable="false"></ng-map>
             </div>
         </div>
     </div>
