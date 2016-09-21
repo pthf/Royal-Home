@@ -6,7 +6,7 @@ var app = angular.module('app', [
                               ]);
 
 app.run(function($rootScope, $timeout, $anchorScroll) {
-    console.log('starting run');
+    // console.log('starting run');
 
     $rootScope.$watch('$viewContentLoaded', function(){
         $timeout(function () {

@@ -202,6 +202,23 @@ angular.module('rhome.directives', [])
 			templateUrl: './pages/proyectos/grid.html',
 			controller: function($document){
 
+          var galleryTop = new Swiper('.gallery-top', {
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            spaceBetween: 10,
+            keyboardControl: true
+        });
+        var galleryThumbs = new Swiper('.gallery-thumbs', {
+            spaceBetween: 10,
+            centeredSlides: true,
+            slidesPerView: 4,
+            touchRatio: 0.2,
+            slideToClickedSlide: true
+        });
+        galleryTop.params.control = galleryThumbs;
+        galleryThumbs.params.control = galleryTop;
+
+
 			}
 		}
     })

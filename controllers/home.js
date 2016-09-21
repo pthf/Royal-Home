@@ -24,6 +24,7 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
     });
 
     $scope.getDetailGrid = function(){
+
         $('#myModal').modal({
             show: true,
             backdrop: true
@@ -32,23 +33,7 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
         $('#myModal').on('shown.bs.modal', function(event){
 
             $('body').css('overflow','hidden');
-                var galleryTop = new Swiper('.gallery-top', {
-                    nextButton: '.swiper-button-next.swiper-button-white',
-                    prevButton: '.swiper-button-prev.swiper-button-white',
-                    spaceBetween: 10,
-                });
-                var galleryThumbs = new Swiper('.gallery-thumbs', {
-                    spaceBetween: 10,
-                    centeredSlides: false,
-                    slidesPerView: 'auto',
-                    touchRatio: 0.2,
-                    slideToClickedSlide: true,
-                    nextButton: '.swiper-button-next.swiper-button-white',
-                    prevButton: '.swiper-button-prev.swiper-button-white',
-                });
 
-                galleryTop.params.control = galleryThumbs;
-                galleryThumbs.params.control = galleryTop;
 
         });
         $('#myModal').on('hide.bs.modal	', function(event){
