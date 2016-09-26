@@ -11,17 +11,17 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
         }
         return view;s
     }
-//listen scroll fadein images when focus scroll
-    $(window).scroll(function () {
-        $('.grid > .b-grid').each(function () {
-            if (isScrolledIntoView(this) === true)
-                $(this).addClass('in-view');
-            //else
-                //$(this).removeClass('in-view');
+  //listen scroll fadein images when focus scroll
+      $(window).scroll(function () {
+          $('.grid > .b-grid').each(function () {
+              if (isScrolledIntoView(this) === true)
+                  $(this).addClass('in-view');
+              //else
+                  //$(this).removeClass('in-view');
 
-        });
+          });
 
-    });
+      });
 
     $scope.getDetailGrid = function(){
 
@@ -32,8 +32,31 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
 
         $('#myModal').on('shown.bs.modal', function(event){
 
-            $('body').css('overflow','hidden');
+          setTimeout(function(){
+            var galleryTop = new Swiper('.gallery-top', {
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                spaceBetween: 10,
+                keyboardControl: true,
+                nested: true,
+                debugger: false,
+                control: galleryThumbs
+            });
+            var galleryThumbs = new Swiper('.gallery-thumbs', {
+                spaceBetween: 10,
+                centeredSlides: true,
+                slidesPerView: 5,
+                touchRatio: 1,
+                slideToClickedSlide: true,
+                debugger: false,
+                nested: true,
+                control: galleryTop
+            });
+            galleryTop.params.control = galleryThumbs;
+            galleryThumbs.params.control = galleryTop;
+          }, 10);
 
+          $('body').css('overflow','hidden');
 
         });
         $('#myModal').on('hide.bs.modal	', function(event){
@@ -47,18 +70,27 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
             backdrop: true
         });
 
+
         $('#myModal2').on('shown.bs.modal', function(event){
-                $('body').css('overflow','hidden');
 
-                var galleryTop2 = new Swiper('.gallery-top2', {
-                    nextButton: '.swiper-button-next',
-                    prevButton: '.swiper-button-prev',
-                    spaceBetween: 10,
-                    setWrapperSize: true,
-                    keyboardControl: true
+              console.log('modal open');
+
+
+              $('body').css('overflow','hidden');
+
+              setTimeout(function(){
+
+                $(document).ready(function () {
+                  var galleryTop2 = new Swiper('.gallery-top2', {
+                      nextButton: '.swiper-button-next',
+                      prevButton: '.swiper-button-prev',
+                      spaceBetween: 10,
+                      setWrapperSize: true,
+                      keyboardControl: true,
+                      debugger: false
+                  });
                 });
-
-                galleryThumbs.params.control = galleryTop2;
+              }, 50);
 
         });
         $('#myModal2').on('hide.bs.modal', function(event){
