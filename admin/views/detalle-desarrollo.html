@@ -1,0 +1,27 @@
+<div class="row" ng-controller="viewNavController">
+
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Detalle del Desarrollo - Royal Home</h3>
+			</div>
+			<div class="panel panel-body" ng-controller="desarrolloDescription">
+				<ul class="nav nav-tabs">
+				  <li style="cursor: pointer;" role="presentation" ng-class="{ active:item === 1 }"><a ng-click="selectItem(1)">Galería</a></li>
+				  <li style="cursor: pointer;" role="presentation" ng-class="{ active:item === 2 }"><a ng-click="selectItem(2)">Lógo</a></li>
+				  <li style="cursor: pointer;" role="presentation" ng-class="{ active:item === 3 }"><a ng-click="selectItem(3)">Editar</a></li>
+					<li style="cursor: pointer;" role="presentation" ><a href="#/desarrollos">Regresar</a></li>
+				</ul>
+				<div ng-show="item === 1" class="cont-nav">
+					<listar-imagenes-desarrollo></listar-imagenes-desarrollo>
+				</div>
+				<div ng-show="item === 2" class="cont-nav">
+					<logo-desarrollo></logo-desarrollo>
+				</div>
+				<div ng-show="item === 3" class="cont-nav">
+					<editar-desarrollo></editar-desarrollo>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

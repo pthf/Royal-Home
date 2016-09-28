@@ -1,0 +1,2 @@
+<br />
+<b>Warning</b>:  readfile(prueba_pdf.pdf): failed to open stream: No such file or directory in <b>/Applications/XAMPP/xamppfiles/htdocs/www/MEM/build/html/resultados-pdf.php</b> on line <b>18</b><br />

@@ -1,0 +1,17 @@
+<div class="row" ng-controller="viewNavController">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Tipo Inmobiliaria - Royal Home</h3>
+			</div>
+			<div class="panel panel-body">
+				<ul class="nav nav-tabs">
+				  <li style="cursor: pointer;" role="presentation" ng-class="{ active:item === 1 }"><a ng-click="selectItem(1)">Agregar tipo inmobiliaria</a></li>
+				</ul>
+				<div ng-show="item === 1" class="cont-nav">
+					<agregar-tipo-inmobiliaria></agregar-tipo-inmobiliaria>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,114 @@
+<div class="row" style="margin-top: 2vw" ng-controller="getImagesDesarrolloController">
+  <div class="col-md-10">
+    <form class="form-horizontal" id="formEditDesarrollo" name="" enctype="multipart/form-data">
+      <div class="col-md-5">
+        <div class="form-group">
+          <label for="id-desarrollo" class="col-sm-12 control-label">ID *</label>
+          <div class="col-sm-12">
+            <input required type="text" disabled class="form-control" id="id-desarrollo" name="id-desarrollo" value="{{desarrolloElement[0].idDesarrollo}}"></input>
+            <input required type="text" hidden class="form-control" id="id-desarrollo" name="id-desarrollo" value="{{desarrolloElement[0].idDesarrollo}}"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="nombre-desarrollo" class="col-sm-12 control-label">Nombre *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="nombre-desarrollo" placeholder="Nombre del Desarrollo" name="nombre-desarrollo" value="{{desarrolloElement[0].nombreDesarrollo}}"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="descripcion-desarrollo" class="col-sm-12 control-label">Descripción *</label>
+          <div class="col-sm-12">
+            <textarea rows="4" cols="50" required class="form-control" id="descripcion-desarrollo" placeholder="Escribe la descripción" name="descripcion-desarrollo">{{desarrolloElement[0].descripDesarrollo}}</textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="direccion-desarrollo" class="col-sm-12 control-label">Dirección *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="direccion-desarrollo" placeholder="Dirección del Desarrollo" name="direccion-desarrollo" value="{{desarrolloElement[0].direccionDesarrollo}}"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="colonia-desarrollo" class="col-sm-12 control-label">Colonia *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="colonia-desarrollo" placeholder="Colonia del Desarrollo" name="colonia-desarrollo" value="{{desarrolloElement[0].colonia}}"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cp-desarrollo" class="col-sm-12 control-label">Código Postal *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="cp-desarrollo" placeholder="Código Postal del Desarrollo" name="cp-desarrollo" value="{{desarrolloElement[0].codigoPostal}}"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="telefono-desarrollo" class="col-sm-12 control-label">Teléfono *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="telefono-desarrollo" placeholder="Teléfono del Desarrollo" name="telefono-desarrollo" value="{{desarrolloElement[0].telefono}}"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email-desarrollo" class="col-sm-12 control-label">Email *</label>
+          <div class="col-sm-12">
+            <input required type="email" class="form-control" id="email-desarrollo" placeholder="Email del Desarrollo" name="email-desarrollo" value="{{desarrolloElement[0].email}}"></input>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group" ng-controller="getListStates">
+          <label for="estado-desarrollo" class="col-sm-12 control-label">Estado *</label>
+          <div class="col-sm-12">
+            <select required class="form-control" id="estado-desarrollo" name="estado-desarrollo" ng-model="valor.model">
+              <option disabled="" selected="" value="">Selecciona..</option>
+              <option ng-repeat="(key, data) in availableOptions" value="{{data.idEstados}}" ng-if="desarrolloElement[0].estado == data.nombreEstado" selected>{{data.nombreEstado}}</option>
+              <option ng-repeat="(key, data) in availableOptions" value="{{data.idEstados}}" ng-if="desarrolloElement[0].estado != data.nombreEstado">{{data.nombreEstado}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" ng-controller="getListCities">
+          <label for="ciudad-desarrollo" class="col-sm-12 control-label">Ciudad *</label>
+          <div class="col-sm-12">
+            <select required class="form-control" id="ciudad-desarrollo" name="ciudad-desarrollo" ng-if="valor.model">
+              <option disabled="" selected="" value="">Selecciona..</option>
+              <option ng-repeat="(key, data) in availableOptions" value="{{data.idCiudades}}" ng-if="data.Estados_idEstados == valor.model">{{data.nombreCiudad}}</option>
+            </select>
+            <select required class="form-control" id="ciudad-desarrollo" name="ciudad-desarrollo" ng-if="!valor.model">
+              <option disabled="" selected="" value="">Selecciona..</option>
+              <option ng-repeat="(key, data) in availableOptions" value="{{data.idCiudades}}" ng-if="desarrolloElement[0].ciudad == data.nombreCiudad" selected>{{data.nombreCiudad}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" ng-controller="getListInmobiliaria">
+          <label for="inmobiliaria-desarrollo" class="col-sm-12 control-label">Inmobiliaria *</label>
+          <div class="col-sm-12">
+            <select required class="form-control" id="inmobiliaria-desarrollo" name="inmobiliaria-desarrollo">
+              <option disabled="" selected="" value="">Selecciona..</option>
+              <option ng-repeat="(key, data) in availableOptions" value="{{data.idtipoInmobiliaria}}" ng-if="desarrolloElement[0].tipoInmobiliaria == data.tipoInmobiliaria" selected>{{data.tipoInmobiliaria}}</option>
+              <option ng-repeat="(key, data) in availableOptions" value="{{data.idtipoInmobiliaria}}" ng-if="desarrolloElement[0].tipoInmobiliaria != data.tipoInmobiliaria">{{data.tipoInmobiliaria}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" ng-controller="getListTypeInmobiliaria">
+          <label for="tipo-inmobiliaria-desarrollo" class="col-sm-12 control-label">Tipo Inmobiliaria *</label>
+          <div class="col-sm-12">
+            <select required class="form-control" id="tipo-inmobiliaria-desarrollo" name="tipo-inmobiliaria-desarrollo">
+              <option disabled="" selected="" value="">Selecciona..</option>
+              <option ng-repeat="(key, data) in availableOptions" value="{{data.idsubcategoriaInmobiliaria}}" ng-if="desarrolloElement[0].subcategoriaInmobiliaria == data.subcategoriaInmobiliaria" selected>{{data.subcategoriaInmobiliaria}}</option>
+              <option ng-repeat="(key, data) in availableOptions" value="{{data.idsubcategoriaInmobiliaria}}" ng-if="desarrolloElement[0].subcategoriaInmobiliaria != data.subcategoriaInmobiliaria">{{data.subcategoriaInmobiliaria}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="anio-desarrollo" class="col-sm-12 control-label">Año *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="anio-desarrollo" placeholder="Año del Desarrollo" name="anio-desarrollo" value="{{desarrolloElement[0].anio}}"></input>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button type="button" class="btn btn-danger" onclick="location.reload();">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="buttonSave">Guardar</button>
+          <input type="text" style="display:none" class="bReload" ng-click="loadImages()"></input>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>

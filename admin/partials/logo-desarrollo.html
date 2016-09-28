@@ -1,0 +1,31 @@
+<div>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Imágen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><img src="../src/images/logos-desarrollos/{{desarrolloElement[0].logoDesarrollo}}" height="auto;"></th>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <div class="col-md-5">
+    <form class="form-horizontal" enctype="multipart/form-data" id="insertLogoDesarrollo">
+      <div class="form-group">
+        <label for="imageLogoDesarrollo" class="col-sm-12 control-label" style="text-align: left;">Cambiar Imágen Logo *</label>
+        <div class="col-sm-12">
+          <input required type="file" class="form-control logo" id="imageLogoDesarrollo" name="imageLogoDesarrollo[]"></input>
+          <input type="text" value="{{desarrolloElement[0].idDesarrollo}}" name="idDesarrollo" style="display:none"></input>
+          <input type="text" value="{{desarrolloElement[0].logoDesarrollo}}" name="imagenAnterior" style="display:none"></input>
+          <input type="submit" class="btn btn-default" value="Guardar"  name="" style="margin-top: 10px;"></input>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</div>

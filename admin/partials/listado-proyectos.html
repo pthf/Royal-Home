@@ -1,0 +1,44 @@
+<div ng-controller="getListProjectController">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>logo</th>
+        <th>nombre</th>
+        <th>descripción</th>
+        <th>dirección</th>
+        <th>teléfono</th>
+        <th>email</th>
+        <th>año</th>
+        <th>estado/ciudad</th>
+        <th>tipoInmobiliaria</th>
+        <th>subcategoria</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(key, data) in projectList">
+        <th>{{data.idProyecto}}</th>
+        <th>
+          <div style="width: 100px; height: 100px; overflow: hidden;">
+            <img src="../src/images/logos-proyectos/{{data.logoProyecto}}" style="width: 100%; height: auto;" height="auto;">
+          </div>
+        </th>
+        <th>{{data.nombreProyecto}}</th>
+        <th>{{data.descripProyecto}}</th>
+        <th>{{data.direccionProyecto}} {{data.colonia}} {{data.codigoPostal}}</th>
+        <th>{{data.telefono}}</th>
+        <th>{{data.email}}</th>
+        <th>{{data.anio}}</th>
+        <th>{{data.ciudad}}, {{data.estado}}</th>
+        <th>{{data.tipoInmobiliaria}}</th>
+        <th>{{data.subcategoriaInmobiliaria}}</th>
+        <th>
+          <a href="#/proyecto/{{data.idProyecto}}"><span class="label label-default" style="cursor:pointer">Detalles</span></a>
+		  		<span class="label label-danger deleteElement" data-id='{{data.idProyecto}}' style="cursor:pointer">Eliminar</span>
+          <span class="clickoculted" style="opacity: 0;" ng-click="loadImages()">
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</div>

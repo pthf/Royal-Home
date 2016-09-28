@@ -1,0 +1,30 @@
+<div>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Imágen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><img src="../src/images/logos-propiedades/{{propiedadElement[0].logoPropiedad}}" height="auto;"></th>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <div class="col-md-5">
+    <form class="form-horizontal" enctype="multipart/form-data" id="insertLogoPropiedad">
+      <div class="form-group">
+        <label for="imageLogoPropiedad" class="col-sm-12 control-label" style="text-align: left;">Cambiar Imágen Logo *</label>
+        <div class="col-sm-12">
+          <input required type="file" class="form-control logo" id="imageLogoPropiedad" name="imageLogoPropiedad[]"></input>
+          <input type="text" value="{{propiedadElement[0].idPropiedad}}" name="idPropiedad" style="display:none"></input>
+          <input type="text" value="{{propiedadElement[0].logoPropiedad}}" name="imagenAnterior" style="display:none"></input>
+          <input type="submit" class="btn btn-default" value="Guardar"  name="" style="margin-top: 10px;"></input>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+</div>

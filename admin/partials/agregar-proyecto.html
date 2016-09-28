@@ -1,0 +1,111 @@
+<div class="row" style="margin-top: 2vw" ng-controller="getImagesProjectController">
+  <div class="col-md-10">
+    <form class="form-horizontal" id="formProyecto" name="" enctype="multipart/form-data">
+      <div class="col-md-5">
+        <div class="form-group">
+          <label for="nombre-proyecto" class="col-sm-12 control-label">Nombre *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="nombre-proyecto" placeholder="Nombre del Proyecto" name="nombre-proyecto"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="descripcion-proyecto" class="col-sm-12 control-label">Descripción *</label>
+          <div class="col-sm-12">
+            <textarea rows="4" cols="50" required class="form-control" id="descripcion-proyecto" placeholder="Escribe la descripción" name="descripcion-proyecto"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="direccion-proyecto" class="col-sm-12 control-label">Dirección *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="direccion-proyecto" placeholder="Dirección del Proyecto" name="direccion-proyecto"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="colonia-proyecto" class="col-sm-12 control-label">Colonia *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="colonia-proyecto" placeholder="Colonia del Proyecto" name="colonia-proyecto"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cp-proyecto" class="col-sm-12 control-label">Código Postal *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="cp-proyecto" placeholder="Código Postal del Proyecto" name="cp-proyecto"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="telefono-proyecto" class="col-sm-12 control-label">Teléfono *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="telefono-proyecto" placeholder="Teléfono del Proyecto" name="telefono-proyecto"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email-proyecto" class="col-sm-12 control-label">Email *</label>
+          <div class="col-sm-12">
+            <input required type="email" class="form-control" id="email-proyecto" placeholder="Email del Proyecto" name="email-proyecto"></input>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="form-group" ng-controller="getListStates">
+          <label for="estado-proyecto" class="col-sm-12 control-label">Estado *</label>
+          <div class="col-sm-12">
+            <select required class="form-control" id="estado-proyecto" name="estado-proyecto" ng-model="valor.model">
+              <option disabled="" selected="" value="">Selecciona..</option>
+              <option ng-repeat="(key, data) in availableOptions" value="{{data.idEstados}}">{{data.nombreEstado}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" ng-controller="getListCities">
+          <label for="ciudad-proyecto" class="col-sm-12 control-label">Ciudad *</label>
+          <div class="col-sm-12">
+            <select required class="form-control" id="ciudad-proyecto" name="ciudad-proyecto">
+              <option disabled="" selected="" value="">Selecciona..</option>
+              <option ng-repeat="(key, data) in availableOptions" value="{{data.idCiudades}}" ng-if="data.Estados_idEstados == valor.model">{{data.nombreCiudad}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" ng-controller="getListInmobiliaria">
+          <label for="inmobiliaria-proyecto" class="col-sm-12 control-label">Tipo de Proyecto *</label>
+          <div class="col-sm-12">
+            <select required class="form-control" id="inmobiliaria-proyecto" name="inmobiliaria-proyecto">
+              <option value="1" selected>Proyecto</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" ng-controller="getListTypeInmobiliaria">
+          <label for="tipo-inmobiliaria-proyecto" class="col-sm-12 control-label">Tipo de Inmueble *</label>
+          <div class="col-sm-12">
+            <select required class="form-control" id="tipo-inmobiliaria-proyecto" name="tipo-inmobiliaria-proyecto">
+              <option disabled="" selected="" value="">Selecciona..</option>
+              <option ng-repeat="(key, data) in availableOptions" value="{{data.idsubcategoriaInmobiliaria}}" ng-if="data.tipoInmobiliaria_idtipoInmobiliaria == 1">{{data.subcategoriaInmobiliaria}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="anio-proyecto" class="col-sm-12 control-label">Año *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="anio-proyecto" placeholder="Año del Proyecto" name="anio-proyecto"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="logo-proyecto" class="col-sm-12 control-label" style="text-align: left;">Logo *</label>
+          <div class="col-sm-12">
+            <input required type="file" class="form-control logo" id="logo-proyecto" name="logo-proyecto[]"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="imagenes-proyecto" class="col-sm-12 control-label">Imagenes *</label>
+          <div class="col-sm-12">
+            <input required type="file" class="form-control imagenes" id="imagenes-proyecto" name="imagenes-proyecto[]" multiple></input>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button type="button" class="btn btn-danger" onclick="location.reload();">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="buttonSave">Guardar</button>
+          <input type="text" style="display:none" class="bReload" ng-click="loadImages()"></input>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
