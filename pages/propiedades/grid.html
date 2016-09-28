@@ -1,7 +1,48 @@
 <div class="propiedades" id="propiedades">
     <div class="container-fluid">
         <div class="body-head">
-            <div class="img-header" parallaxs-background parallax-ratio="-0.2">
+            <div class="img-header" parallaxs-background parallax-ratio="-0.2" style="position:relative;">
+                <div class="search container text-right search-propiedades">
+                  <form class="form-inline" method="post">
+                      <div class="hidden-xs">
+
+
+                          <div class="form-group">
+                              <select class="selectpicker show-menu-arrow show-tick" title="Tipo">
+                                <option>Casa</option>
+                                <option>Terreno</option>
+                                <option>Local</option>
+                                <option>Oficina</option>
+                                <option>Bodega</option>
+                                <option>Departamento</option>
+                                <option>Casas</option>
+                                <option>Terrenos</option>
+                              </select>
+                          </div>
+                          <div class="form-group">
+                              <select class="selectpicker show-menu-arrow col-md-12 show-tick" title="Operación">
+                                <option>Venta</option>
+                                <option>Renta</option>
+                              </select>
+                          </div>
+                          <div class="form-group">
+                              <select class="selectpicker show-menu-arrow " title="Estado" show-tick show-menu-arrow data-live-search="true">
+                                <option>Jalisco</option>
+                              </select>
+                          </div>
+                          <div class="form-group">
+                              <select class="selectpicker show-menu-arrow " title="Ciudad" show-tick show-menu-arrow data-live-search="true">
+                                <option>Guadalajara</option>
+                              </select>
+                          </div>
+                          <div class="form-group">
+                              <button type="submit" class="btn btn-success ">BUSCAR</button>
+                          </div>
+                      </div>
+
+                  </form>
+              </div>
+
                 <div class="leyends container">
                     <div class="row text-right">
                         <div class="col-md-11 col-xs-12">
