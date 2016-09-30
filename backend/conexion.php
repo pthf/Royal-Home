@@ -1,15 +1,14 @@
-
 <?php
-class Conectar{
+	class Conectar
+	{
+		//establecemos la conexión con la base de datos
+		public static function con()
+		{
+			$conexion = mysql_connect("localhost","root","");
+			mysql_query("SET NAMES 'utf8'");
+			mysql_select_db("royalhome");
+			return $conexion;
+		}
+	}
 
-    public function __contructor(){
-        ini_set('display_errors', 'on');
-    }
-    static function con(){
-        $link = mysql_connect('localhost', 'root', 'root') or die('No se pudo conectar: ' . mysql_error());
-        mysql_select_db('failbox', $link) or die('No se pudo seleccionar la base de datos');
-        return $link;
-    }
-
-}
 ?>

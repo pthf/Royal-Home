@@ -124,3 +124,53 @@ app.controller('scroll', function($scope, $anchorScroll, $location, $document, $
 
    }
 })
+
+app.controller('getTypeInmobiliariaController', function($scope){
+  $scope.valor={};
+  $scope.valor1={
+    model:null,
+  };
+})
+app.controller("getListProjects", function($scope, getDataProjects){
+  $scope.projectList = [];
+  getDataProjects.dataProjects().then(function(data){
+    $scope.projectList = data;
+  });
+})
+app.controller("getListDesarrollos", function($scope, getDataDesarrollos){
+  $scope.desarrolloList = [];
+  getDataDesarrollos.dataDesarrollos().then(function(data){
+    $scope.desarrolloList = data;
+  });
+})
+app.controller("getListPropiedades", function($scope, getDataPropiedades){
+  $scope.propiedadList = [];
+  getDataPropiedades.dataPropiedades().then(function(data){
+    $scope.propiedadList = data;
+  });
+})
+app.controller("getListCategoryInmobiliarias", function($scope, getDataCategorys){
+  $scope.categorysList = [];
+  getDataCategorys.dataCategorysList().then(function(data){
+    $scope.categorysList = data;
+  });
+})
+app.controller('getListTypeInmobiliaria', function($scope, getDataType){
+ $scope.typeList = [];
+  getDataType.dataTypeList().then(function(data){
+    $scope.typeList = data;
+  });
+})
+app.controller('getListStates', function($scope, getDataState){
+ $scope.statesList = [];
+  getDataState.dataStateList().then(function(data){
+    $scope.statesList = data;
+  });
+})
+app.controller('getListCities', function($scope, getDataCity){
+ $scope.citiesList = [];
+  getDataCity.dataCityList().then(function(data){
+    $scope.citiesList = data;
+  });
+})
+

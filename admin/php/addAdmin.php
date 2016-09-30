@@ -8,4 +8,4 @@
 	$passwordhash = password_hash($password, PASSWORD_DEFAULT);
 
 	$query = "INSERT INTO adminuser (adminName, adminPassword, adminLastConnection) VALUES ('$username', '$passwordhash', '0000-00-00 00:00:00')";
-	$result = mysqli_query(Conectar::con(),$query) or die(mysqli_error(Conectar::con()));
+	$result = mysql_query($query,Conectar::con()) or die(mysql_error());
