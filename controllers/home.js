@@ -9,7 +9,7 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
         if( ((elemBottom-500 <= docViewBottom) && (elemTop+320 >= docViewTop)) ){
             view = true;
         }
-        return view;s
+        return view;
     }
   //listen scroll fadein images when focus scroll
       $(window).scroll(function () {
@@ -23,8 +23,14 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
 
       });
 
-    $scope.getDetailGrid = function(){
-
+    $scope.getDetailGrid = function(id){
+      alert(id);
+      // app.controller("getListDetailsProjects", function($scope, getDataDetailsProjects){
+      //   $scope.projectDetailsList = [];
+      //   getDataDetailsProjects.dataDetailsProjects(id).then(function(data){
+      //     $scope.projectDetailsList = data;
+      //   });
+      // })
         $('#myModal').modal({
             show: true,
             backdrop: true
@@ -137,16 +143,34 @@ app.controller("getListProjects", function($scope, getDataProjects){
     $scope.projectList = data;
   });
 })
+// app.controller("getListDetailsProjects", function($scope, getDataDetailsProjects){
+//   $scope.projectDetailsList = [];
+//   getDataDetailsProjects.dataDetailsProjects().then(function(data){
+//     $scope.projectDetailsList = data;
+//   });
+// })
 app.controller("getListDesarrollos", function($scope, getDataDesarrollos){
   $scope.desarrolloList = [];
   getDataDesarrollos.dataDesarrollos().then(function(data){
     $scope.desarrolloList = data;
   });
 })
+app.controller("getListDetailsDesarrollos", function($scope, getDataDetailsDesarrollos){
+  $scope.desarrolloDetailsList = [];
+  getDataDetailsDesarrollos.dataDetailsDesarrollos().then(function(data){
+    $scope.desarrolloDetailsList = data;
+  });
+})
 app.controller("getListPropiedades", function($scope, getDataPropiedades){
   $scope.propiedadList = [];
   getDataPropiedades.dataPropiedades().then(function(data){
     $scope.propiedadList = data;
+  });
+})
+app.controller("getListDetailsPropiedades", function($scope, getDataDetailsPropiedades){
+  $scope.propiedadDetailsList = [];
+  getDataDetailsPropiedades.dataDetailsPropiedades().then(function(data){
+    $scope.propiedadDetailsList = data;
   });
 })
 app.controller("getListCategoryInmobiliarias", function($scope, getDataCategorys){

@@ -19,8 +19,7 @@
 
         <selectproyectos></selectproyectos>
         <div class="grid" ng-controller="getListProjects">
-
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco" ng-click="getDetailGrid();" ng-repeat="(key, data) in projectList">
+            <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco" ng-repeat="(key, data) in projectList" ng-click="getDetailGrid(data.idProyecto);">
                 <!-- <img src="./assets/images/grid/1.png" /> -->
                 <img src="http://localhost/www/Royal-Home/admin/src/images/imagenes-proyectos/{{data.imagenHome}}" style="height: 359px;width: 100%;">
                 <div class="cintillo">
@@ -32,222 +31,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/2.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 2
-                    </div>
-                    <div class="city txt">
-                        Guadalajara, MX
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/3.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 3
-                    </div>
-                    <div class="city txt">
-                        Guadalajara, MX
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/4.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 4
-                    </div>
-                    <div class="city txt">
-                        Guadalajara, MX
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid leon" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/5.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 1
-                    </div>
-                    <div class="city txt">
-                        León, MX
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid leon" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/6.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 2
-                    </div>
-                    <div class="city txt">
-                        León, MX
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid leon" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/7.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 3
-                    </div>
-                    <div class="city txt">
-                        León, MX
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid leon" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/8.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 4
-                    </div>
-                    <div class="city txt">
-                        León, MX
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid aguascalientes" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/9.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 1
-                    </div>
-                    <div class="city txt">
-                        Aguascalientes, MX
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid aguascalientes" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/10.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 2
-                    </div>
-                    <div class="city txt">
-                        Aguascalientes, MX
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid aguascalientes" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/11.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 3
-                    </div>
-                    <div class="city txt">
-                        Aguascalientes, MX
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid aguascalientes" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/12.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 4
-                    </div>
-                    <div class="city txt">
-                        Aguascalientes, MX
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid guanajuato" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/1.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 1
-                    </div>
-                    <div class="city txt">
-                        Guanajuato, MX
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid guanajuato" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/2.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 2
-                    </div>
-                    <div class="city txt">
-                        Guanajuato, MX
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid guanajuato" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/3.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 3
-                    </div>
-                    <div class="city txt">
-                        Guanajuato, MX
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid guanajuato" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/1.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 4
-                    </div>
-                    <div class="city txt">
-                        Guanajuato, MX
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid queretaro" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/2.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 4
-                    </div>
-                    <div class="city txt">
-                        Querétaro, MX
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid queretaro" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/1.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 2
-                    </div>
-                    <div class="city txt">
-                        Querétaro, MX
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid queretaro" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/3.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 1
-                    </div>
-                    <div class="city txt">
-                        Querétaro, MX
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid queretaro" ng-click="getDetailGrid();">
-                <img src="./assets/images/grid/8.png" />
-                <div class="cintillo">
-                    <div class="title txt">
-                        Proyecto 2
-                    </div>
-                    <div class="city txt">
-                        Querétaro, MX
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 
@@ -262,12 +45,17 @@
                 <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body">
+                <!-- <div class="row modal-content-wrapper" ng-repeat="(key, data) in projectDetailsList"> -->
                 <div class="row modal-content-wrapper">
+                    <!-- <div ng-repeat="image in data.imagenes">
+                        <h1>{{image}}</h1>
+                    </div> -->
                     <div class="col-md-6 col-xs-12 foto text-center ">
                       <!-- Swiper -->
                       <div class="swiper-container gallery-top">
                           <div class="swiper-wrapper">
-                              <div class="swiper-slide" style="background-image:url(./assets/images/grid/1.png)"></div>
+                              <!-- <div class="swiper-slide" style="background-image:url(http://localhost/www/Royal-Home/admin/src/images/imagenes-proyectos/{{image}})"></div> -->
+                              <!-- <div ng-repeat="image in projectDetailsList[0].imagenes" class="swiper-slide" style="background-image:url(http://localhost/www/Royal-Home/admin/src/images/imagenes-proyectos/{{image}})"></div> -->
                               <div class="swiper-slide" style="background-image:url(./assets/images/grid/2.png)"></div>
                               <div class="swiper-slide" style="background-image:url(./assets/images/grid/3.png)"></div>
                               <div class="swiper-slide" style="background-image:url(./assets/images/grid/4.png)"></div>
@@ -284,7 +72,8 @@
                       </div>
                       <div class="swiper-container gallery-thumbs">
                           <div class="swiper-wrapper">
-                            <div class="swiper-slide" style="background-image:url(./assets/images/grid/1.png)"></div>
+                            <!-- <div class="swiper-slide" style="background-image:url(./assets/images/grid/1.png)"></div> -->
+                            <!-- <div ng-repeat="image in projectDetailsList[0].imagenes" class="swiper-slide" style="background-image:url(http://localhost/www/Royal-Home/admin/src/images/imagenes-proyectos/{{image}})"></div> -->
                             <div class="swiper-slide" style="background-image:url(./assets/images/grid/2.png)"></div>
                             <div class="swiper-slide" style="background-image:url(./assets/images/grid/3.png)"></div>
                             <div class="swiper-slide" style="background-image:url(./assets/images/grid/4.png)"></div>
@@ -301,12 +90,12 @@
                     <div class="col-md-6 contenido col-xs-10 info-project">
                         <div class="titulo col-md-offset-1">
                             <span>PROYECTO 1</span>
-
+                            <!-- <span>{{projectDetailsList[0].nombreProyecto}}</span> -->
                             <img src="./assets/images/s-logo2.svg" style="width:42px;height:42px;float:right;" />
                         </div>
                         <hr>
                         <div class="descripcion col-md-offset-1">
-
+                           <!--  {{projectDetailsList[0].descripProyecto}} -->
                             Royal Home es una desarrolladora inmobiliaria multidisciplinaria en los giros
                             comercial, vivienda, y corporativo, adaptada al estilo de vida de sus usuarios
                             ofreciendo calidad, vanguardia e innovación en cada proyecto; dando como resultado
@@ -326,10 +115,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
 
             </div>
 

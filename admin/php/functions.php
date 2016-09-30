@@ -226,6 +226,19 @@
   			$query = "INSERT INTO Proyectos_has_imagenesInmobiliaria VALUES('".$idProyecto."','".$idImagenes."')";
   			$result = mysql_query($query,Conectar::con()) or die (mysql_error());
   		}
+
+  		$query = "SELECT p.idProyectos,img.imagenesInmobiliaria FROM Proyectos p 
+					INNER JOIN Proyectos_has_imagenesInmobiliaria phi ON phi.Proyectos_idProyectos = p.idProyectos
+					INNER JOIN imagenesInmobiliaria img ON img.idimagenesInmobiliaria = phi.imagenesInmobiliaria_idimagenesInmobiliaria
+					WHERE p.idProyectos = '".$idProyecto."'";
+		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
+		$array_imagenes = array();
+		while ($row = mysql_fetch_array($result)) {
+			array_push($array_imagenes, $row['imagenesInmobiliaria']);
+		}
+		$imagenesProyectos = implode(',', $array_imagenes);
+		$query = "UPDATE Proyectos SET imagenHomeProyecto = '".$imagenesProyectos."' WHERE idProyectos = '".$idProyecto."'";
+		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
 	}
 
 
@@ -371,6 +384,18 @@
   			$query = "INSERT INTO Desarrollos_has_imagenesInmobiliaria VALUES('".$idDesarrollo."','".$idImagenes."')";
   			$result = mysql_query($query,Conectar::con()) or die (mysql_error());
   		}
+  		$query = "SELECT d.idDesarrollos,img.imagenesInmobiliaria FROM Desarrollos d 
+					INNER JOIN Desarrollos_has_imagenesInmobiliaria dhi ON dhi.Desarrollos_idDesarrollos = d.idDesarrollos
+					INNER JOIN imagenesInmobiliaria img ON img.idimagenesInmobiliaria = dhi.imagenesInmobiliaria_idimagenesInmobiliaria
+					WHERE d.idDesarrollos = '".$idDesarrollo."'";
+		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
+		$array_imagenes = array();
+		while ($row = mysql_fetch_array($result)) {
+			array_push($array_imagenes, $row['imagenesInmobiliaria']);
+		}
+		$imagenesDesarrollos = implode(',', $array_imagenes);
+		$query = "UPDATE Desarrollos SET imagenHomeDesarrollo = '".$imagenesDesarrollos."' WHERE idDesarrollos = '".$idDesarrollo."'";
+		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
 	}
 
 	function eliminarDesarrollo($idDesarrollo){
@@ -515,6 +540,18 @@
   			$query = "INSERT INTO Propiedades_has_imagenesInmobiliaria VALUES('".$idPropiedad."','".$idImagenes."')";
   			$result = mysql_query($query,Conectar::con()) or die (mysql_error());
   		}
+  		$query = "SELECT p.idPropiedades,img.imagenesInmobiliaria FROM Propiedades p 
+					INNER JOIN Propiedades_has_imagenesInmobiliaria phi ON phi.Propiedades_idPropiedades = p.idPropiedades
+					INNER JOIN imagenesInmobiliaria img ON img.idimagenesInmobiliaria = phi.imagenesInmobiliaria_idimagenesInmobiliaria
+					WHERE p.idPropiedades = '".$idPropiedad."'";
+		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
+		$array_imagenes = array();
+		while ($row = mysql_fetch_array($result)) {
+			array_push($array_imagenes, $row['imagenesInmobiliaria']);
+		}
+		$imagenesPropiedades = implode(',', $array_imagenes);
+		$query = "UPDATE Propiedades SET imagenHomePropiedad = '".$imagenesPropiedades."' WHERE idPropiedades = '".$idPropiedad."'";
+		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
 	}
 
 	function eliminarPropiedad($idPropiedad){

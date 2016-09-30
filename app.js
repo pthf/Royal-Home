@@ -9,6 +9,7 @@ app.run(function($rootScope, $timeout, $anchorScroll) {
     // console.log('starting run');
 
     $rootScope.$watch('$viewContentLoaded', function(){
+        $params = "que chinge su madre el jorge";
         $timeout(function () {
             var adding = function(element, direction){
                 $('.navbar-nav').find('li').removeClass('focus');
@@ -53,7 +54,6 @@ app.run(function($rootScope, $timeout, $anchorScroll) {
                 }
             })
         }, 800);
+
     });
-
-
 });

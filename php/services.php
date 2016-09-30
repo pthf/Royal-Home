@@ -3,32 +3,23 @@
 		require_once("../backend/conexion.php");
 		$namefunction = $_GET['namefunction'];
 		switch ($namefunction) {
-			case 'getInfomationProjects':
-				getInfomationProjects();
-				break;
 			case 'getProjectList':
 				getProjectList();
 				break;
-			case 'getProjectById':
-				getProjectById($_GET['id']);
-				break;
-			case 'getInfomationDesarrollos':
-				getInfomationDesarrollos();
+			case 'getListDetailsProject':
+				getListDetailsProject($_GET['id']);
 				break;
 			case 'getDesarrolloList':
 				getDesarrolloList();
 				break;
-			case 'getDesarrolloById':
-				getDesarrolloById($_GET['id']);
-				break;
-			case 'getInfomationPropiedades':
-				getInfomationPropiedades();
+			case 'getListDetailsDesarrollo':
+				getListDetailsDesarrollo();
 				break;
 			case 'getPropiedadList':
 				getPropiedadList();
 				break;
-			case 'getPropiedadById':
-				getPropiedadById($_GET['id']);
+			case 'getListDetailsPropiedad':
+				getListDetailsPropiedad();
 				break;
 			case 'getStatesList':
 				getStatesList();
@@ -46,23 +37,6 @@
 				getTypeOperationList();
 				break;
 		}
-	}
-
-	function getInfomationProjects() {
-		$query = "SELECT * FROM Proyectos p ORDER BY idProyectos DESC";
-		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
-		$arrayAux = array();
-		while($line = mysql_fetch_array($result)){
-			$arrayAux[] = array(
-				'idProyecto' => $line['idProyectos'],
-				'nombreProyecto' => $line['nombreProyecto'],
-				'descripcion' => $line['descripProyecto'],
-				'direccion' => $line['direccionProyecto'],
-				'colonia' => $line['coloniaProyecto'],
-				'cp' => $line['cpProyecto']
-			);
-		}
-		echo json_encode($arrayAux);
 	}
 
 	function getProjectList(){
@@ -98,54 +72,24 @@
 		echo json_encode($arrayAux);
 	}
 
-	function getProjectById($id){
-		$query = "SELECT * FROM Proyectos_has_imagenesInmobiliaria phi
-					INNER JOIN imagenesInmobiliaria imi On imi.idimagenesInmobiliaria = phi.imagenesInmobiliaria_idimagenesInmobiliaria
-					INNER JOIN Proyectos p ON p.idProyectos = phi.Proyectos_idProyectos
+	function getListDetailsProject($idProyecto){
+		$query = "SELECT * FROM Proyectos p
 					INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
 					INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
 					INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
-					INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
-					WHERE phi.Proyectos_idProyectos = $id ORDER BY idimagenesInmobiliaria DESC";
+					INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
+					WHERE p.idProyectos = '".$idProyecto."' ORDER BY p.idProyectos DESC";
 		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
-		$arrayListProjects = array();
+		$arrayAux = array();
 		while($line = mysql_fetch_array($result)){
-			$arrayAux = array(
-				'idimagenesInmobiliaria' => $line['idimagenesInmobiliaria'],
-				'imagenesInmobiliaria' => $line['imagenesInmobiliaria'],
+			$array_images = explode(',', $line['imagenHomeProyecto']);
+			$arrayAux[] = array(
 				'idProyecto' => $line['idProyectos'],
 				'nombreProyecto' => $line['nombreProyecto'],
 				'descripProyecto' => $line['descripProyecto'],
 				'logoProyecto' => $line['logoProyecto'],
-				'direccionProyecto' => $line['direccionProyecto'],
-				'colonia' => $line['coloniaProyecto'],
-				'codigoPostal' => $line['cpProyecto'],
-				'telefono' => $line['telProyecto'],
-				'email' => $line['emailProyecto'],
-				'anio' => $line['anioProyecto'],
-				'estado' => $line['nombreEstado'],
-				'ciudad' => $line['nombreCiudad'],
-				'tipoInmobiliaria' => $line['tipoInmobiliaria'],
-				'subcategoriaInmobiliaria' => $line['subcategoriaInmobiliaria']
-				);
-			array_push($arrayListProjects, $arrayAux);
-
-		}
-		echo json_encode($arrayListProjects);
-	}
-
-	function getInfomationDesarrollos() {
-		$query = "SELECT * FROM Desarrollos d ORDER BY idDesarrollos DESC";
-		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
-		$arrayAux = array();
-		while($line = mysql_fetch_array($result)){
-			$arrayAux[] = array(
-				'idDesarrollos' => $line['idDesarrollos'],
-				'nombreDesarrollo' => $line['nombreDesarrollo'],
-				'descripcion' => $line['descripDesarrollo'],
-				'direccion' => $line['direccionDesarrollo'],
-				'colonia' => $line['coloniaDesarrollo'],
-				'cp' => $line['cpDesarrollo']
+				'imagenHome' => $array_images[0],
+				'imagenes' => $array_images
 			);
 		}
 		echo json_encode($arrayAux);
@@ -184,54 +128,24 @@
 		echo json_encode($arrayAux);
 	}
 
-	function getDesarrolloById($id){
-		$query = "SELECT * FROM Desarrollos_has_imagenesInmobiliaria dhi
-					INNER JOIN imagenesInmobiliaria imi On imi.idimagenesInmobiliaria = dhi.imagenesInmobiliaria_idimagenesInmobiliaria
-					INNER JOIN Desarrollos d ON d.idDesarrollos = dhi.Desarrollos_idDesarrollos
+	function getListDetailsDesarrollo(){
+		$query = "SELECT * FROM Desarrollos d
 					INNER JOIN Estados e ON e.idEstados = d.Estados_idEstados
 					INNER JOIN Ciudades c ON c.idCiudades = d.Ciudades_idCiudades
 					INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = d.tipoInmobiliaria_idtipoInmobiliaria
 					INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
-					WHERE dhi.Desarrollos_idDesarrollos = $id ORDER BY idimagenesInmobiliaria DESC";
+					ORDER BY d.idDesarrollos";
 		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
-		$arrayListProjects = array();
+		$arrayAux = array();
 		while($line = mysql_fetch_array($result)){
-			$arrayAux = array(
-				'idimagenesInmobiliaria' => $line['idimagenesInmobiliaria'],
-				'imagenesInmobiliaria' => $line['imagenesInmobiliaria'],
+			$array_images = explode(',', $line['imagenHomeDesarrollo']);
+			$arrayAux[] = array(
 				'idDesarrollo' => $line['idDesarrollos'],
 				'nombreDesarrollo' => $line['nombreDesarrollo'],
 				'descripDesarrollo' => $line['descripDesarrollo'],
 				'logoDesarrollo' => $line['logoDesarrollo'],
-				'direccionDesarrollo' => $line['direccionDesarrollo'],
-				'colonia' => $line['coloniaDesarrollo'],
-				'codigoPostal' => $line['cpDesarrollo'],
-				'telefono' => $line['telDesarrollo'],
-				'email' => $line['emailDesarrollo'],
-				'anio' => $line['anioDesarrollo'],
-				'estado' => $line['nombreEstado'],
-				'ciudad' => $line['nombreCiudad'],
-				'tipoInmobiliaria' => $line['tipoInmobiliaria'],
-				'subcategoriaInmobiliaria' => $line['subcategoriaInmobiliaria']
-				);
-			array_push($arrayListProjects, $arrayAux);
-
-		}
-		echo json_encode($arrayListProjects);
-	}
-
-	function getInfomationPropiedades() {
-		$query = "SELECT * FROM Propiedades p ORDER BY idPropiedades DESC";
-		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
-		$arrayAux = array();
-		while($line = mysql_fetch_array($result)){
-			$arrayAux[] = array(
-				'idPropiedades' => $line['idPropiedades'],
-				'nombrePropiedad' => $line['nombrePropiedad'],
-				'descripcion' => $line['descripPropiedad'],
-				'direccion' => $line['direccionPropiedad'],
-				'colonia' => $line['coloniaPropiedad'],
-				'cp' => $line['cpPropiedad']
+				'imagenHome' => $array_images[0],
+				'imagenes' => $array_images
 			);
 		}
 		echo json_encode($arrayAux);
@@ -271,41 +185,28 @@
 		echo json_encode($arrayAux);
 	}
 
-	function getPropiedadById($id){
-		$query = "SELECT * FROM Propiedades_has_imagenesInmobiliaria phi
-					INNER JOIN imagenesInmobiliaria imi On imi.idimagenesInmobiliaria = phi.imagenesInmobiliaria_idimagenesInmobiliaria
-					INNER JOIN Propiedades p ON p.idPropiedades = phi.Propiedades_idPropiedades
+	function getListDetailsPropiedad(){
+		$query = "SELECT * FROM Propiedades p
 					INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
 					INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
 					INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
-					INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
-					INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion
-					WHERE phi.Propiedades_idPropiedades = $id ORDER BY idimagenesInmobiliaria DESC";
+					INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
+					INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion 
+					ORDER BY p.idPropiedades";
 		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
-		$arrayListProjects = array();
+		$arrayAux = array();
 		while($line = mysql_fetch_array($result)){
-			$arrayAux = array(
-				'idimagenesInmobiliaria' => $line['idimagenesInmobiliaria'],
-				'imagenesInmobiliaria' => $line['imagenesInmobiliaria'],
+			$array_images = explode(',', $line['imagenHomePropiedad']);
+			$arrayAux[] = array(
 				'idPropiedad' => $line['idPropiedades'],
-				'nombreDesarrollo' => $line['nombrePropiedad'],
+				'nombrePropiedad' => $line['nombrePropiedad'],
 				'descripPropiedad' => $line['descripPropiedad'],
 				'logoPropiedad' => $line['logoPropiedad'],
-				'direccionPropiedad' => $line['direccionPropiedad'],
-				'colonia' => $line['coloniaPropiedad'],
-				'codigoPostal' => $line['cpPropiedad'],
-				'telefono' => $line['telPropiedad'],
-				'email' => $line['emailPropiedad'],
-				'estado' => $line['nombreEstado'],
-				'ciudad' => $line['nombreCiudad'],
-				'tipoInmobiliaria' => $line['tipoInmobiliaria'],
-				'subcategoriaInmobiliaria' => $line['subcategoriaInmobiliaria'],
-				'tipoOperacion' => $line['tipoOperacion'],
-				);
-			array_push($arrayListProjects, $arrayAux);
-
+				'imagenHome' => $array_images[0],
+				'imagenes' => $array_images
+			);
 		}
-		echo json_encode($arrayListProjects);
+		echo json_encode($arrayAux);
 	}
 
 	function getStatesList(){

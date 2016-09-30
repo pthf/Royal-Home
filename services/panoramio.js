@@ -19,6 +19,16 @@ app.service('getDataProjects', function($http, $q){
         return deferred.promise;
     }
 });
+app.service('getDataDetailsProjects', function($http, $q){
+    this.dataDetailsProjects = function(id){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getListDetailsProject&id='+id)
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
 app.service('getDataDesarrollos', function($http, $q){
     this.dataDesarrollos = function(){
         var deferred = $q.defer();
@@ -29,10 +39,30 @@ app.service('getDataDesarrollos', function($http, $q){
         return deferred.promise;
     }
 });
+app.service('getDataDetailsDesarrollos', function($http, $q){
+    this.dataDetailsDesarrollos = function(){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getListDetailsDesarrollo')
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
 app.service('getDataPropiedades', function($http, $q){
     this.dataPropiedades = function(){
         var deferred = $q.defer();
         $http.get('./php/services.php?namefunction=getPropiedadList')
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+app.service('getDataDetailsPropiedades', function($http, $q){
+    this.dataDetailsPropiedades = function(){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getListDetailsPropiedad')
             .success(function (data) {
             deferred.resolve(data);
         });
