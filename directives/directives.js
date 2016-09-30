@@ -218,11 +218,8 @@ angular.module('rhome.directives', [])
 			restrict: 'E',
 			templateUrl: './pages/propiedades/grid.html',
 			controller: function($document){
-        var galleryTop3 = new Swiper('.gallery-top3', {
-          nextButton: '.swiper-next-thumb',
-          prevButton: '.swiper-prev-thumb',
-          spaceBetween: 10,
-        });
+
+
 			}
 		}
     })

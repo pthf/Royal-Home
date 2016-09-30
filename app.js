@@ -53,6 +53,7 @@ app.run(function($rootScope, $timeout, $anchorScroll) {
                 }
             })
         }, 800);
-
     });
+
+
 });
