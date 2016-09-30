@@ -5,5 +5,9 @@ app.config(['$locationProvider', function($routeProvider, $locationProvider){
             templateUrl: 'pages/home.html',
             controller: 'mainController'
         });
+
+        .when('/busqueda', {
+            templateUrl: 'pages/busqueda.html'
+        });
         $locationProvider.html5Mode(true);
 }])

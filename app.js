@@ -1,9 +1,9 @@
 var app = angular.module('app', [
-                                  'rhome.directives',
-                                  'angular-parallax',
-                                  'ngMap',
-                                  'duScroll'
-                              ]);
+    'rhome.directives',
+    'angular-parallax',
+    'ngMap',
+    'duScroll'
+]);
 
 app.run(function($rootScope, $timeout, $anchorScroll) {
     // console.log('starting run');
@@ -54,6 +54,4 @@ app.run(function($rootScope, $timeout, $anchorScroll) {
             })
         }, 800);
     });
-
-
 });
