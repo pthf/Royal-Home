@@ -16,21 +16,22 @@
         </div>
 
         <selectdesarrollos></selectdesarrollos>
-        <div class="grid">
+        <div class="grid" ng-controller="getListDesarrollos">
+            <!-- {{desarrolloList}} -->
 
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco" ng-click="getDetailGrid2();">
-                <img src="./assets/images/grid/1.png" />
+            <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco" ng-click="getDetailGrid2();" ng-repeat="(key, data) in desarrolloList">
+                <img src="http://localhost/www/Royal-Home/admin/src/images/imagenes-desarrollos/{{data.imagenHome}}" style="height: 359px;width: 100%;">
                 <div class="cintillo">
                     <div class="title txt">
-                        Proyecto 1
+                        {{data.nombreDesarrollo}}
                     </div>
                     <div class="city txt">
-                        Guadalajara, MX
+                        {{data.ciudadi}}, {{data.estado}}
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco" ng-click="getDetailGrid2();">
+            <!-- <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco" ng-click="getDetailGrid2();">
                 <img src="./assets/images/grid/2.png" />
                 <div class="cintillo">
                     <div class="title txt">
@@ -244,7 +245,7 @@
                         Querétaro, MX
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 </div>
 

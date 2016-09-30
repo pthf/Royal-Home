@@ -8,16 +8,108 @@ app.service('getPanoramio', function($http, $q){
     })
     return panoramas
 })
+//Servicios RoyalHome
+app.service('getDataProjects', function($http, $q){
+    this.dataProjects = function(){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getProjectList')
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+app.service('getDataDesarrollos', function($http, $q){
+    this.dataDesarrollos = function(){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getDesarrolloList')
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+app.service('getDataPropiedades', function($http, $q){
+    this.dataPropiedades = function(){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getPropiedadList')
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+app.service('getDataCategorys', function($http, $q){
+    this.dataCategorysList = function(){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getInmobiliariaList')
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+app.service('getDataType', function($http, $q){
+    this.dataTypeList = function(){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getTypeInmobiliariaList')
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+app.service('getDataState', function($http, $q){
+    this.dataStateList = function(){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getStatesList')
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+app.service('getDataCity', function($http, $q){
+    this.dataCityList = function(){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getCitiesList')
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+
+
 
 
 app.service('getbanner', function($http, $q){
-    var url = 'backend/bannersHome.php'
+    var url = 'backend/proyectos.php'
     $http.get(url)
     .then(function(req){
         req = banners;
     })
     return banners
 });
+app.service('getbanner', function($http, $q){
+    var url = 'backend/desarrollos.php'
+    $http.get(url)
+    .then(function(req){
+        req = banners;
+    })
+    return banners
+});
+app.service('getbanner', function($http, $q){
+    var url = 'backend/propiedades.php'
+    $http.get(url)
+    .then(function(req){
+        req = banners;
+    })
+    return banners
+});
+
+
+
 
 app.service('getItems', function($http, $q){
     var url = 'backend/items.php'

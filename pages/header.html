@@ -54,39 +54,41 @@
     </div><!--/.container-fluid -->
 </nav>
 </header>
-<div class="header-leyend">
+<div class="header-leyend" ng-controller="getTypeInmobiliariaController">
     <div class="img" parallaxs-background parallax-ratio="-0.4">
         <div class="search container text-right">
             <form class="form-inline" method="post">
                 <div class="hidden-xs">
-
-
-                    <div class="form-group">
-                        <select class="selectpicker show-menu-arrow show-tick" title="Tipo">
-                          <option>Casa</option>
-                          <option>Terreno</option>
-                          <option>Local</option>
-                          <option>Oficina</option>
-                          <option>Bodega</option>
-                          <option>Departamento</option>
-                          <option>Casas</option>
-                          <option>Terrenos</option>
+                    <div class="form-group" ng-controller="getListCategoryInmobiliarias">
+                        <!-- <select class="selectpicker show-menu-arrow show-tick" name="categoria-tipo-inmobiliaria" ng-model="valor1.model"> -->
+                        <select class="selectpicker show-menu-arrow show-tick" name="categoria-tipo-inmobiliaria" ng-model="valor1.model">
+                            <option disabled="" selected="" value="">Categorías..</option>
+                            <option ng-repeat="(key, data) in categorysList" value="{{data.idtipoInmobiliaria}}">{{data.tipoInmobiliaria}}</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-controller="getListTypeInmobiliaria">
+                        <select required class="form-control" style="width: 150px;" id="tipo-inmobiliaria-proyecto" name="tipo-inmobiliaria-proyecto">
+                          <option disabled="" selected="" value="">Tipo..</option>
+                          <option ng-repeat="(key, data) in typeList" value="{{data.idsubcategoriaInmobiliaria}}" ng-if="data.tipoInmobiliaria_idtipoInmobiliaria == valor1.model">{{data.subcategoriaInmobiliaria}}</option>
+                        </select>
+                    </div>
+                    <!-- <div class="form-group">
                         <select class="selectpicker show-menu-arrow col-md-12 show-tick" title="Operación">
                           <option>Venta</option>
                           <option>Renta</option>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <select class="selectpicker show-menu-arrow " title="Estado" show-tick show-menu-arrow data-live-search="true">
-                          <option>Jalisco</option>
+                    </div> -->
+                    <div class="form-group" ng-controller="getListStates">
+                        <!-- <select class="selectpicker show-menu-arrow" name="state" ng-model="valor.model"> -->
+                        <select class="selectpicker show-menu-arrow show-tick" name="state" ng-model="valor.model">
+                            <option disabled="" selected="" value="">Estado..</option>
+                            <option ng-repeat="(key, data) in statesList" value="{{data.idEstados}}">{{data.nombreEstado}}</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <select class="selectpicker show-menu-arrow " title="Ciudad" show-tick show-menu-arrow data-live-search="true">
-                          <option>Guadalajara</option>
+                    <div class="form-group" ng-controller="getListCities">
+                        <select class="form-control" style="width: 150px;" title="Ciudad">
+                            <option disabled="" selected="" value="">Ciudad..</option>
+                            <option ng-repeat="(key, data) in citiesList" value="{{data.idCiudades}}" ng-if="data.Estados_idEstados == valor.model">{{data.nombreCiudad}}</option>
                         </select>
                     </div>
                     <div class="form-group">
