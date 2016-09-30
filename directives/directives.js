@@ -241,3 +241,14 @@ angular.module('rhome.directives', [])
 			}
 		}
     })
+
+
+    .directive('busqueda', function(){
+        return{
+			restrict: 'E',
+			templateUrl: './pages/busqueda.html',
+			controller: function($document){
+
+			}
+		}
+    })
