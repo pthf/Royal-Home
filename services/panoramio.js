@@ -40,9 +40,9 @@ app.service('getDataDesarrollos', function($http, $q){
     }
 });
 app.service('getDataDetailsDesarrollos', function($http, $q){
-    this.dataDetailsDesarrollos = function(){
+    this.dataDetailsDesarrollos = function(id){
         var deferred = $q.defer();
-        $http.get('./php/services.php?namefunction=getListDetailsDesarrollo')
+        $http.get('./php/services.php?namefunction=getListDetailsDesarrollo&id='+id)
             .success(function (data) {
             deferred.resolve(data);
         });
@@ -60,9 +60,9 @@ app.service('getDataPropiedades', function($http, $q){
     }
 });
 app.service('getDataDetailsPropiedades', function($http, $q){
-    this.dataDetailsPropiedades = function(){
+    this.dataDetailsPropiedades = function(id){
         var deferred = $q.defer();
-        $http.get('./php/services.php?namefunction=getListDetailsPropiedad')
+        $http.get('./php/services.php?namefunction=getListDetailsPropiedad&id='+id)
             .success(function (data) {
             deferred.resolve(data);
         });

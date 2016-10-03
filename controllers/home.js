@@ -1,4 +1,4 @@
-app.controller('mainController', function($scope, $timeout, $anchorScroll, $location, $document){
+app.controller('mainController', function($scope, $timeout, $anchorScroll, $location, getDataDetailsProjects, getDataDetailsDesarrollos, getDataDetailsPropiedades, $document){
     function isScrolledIntoView(elem) {
         view = false;
         var docViewTop = $(window).scrollTop();
@@ -24,13 +24,11 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
       });
 
     $scope.getDetailGrid = function(id){
-      alert(id);
-      // app.controller("getListDetailsProjects", function($scope, getDataDetailsProjects){
-      //   $scope.projectDetailsList = [];
-      //   getDataDetailsProjects.dataDetailsProjects(id).then(function(data){
-      //     $scope.projectDetailsList = data;
-      //   });
-      // })
+      $scope.id = id;
+      $scope.projectDetailsList = [];
+      getDataDetailsProjects.dataDetailsProjects($scope.id).then(function(data){
+        $scope.projectDetailsList = data;
+      });
         $('#myModal').modal({
             show: true,
             backdrop: true
@@ -70,38 +68,89 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
         })
     }
 
-    $scope.getDetailGrid2 = function(){
-        $('#myModal2').modal({
+    $scope.getDetailGrid1 = function(id){
+      $scope.id = id;
+      $scope.desarrolloDetailsList = [];
+      getDataDetailsDesarrollos.dataDetailsDesarrollos($scope.id).then(function(data){
+        $scope.desarrolloDetailsList = data;
+      });
+
+        $('#myModal1').modal({
             show: true,
             backdrop: true
         });
 
+        $('#myModal1').on('shown.bs.modal', function(event){
 
-        $('#myModal2').on('shown.bs.modal', function(event){
+          setTimeout(function(){
+            var galleryTop = new Swiper('.gallery-top', {
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                spaceBetween: 10,
+                keyboardControl: true,
+                nested: true,
+                debugger: false,
+                control: galleryThumbs
+            });
+            var galleryThumbs = new Swiper('.gallery-thumbs', {
+                spaceBetween: 10,
+                centeredSlides: true,
+                slidesPerView: 5,
+                touchRatio: 1,
+                slideToClickedSlide: true,
+                debugger: false,
+                nested: true,
+                control: galleryTop
+            });
+            galleryTop.params.control = galleryThumbs;
+            galleryThumbs.params.control = galleryTop;
+          }, 10);
 
-              console.log('modal open');
-
-
-              $('body').css('overflow','hidden');
-
-              setTimeout(function(){
-
-                $(document).ready(function () {
-                  var galleryTop2 = new Swiper('.gallery-top2', {
-                      nextButton: '.swiper-button-next',
-                      prevButton: '.swiper-button-prev',
-                      spaceBetween: 10,
-                      setWrapperSize: true,
-                      keyboardControl: true,
-                      debugger: false
-                  });
-                });
-              }, 50);
+          $('body').css('overflow','hidden');
 
         });
-        $('#myModal2').on('hide.bs.modal', function(event){
+        $('#myModal1').on('hide.bs.modal ', function(event){
             $('body').css('overflow','visible');
         })
+    }
+
+    $scope.getDetailGrid2 = function(id){
+      $scope.id = id;
+      $scope.propiedadDetailsList = [];
+      getDataDetailsPropiedades.dataDetailsPropiedades($scope.id).then(function(data){
+        $scope.propiedadDetailsList = data;
+      });
+      $('#myModal2').modal({
+          show: true,
+          backdrop: true
+      });
+
+
+      $('#myModal2').on('shown.bs.modal', function(event){
+
+            console.log('modal open');
+
+
+            $('body').css('overflow','hidden');
+
+            setTimeout(function(){
+
+              $(document).ready(function () {
+                var galleryTop2 = new Swiper('.gallery-top2', {
+                    nextButton: '.swiper-button-next',
+                    prevButton: '.swiper-button-prev',
+                    spaceBetween: 10,
+                    setWrapperSize: true,
+                    keyboardControl: true,
+                    debugger: false
+                });
+              });
+            }, 50);
+
+      });
+      $('#myModal2').on('hide.bs.modal', function(event){
+          $('body').css('overflow','visible');
+      })
     }
 
 
@@ -138,27 +187,18 @@ app.controller('getTypeInmobiliariaController', function($scope){
   };
 })
 app.controller("getListProjects", function($scope, getDataProjects){
+  $scope.filtroProyectos = function (id) {
+    $scope.id = id;
+  }
   $scope.projectList = [];
   getDataProjects.dataProjects().then(function(data){
     $scope.projectList = data;
   });
 })
-// app.controller("getListDetailsProjects", function($scope, getDataDetailsProjects){
-//   $scope.projectDetailsList = [];
-//   getDataDetailsProjects.dataDetailsProjects().then(function(data){
-//     $scope.projectDetailsList = data;
-//   });
-// })
 app.controller("getListDesarrollos", function($scope, getDataDesarrollos){
   $scope.desarrolloList = [];
   getDataDesarrollos.dataDesarrollos().then(function(data){
     $scope.desarrolloList = data;
-  });
-})
-app.controller("getListDetailsDesarrollos", function($scope, getDataDetailsDesarrollos){
-  $scope.desarrolloDetailsList = [];
-  getDataDetailsDesarrollos.dataDetailsDesarrollos().then(function(data){
-    $scope.desarrolloDetailsList = data;
   });
 })
 app.controller("getListPropiedades", function($scope, getDataPropiedades){
@@ -167,12 +207,12 @@ app.controller("getListPropiedades", function($scope, getDataPropiedades){
     $scope.propiedadList = data;
   });
 })
-app.controller("getListDetailsPropiedades", function($scope, getDataDetailsPropiedades){
-  $scope.propiedadDetailsList = [];
-  getDataDetailsPropiedades.dataDetailsPropiedades().then(function(data){
-    $scope.propiedadDetailsList = data;
-  });
-})
+// app.controller("getListDetailsPropiedades", function($scope, getDataDetailsPropiedades){
+//   $scope.propiedadDetailsList = [];
+//   getDataDetailsPropiedades.dataDetailsPropiedades().then(function(data){
+//     $scope.propiedadDetailsList = data;
+//   });
+// })
 app.controller("getListCategoryInmobiliarias", function($scope, getDataCategorys){
   $scope.categorysList = [];
   getDataCategorys.dataCategorysList().then(function(data){
