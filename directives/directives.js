@@ -85,10 +85,10 @@ angular.module('rhome.directives', [])
 			}
 		}
     })
-    .directive('selectproyectos', function(){
+    .directive('selectProyectos', function(){
         return{
 			restrict: 'E',
-			templateUrl: './pages/select.html',
+			templateUrl: './pages/select-proyectos.html',
 			controller: function($document){
 
                 $('.head').click(function(e){
@@ -124,10 +124,10 @@ angular.module('rhome.directives', [])
 			}
 		}
     })
-    .directive('selectpropiedades', function(){
+    .directive('selectPropiedades', function(){
         return{
 			restrict: 'E',
-			templateUrl: './pages/selectpropiedades.html',
+			templateUrl: './pages/select-propiedades.html',
 			controller: function($document){
 
                 $('.headp').click(function(e){
@@ -161,10 +161,10 @@ angular.module('rhome.directives', [])
 			}
 		}
     })
-    .directive('selectdesarrollos', function(){
+    .directive('selectDesarrollos', function(){
         return{
 			restrict: 'E',
-			templateUrl: './pages/selectdesarrollos.html',
+			templateUrl: './pages/select-desarrollos.html',
 			controller: function($document){
 
                 $('.headd').click(function(e){

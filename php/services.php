@@ -13,13 +13,13 @@
 				getDesarrolloList();
 				break;
 			case 'getListDetailsDesarrollo':
-				getListDetailsDesarrollo();
+				getListDetailsDesarrollo($_GET['id']);
 				break;
 			case 'getPropiedadList':
 				getPropiedadList();
 				break;
 			case 'getListDetailsPropiedad':
-				getListDetailsPropiedad();
+				getListDetailsPropiedad($_GET['id']);
 				break;
 			case 'getStatesList':
 				getStatesList();
@@ -128,13 +128,13 @@
 		echo json_encode($arrayAux);
 	}
 
-	function getListDetailsDesarrollo(){
+	function getListDetailsDesarrollo($idDesarrollo){
 		$query = "SELECT * FROM Desarrollos d
 					INNER JOIN Estados e ON e.idEstados = d.Estados_idEstados
 					INNER JOIN Ciudades c ON c.idCiudades = d.Ciudades_idCiudades
 					INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = d.tipoInmobiliaria_idtipoInmobiliaria
 					INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
-					ORDER BY d.idDesarrollos";
+					WHERE d.idDesarrollos = '".$idDesarrollo."' ORDER BY d.idDesarrollos DESC";
 		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
 		$arrayAux = array();
 		while($line = mysql_fetch_array($result)){
@@ -185,14 +185,14 @@
 		echo json_encode($arrayAux);
 	}
 
-	function getListDetailsPropiedad(){
+	function getListDetailsPropiedad($idPropiedad){
 		$query = "SELECT * FROM Propiedades p
 					INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
 					INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
 					INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
 					INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
 					INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion 
-					ORDER BY p.idPropiedades";
+					WHERE p.idPropiedades = '".$idPropiedad."'";
 		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
 		$arrayAux = array();
 		while($line = mysql_fetch_array($result)){
@@ -202,6 +202,16 @@
 				'nombrePropiedad' => $line['nombrePropiedad'],
 				'descripPropiedad' => $line['descripPropiedad'],
 				'logoPropiedad' => $line['logoPropiedad'],
+				'direccionPropiedad' => $line['direccionPropiedad'],
+				'colonia' => $line['coloniaPropiedad'],
+				'codigoPostal' => $line['cpPropiedad'],
+				'telefono' => $line['telPropiedad'],
+				'email' => $line['emailPropiedad'],
+				'estado' => $line['nombreEstado'],
+				'ciudad' => $line['nombreCiudad'],
+				'tipoInmobiliaria' => $line['tipoInmobiliaria'],
+				'subcategoriaInmobiliaria' => $line['subcategoriaInmobiliaria'],
+				'tipoOperacion' => $line['tipoOperacion'],
 				'imagenHome' => $array_images[0],
 				'imagenes' => $array_images
 			);
