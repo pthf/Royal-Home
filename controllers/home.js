@@ -62,11 +62,11 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
             galleryThumbs.params.control = galleryTop;
           }, 10);
 
-          $('body').css('overflow','hidden');
+          $('body,html').css('overflow','hidden');
 
         });
         $('#myModal').on('hide.bs.modal	', function(event){
-            $('body').css('overflow','visible');
+            $('body,html').css('overflow','visible');
         })
     }
 
@@ -82,7 +82,7 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
               console.log('modal open');
 
 
-              $('body').css('overflow','hidden');
+              $('body,html').css('overflow','hidden');
 
               setTimeout(function(){
 
@@ -100,7 +100,7 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
 
         });
         $('#myModal2').on('hide.bs.modal', function(event){
-            $('body').css('overflow','visible');
+            $('body,html').css('overflow','visible');
         })
     }
 
@@ -197,4 +197,3 @@ app.controller('getListCities', function($scope, getDataCity){
     $scope.citiesList = data;
   });
 })
-
