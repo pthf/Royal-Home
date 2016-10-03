@@ -95,6 +95,10 @@ angular.module('rhome.directives', [])
                     var opt = $(e.currentTarget).closest('.container-fluid').parent().find('.opt');
                     opt.slideToggle();
                 });
+                $('.head2').click(function(e){
+                    var opt2 = $(e.currentTarget).closest('.container-fluid').parent().find('.opt2');
+                    opt2.slideToggle();
+                });
 
                 $('.opt').click(function(e){
                     var id = $(e.currentTarget).attr('id');
@@ -134,6 +138,10 @@ angular.module('rhome.directives', [])
                     var opt = $(e.currentTarget).closest('.container-fluid').parent().find('.optp');
                     opt.slideToggle();
                 });
+                $('.headp-2').click(function(e){
+                    var opt2 = $(e.currentTarget).closest('.container-fluid').parent().find('.optd2');
+                    opt2.slideToggle();
+                });
                 $('.optp').click(function(e){
                     var id = $(e.currentTarget).attr('id');
                     $(e.currentTarget).closest('.container-fluid').find($('.texto')).html($(e.currentTarget).text());
@@ -170,6 +178,11 @@ angular.module('rhome.directives', [])
                 $('.headd').click(function(e){
                     var opt = $(e.currentTarget).closest('.container-fluid').parent().find('.optd');
                     opt.slideToggle();
+                });
+
+                $('.headd-2').click(function(e){
+                    var opt2 = $(e.currentTarget).closest('.container-fluid').parent().find('.optd2');
+                    opt2.slideToggle();
                 });
                 $('.optd').click(function(e){
                     var id = $(e.currentTarget).attr('id');
