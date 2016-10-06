@@ -55,10 +55,9 @@
                 </div>
             </div>
         </div>
-
-        <select-propiedades></select-propiedades>
+        
         <div class="grid" ng-controller="getListPropiedades">
-
+            <select-propiedades></select-propiedades>
             <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco" ng-repeat="(key, data) in propiedadList" ng-click="getDetailGrid2(data.idPropiedad);">
                 <img src="http://localhost/www/Royal-Home/admin/src/images/imagenes-propiedades/{{data.imagenHome}}" style="height: 359px;width: 100%;">
                 <div class="cintillo">
@@ -70,7 +69,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
 </div>

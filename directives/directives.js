@@ -71,6 +71,46 @@ angular.module('rhome.directives', [])
                     });
                 }
 
+                $(document).on('click', '.busqueda', function(){
+                    var idCategoria = $("#categoria").attr('data-categoria');
+                    var idTipo = $("#tipo").attr('data-tipo');
+                    var idEstado = $("#estado").attr('data-estado');
+                    var idCiudad = $("#ciudad").attr('data-ciudad');
+                    if (idCategoria && idTipo && idEstado && idCiudad) {
+                        location.href="./busqueda/index.php?categoria="+idCategoria+"&tipo="+idTipo+"&estado="+idEstado+"&ciudad="+idCiudad+"";
+                    } else if (idCategoria && idTipo && idEstado) {
+                        location.href="./busqueda/index.php?categoria="+idCategoria+"&tipo="+idTipo+"&estado="+idEstado+"";
+                    } else if (idCategoria && idTipo) {
+                        location.href="./busqueda/index.php?categoria="+idCategoria+"&tipo="+idTipo+"";
+                    } else if (idCategoria && idEstado) {
+                        location.href="./busqueda/index.php?categoria="+idCategoria+"&estado="+idEstado+"";
+                    } else if (idCategoria) {
+                        location.href="./busqueda/index.php?categoria="+idCategoria+"";
+                    } else if (idEstado) {
+                        location.href="./busqueda/index.php?estado="+idEstado+"";
+                    } else {
+                        alert('Selecciona algun elemento para la búsqueda.');
+                    }
+                });
+                $("select[name=categoria]").change(function(){
+                    var categoria = $('select[name=categoria]').val();
+                    // $('.categoria-value').val($(this).val());
+                    $(".divCategoria").html("<input type='text' name='categoria-value' class='categoria-value' value="+categoria+" id='categoria' data-categoria="+categoria+">");
+                });
+                $("select[name=tipo]").change(function(){
+                    var tipo = $('select[name=tipo]').val();
+                    $(".divTipo").html("<input type='text' name='tipo-value' class='tipo-value' value="+tipo+" id='tipo' data-tipo="+tipo+">");
+                });
+                $("select[name=estado]").change(function(){
+                    var estado = $('select[name=estado]').val();
+                    $(".divEstado").html("<input type='text' name='estado-value' class='estado-value' value="+estado+" id='estado' data-estado="+estado+">");
+                });
+                $("select[name=ciudad]").change(function(){
+                    var ciudad = $('select[name=ciudad]').val();
+                    $(".divCiudad").html("<input type='text' name='ciudad-value' class='ciudad-value' value="+ciudad+" id='ciudad' data-ciudad="+ciudad+">");
+                });
+
+                
 
 			}
 
@@ -228,7 +268,25 @@ angular.module('rhome.directives', [])
 			restrict: 'E',
 			templateUrl: './pages/contacto.html',
 			controller: function($document){
-
+                $('#formContacto').submit(function(){
+                    var ajaxData = new FormData();
+                    ajaxData.append("namefunction","datosContacto");
+                    ajaxData.append("data", $(this).serialize());
+                    $.ajax({
+                        url: "admin/php/functions.php",
+                        type: "POST",
+                        data: ajaxData,
+                        processData: false,  // tell jQuery not to process the data
+                        contentType: false,   // tell jQuery not to set contentType
+                        success: function(result){
+                            alert(result);
+                          // $('.bReload').trigger('click');
+                        },
+                        error: function(error){
+                          alert(error);
+                        }
+                    });
+                });
 			}
 		}
     })

@@ -60,11 +60,11 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
             galleryThumbs.params.control = galleryTop;
           }, 10);
 
-          $('body,html').css('overflow','hidden');
+          $('body').css('overflow','hidden');
 
         });
         $('#myModal').on('hide.bs.modal	', function(event){
-            $('body,html').css('overflow','visible');
+            $('body').css('overflow','visible');
         })
     }
 
@@ -131,8 +131,7 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
             console.log('modal open');
 
 
-            $('body,html').css('overflow','hidden');
-
+            $('body').css('overflow','hidden');
 
             setTimeout(function(){
 
@@ -148,11 +147,10 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
               });
             }, 50);
 
-        });
-        $('#myModal2').on('hide.bs.modal', function(event){
-            $('body,html').css('overflow','visible');
-        })
-
+      });
+      $('#myModal2').on('hide.bs.modal', function(event){
+          $('body').css('overflow','visible');
+      })
     }
 
 
@@ -189,32 +187,44 @@ app.controller('getTypeInmobiliariaController', function($scope){
   };
 })
 app.controller("getListProjects", function($scope, getDataProjects){
-  $scope.filtroProyectos = function (id) {
-    $scope.id = id;
-  }
   $scope.projectList = [];
-  getDataProjects.dataProjects().then(function(data){
+  getDataProjects.dataProjects(0).then(function(data){
     $scope.projectList = data;
   });
+  $scope.filtroProyectos = function (id) {
+    $scope.id = id;
+    $scope.projectList = [];
+    getDataProjects.dataProjects($scope.id).then(function(data){
+      $scope.projectList = data;
+    });
+  }
 })
 app.controller("getListDesarrollos", function($scope, getDataDesarrollos){
   $scope.desarrolloList = [];
-  getDataDesarrollos.dataDesarrollos().then(function(data){
+  getDataDesarrollos.dataDesarrollos(0).then(function(data){
     $scope.desarrolloList = data;
   });
+   $scope.filtroDesarrollos = function (id) {
+    $scope.id = id;
+    $scope.desarrolloList = [];
+    getDataDesarrollos.dataDesarrollos($scope.id).then(function(data){
+      $scope.desarrolloList = data;
+    });
+  }
 })
 app.controller("getListPropiedades", function($scope, getDataPropiedades){
   $scope.propiedadList = [];
-  getDataPropiedades.dataPropiedades().then(function(data){
+  getDataPropiedades.dataPropiedades(0).then(function(data){
     $scope.propiedadList = data;
   });
+  $scope.filtroPropiedades = function (id) {
+    $scope.id = id;
+    $scope.propiedadList = [];
+    getDataPropiedades.dataPropiedades($scope.id).then(function(data){
+      $scope.propiedadList = data;
+    });
+  }
 })
-// app.controller("getListDetailsPropiedades", function($scope, getDataDetailsPropiedades){
-//   $scope.propiedadDetailsList = [];
-//   getDataDetailsPropiedades.dataDetailsPropiedades().then(function(data){
-//     $scope.propiedadDetailsList = data;
-//   });
-// })
 app.controller("getListCategoryInmobiliarias", function($scope, getDataCategorys){
   $scope.categorysList = [];
   getDataCategorys.dataCategorysList().then(function(data){
@@ -227,10 +237,22 @@ app.controller('getListTypeInmobiliaria', function($scope, getDataType){
     $scope.typeList = data;
   });
 })
-app.controller('getListStates', function($scope, getDataState){
+app.controller('getListStates', function($scope, getDataState, getDataStateFront, getDataStateFrontDes, getDataStateFrontProp){
  $scope.statesList = [];
   getDataState.dataStateList().then(function(data){
     $scope.statesList = data;
+  });
+  $scope.statesListFront = [];
+  getDataStateFront.dataStateListFront().then(function(data){
+    $scope.statesListFront = data;
+  });
+  $scope.statesListFrontDes = [];
+  getDataStateFrontDes.dataStateListFrontDes().then(function(data){
+    $scope.statesListFrontDes = data;
+  });
+  $scope.statesListFrontProp = [];
+  getDataStateFrontProp.dataStateListFrontProp().then(function(data){
+    $scope.statesListFrontProp = data;
   });
 })
 app.controller('getListCities', function($scope, getDataCity){
@@ -239,3 +261,4 @@ app.controller('getListCities', function($scope, getDataCity){
     $scope.citiesList = data;
   });
 })
+

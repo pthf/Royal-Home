@@ -14,9 +14,8 @@
                 </div>
             </div>
         </div>
-
-        <select-desarrollos></select-desarrollos>
         <div class="grid" ng-controller="getListDesarrollos">
+            <select-desarrollos></select-desarrollos>
             <!-- {{desarrolloList}} -->
             <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco" ng-repeat="(key, data) in desarrolloList" ng-click="getDetailGrid1(data.idDesarrollo);" >
                 <img src="./admin/src/images/imagenes-desarrollos/{{data.imagenHome}}" style="height: 359px;width: 100%;">

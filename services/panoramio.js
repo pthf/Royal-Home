@@ -10,9 +10,9 @@ app.service('getPanoramio', function($http, $q){
 })
 //Servicios RoyalHome
 app.service('getDataProjects', function($http, $q){
-    this.dataProjects = function(){
+    this.dataProjects = function(idEstado){
         var deferred = $q.defer();
-        $http.get('./php/services.php?namefunction=getProjectList')
+        $http.get('./php/services.php?namefunction=getProjectList&idEstado='+idEstado)
             .success(function (data) {
             deferred.resolve(data);
         });
@@ -30,9 +30,9 @@ app.service('getDataDetailsProjects', function($http, $q){
     }
 });
 app.service('getDataDesarrollos', function($http, $q){
-    this.dataDesarrollos = function(){
+    this.dataDesarrollos = function(idEstado){
         var deferred = $q.defer();
-        $http.get('./php/services.php?namefunction=getDesarrolloList')
+        $http.get('./php/services.php?namefunction=getDesarrolloList&idEstado='+idEstado)
             .success(function (data) {
             deferred.resolve(data);
         });
@@ -50,9 +50,9 @@ app.service('getDataDetailsDesarrollos', function($http, $q){
     }
 });
 app.service('getDataPropiedades', function($http, $q){
-    this.dataPropiedades = function(){
+    this.dataPropiedades = function(idEstado){
         var deferred = $q.defer();
-        $http.get('./php/services.php?namefunction=getPropiedadList')
+        $http.get('./php/services.php?namefunction=getPropiedadList&idEstado='+idEstado)
             .success(function (data) {
             deferred.resolve(data);
         });
@@ -93,6 +93,36 @@ app.service('getDataState', function($http, $q){
     this.dataStateList = function(){
         var deferred = $q.defer();
         $http.get('./php/services.php?namefunction=getStatesList')
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+app.service('getDataStateFront', function($http, $q){
+    this.dataStateListFront = function(){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getStatesListFront')
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+app.service('getDataStateFrontDes', function($http, $q){
+    this.dataStateListFrontDes = function(){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getStatesListFrontDes')
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+app.service('getDataStateFrontProp', function($http, $q){
+    this.dataStateListFrontProp = function(){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getStatesListFrontProp')
             .success(function (data) {
             deferred.resolve(data);
         });

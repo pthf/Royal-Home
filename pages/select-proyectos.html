@@ -2,7 +2,7 @@
     <div class="col-md-3 col-xs-12 col-sm-4 select-body">
         <div class="sl head texto">TODOS LOS PROYECTOS </div><i class="glyphicon glyphicon glyphicon-chevron-right"></i>
         <div class="sl opt" ng-click="filtroProyectos(0)">TODOS LOS PROYECTOS</div>
-        <div class="sl opt" ng-repeat="(key, data) in statesList" ng-click="filtroProyectos(data.idEstados)">{{data.nombreEstado | uppercase}}</div>
+        <div class="sl opt" ng-repeat="(key, data) in statesListFront" ng-click="filtroProyectos(data.idEstados)">{{data.nombreEstado | uppercase}}</div>
     </div>
 </div>
 <div class="mask" style="height: 50px; background-color: #3e3e3e"></div>

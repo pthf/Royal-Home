@@ -60,17 +60,19 @@
             <form class="form-inline" method="post">
                 <div class="hidden-xs">
                     <div class="form-group" ng-controller="getListCategoryInmobiliarias">
-                        <!-- <select class="selectpicker show-menu-arrow show-tick" name="categoria-tipo-inmobiliaria" ng-model="valor1.model"> -->
-                        <select class="selectpicker show-menu-arrow show-tick" name="categoria-tipo-inmobiliaria" ng-model="valor1.model">
+                        <select class="selectpicker show-menu-arrow show-tick" name="categoria" ng-model="valor1.model">
+                        <!-- <select class="form-control" name="categoria" ng-model="valor1.model"> -->
                             <option disabled="" selected="" value="">Categorías..</option>
-                            <option ng-repeat="(key, data) in categorysList" value="{{data.idtipoInmobiliaria}}">{{data.tipoInmobiliaria}}</option>
+                            <option ng-repeat="(key, data) in categorysList" value="{{data.idtipoInmobiliaria}}" data-categoria="{{data.tipoInmobiliaria}}">{{data.tipoInmobiliaria}}</option>
                         </select>
+                        <div hidden class="divCategoria"></div>
                     </div>
                     <div class="form-group" ng-controller="getListTypeInmobiliaria">
-                        <select required class="form-control" style="width: 150px;" id="tipo-inmobiliaria-proyecto" name="tipo-inmobiliaria-proyecto">
+                        <select class="form-control" style="width: 150px;" id="tipo-inmobiliaria-proyecto" name="tipo">
                           <option disabled="" selected="" value="">Tipo..</option>
-                          <option ng-repeat="(key, data) in typeList" value="{{data.idsubcategoriaInmobiliaria}}" ng-if="data.tipoInmobiliaria_idtipoInmobiliaria == valor1.model">{{data.subcategoriaInmobiliaria}}</option>
+                          <option ng-repeat="(key, data) in typeList" value="{{data.idsubcategoriaInmobiliaria}}" ng-if="data.tipoInmobiliaria_idtipoInmobiliaria == valor1.model" data-tipo="{{data.subcategoriaInmobiliaria}}">{{data.subcategoriaInmobiliaria}}</option>
                         </select>
+                        <div hidden class="divTipo"></div>
                     </div>
                     <!-- <div class="form-group">
                         <select class="selectpicker show-menu-arrow col-md-12 show-tick" title="Operación">
@@ -80,19 +82,21 @@
                     </div> -->
                     <div class="form-group" ng-controller="getListStates">
                         <!-- <select class="selectpicker show-menu-arrow" name="state" ng-model="valor.model"> -->
-                        <select class="selectpicker show-menu-arrow show-tick" name="state" ng-model="valor.model">
+                        <select class="selectpicker show-menu-arrow show-tick" name="estado" ng-model="valor.model">
                             <option disabled="" selected="" value="">Estado..</option>
-                            <option ng-repeat="(key, data) in statesList" value="{{data.idEstados}}">{{data.nombreEstado}}</option>
+                            <option ng-repeat="(key, data) in statesList" value="{{data.idEstados}}" data-estado="{{data.nombreEstado}}">{{data.nombreEstado}}</option>
                         </select>
+                        <div hidden class="divEstado"></div>
                     </div>
                     <div class="form-group" ng-controller="getListCities">
-                        <select class="form-control" style="width: 150px;" title="Ciudad">
+                        <select class="form-control" style="width: 150px;" title="Ciudad" name="ciudad">
                             <option disabled="" selected="" value="">Ciudad..</option>
-                            <option ng-repeat="(key, data) in citiesList" value="{{data.idCiudades}}" ng-if="data.Estados_idEstados == valor.model">{{data.nombreCiudad}}</option>
+                            <option ng-repeat="(key, data) in citiesList" value="{{data.idCiudades}}" ng-if="data.Estados_idEstados == valor.model" data-ciudad="{{data.nombreCiudad}}">{{data.nombreCiudad}}</option>
                         </select>
+                        <div hidden class="divCiudad"></div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success ">BUSCAR</button>
+                        <button class="btn btn-success busqueda" style="cursor:pionter;">BUSCAR</button>
                     </div>
                 </div>
 

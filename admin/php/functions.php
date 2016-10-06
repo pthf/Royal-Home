@@ -68,6 +68,23 @@
 			case 'agregarTipoInmobiliaria':
 				agregarTipoInmobiliaria();
 				break;
+			case 'datosContacto':
+				datosContacto();
+				break;
+			case 'modalProyecto':
+				modalProyecto();
+				break;
+			case 'modalDesarrollo':
+				modalDesarrollo();
+				break;
+			case 'modalPropiedades':
+				modalPropiedades();
+				break;
+
+
+
+
+
 
 
 			case 'addProjectName':
@@ -660,6 +677,194 @@
 			$result = mysql_query($query,Conectar::con()) or die(mysql_error()); 
 		}
 	}
+
+	function datosContacto(){
+		parse_str($_POST['data'], $data);
+		date_default_timezone_set('UTC');
+	    date_default_timezone_set("America/Mexico_City");
+	    $datatime = date("Y-m-d H:i:s");
+		$query = "INSERT INTO Contactos VALUES(null,'".$data['nombre']."','".$data['correo']."','".$data['telefono']."','".$data['empresa']."','".$data['mensaje']."','".$datatime."')";
+		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
+	}
+
+	function modalProyecto() {
+		$idProyecto = $_POST['idProyecto'];
+		$query = "SELECT * FROM Proyectos_has_imagenesInmobiliaria phi
+					INNER JOIN imagenesInmobiliaria imi On imi.idimagenesInmobiliaria = phi.imagenesInmobiliaria_idimagenesInmobiliaria
+					INNER JOIN Proyectos p ON p.idProyectos = phi.Proyectos_idProyectos
+					INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
+					INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
+					INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
+					INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
+					WHERE phi.Proyectos_idProyectos = '".$idProyecto."' ORDER BY idimagenesInmobiliaria DESC";
+		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
+		$row = mysql_fetch_array($result);
+		$imagenes = explode(',', $row['imagenHomeProyecto']);
+		$modal =
+		'<div class="row modal-content-wrapper">
+                      <div class="col-md-6 col-xs-12 foto text-center ">
+                        <!-- Swiper -->
+                        <div class="swiper-container gallery-top">
+                            <div class="swiper-wrapper">';
+                        	for ($i=0; $i < count($imagenes); $i++) { 
+                        		$modal .= '<div class="swiper-slide" style="background-image:url(../admin/src/images/imagenes-proyectos/'.$imagenes[$i].')"></div>';
+                        	}
+                $modal .= '</div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-button-next swiper-button-white"></div>
+                            <div class="swiper-button-prev swiper-button-white"></div>
+                        </div>
+                        <div class="swiper-container gallery-thumbs">
+                            <div class="swiper-wrapper">';
+                          	for ($i=0; $i < count($imagenes); $i++) { 
+                        		$modal .= '<div class="swiper-slide" style="background-image:url(../admin/src/images/imagenes-proyectos/'.$imagenes[$i].')"></div>';
+                			}
+            	$modal .= '</div>
+                        </div>
+
+                      </div>
+                      <div class="col-md-6 contenido col-xs-10 info-project">
+                          <div class="titulo col-md-offset-1">
+                              <span>'.$row['nombreProyecto'].'</span>
+
+                              <img src=".././assets/images/s-logo2.svg" style="width:42px;height:42px;float:right;" />
+                          </div>
+                          <hr>
+                          <div class="descripcion col-md-offset-1">
+                          	'.$row['descripProyecto'].'
+                          </div>
+                      </div>
+                  </div>';	
+        echo $modal;
+	}
+
+	function modalDesarrollo() {
+		$idDesarrollo = $_POST['idDesarrollo'];
+		$query = "SELECT * FROM Desarrollos_has_imagenesInmobiliaria dhi
+					INNER JOIN imagenesInmobiliaria imi On imi.idimagenesInmobiliaria = dhi.imagenesInmobiliaria_idimagenesInmobiliaria
+					INNER JOIN Desarrollos d ON d.idDesarrollos = dhi.Desarrollos_idDesarrollos
+					INNER JOIN Estados e ON e.idEstados = d.Estados_idEstados
+					INNER JOIN Ciudades c ON c.idCiudades = d.Ciudades_idCiudades
+					INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = d.tipoInmobiliaria_idtipoInmobiliaria
+					INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
+					WHERE dhi.Desarrollos_idDesarrollos = '".$idDesarrollo."' ORDER BY idimagenesInmobiliaria DESC";
+		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
+		$row = mysql_fetch_array($result);
+		$imagenes = explode(',', $row['imagenHomeDesarrollo']);
+		$modal =
+		'<div class="row modal-content-wrapper">
+                      <div class="col-md-6 col-xs-12 foto text-center ">
+                        <!-- Swiper -->
+                        <div class="swiper-container gallery-top">
+                            <div class="swiper-wrapper">';
+                        	for ($i=0; $i < count($imagenes); $i++) { 
+                        		$modal .= '<div class="swiper-slide" style="background-image:url(../admin/src/images/imagenes-desarrollos/'.$imagenes[$i].')"></div>';
+                        	}
+                $modal .= '</div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-button-next swiper-button-white"></div>
+                            <div class="swiper-button-prev swiper-button-white"></div>
+                        </div>
+                        <div class="swiper-container gallery-thumbs">
+                            <div class="swiper-wrapper">';
+                          	for ($i=0; $i < count($imagenes); $i++) { 
+                        		$modal .= '<div class="swiper-slide" style="background-image:url(../admin/src/images/imagenes-desarrollos/'.$imagenes[$i].')"></div>';
+                			}
+            	$modal .= '</div>
+                        </div>
+
+                      </div>
+                      <div class="col-md-6 contenido col-xs-10 info-project">
+                          <div class="titulo col-md-offset-1">
+                              <span>'.$row['nombreDesarrollo'].'</span>
+
+                              <img src=".././assets/images/s-logo2.svg" style="width:42px;height:42px;float:right;" />
+                          </div>
+                          <hr>
+                          <div class="descripcion col-md-offset-1">
+                          	'.$row['descripDesarrollo'].'
+                          </div>
+                      </div>
+                  </div>';	
+        echo $modal;
+	}
+
+	function modalPropiedades() {
+		$idPropiedades = $_POST['idPropiedades'];
+		$query = "SELECT * FROM Propiedades_has_imagenesInmobiliaria phi
+					INNER JOIN imagenesInmobiliaria imi On imi.idimagenesInmobiliaria = phi.imagenesInmobiliaria_idimagenesInmobiliaria
+					INNER JOIN Propiedades p ON p.idPropiedades = phi.Propiedades_idPropiedades
+					INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
+					INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
+					INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
+					INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
+					INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion
+					WHERE phi.Propiedades_idPropiedades = '".$idPropiedades."' ORDER BY idimagenesInmobiliaria DESC";
+		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
+		$row = mysql_fetch_array($result);
+		$imagenes = explode(',', $row['imagenHomePropiedad']);
+		$modal = '<div class="container info" ng-hide="form">
+                      <div class="col-md-12 foto text-center ">
+                          <div class="swiper-container gallery-top2">
+                              <div class="swiper-wrapper">';
+                              for ($i=0; $i < count($imagenes); $i++) { 
+                                  $modal .= '<div class="swiper-slide" style="background-image:url(../admin/src/images/imagenes-propiedades/'.$imagenes[$i].')"></div>';
+                              }
+                    $modal .= '</div>
+                              <div class="swiper-button-next swiper-button-white"></div>
+                              <div class="swiper-button-prev swiper-button-white"></div>
+
+                          </div>
+
+                      </div>
+                      <div class="col-md-9 contenido proyect-wrapper-content">
+                          <div class="titulo col-md-offset-1 title-wrapper">
+                              '.$row['nombrePropiedad'].'
+                          </div>
+                          <hr>
+                          <div class="descripcion col-md-offset-1">
+                          	'.$row['descripPropiedad'].'
+                          </div>
+                      </div>
+                      <div class="col-md-3 info">
+                          <div class="text-center logo-wrapper">
+                              <img class="img-responsive foot-modal" src=".././assets/images/footer/f1.png" alt="" />
+                          </div>
+
+                          <div class="address-wrapper">
+                              <address>
+                                  '.$row['direccionPropiedad'].' <br>
+                                  '.$row['coloniaPropiedad'].' <br>
+                                  '.$row['nombreCiudad'].', '.$row['nombreEstado'].' <br>
+                                  <br>
+                                  <a href="tel:33333 333 333">'.$row['telPropiedad'].'</a><br>
+
+                                  <a href="mailto:arquitecto@contacto.com">'.$row['emailPropiedad'].'</a>
+                                  <br>
+                              </address>
+                          </div>
+                          <div class="text-left button-wrapper">
+                              <button class="btn btn-success btn-lg available-button" ng-click="form = true"></button>
+                          </div>
+                      </div>
+
+                  </div>';
+        echo $modal;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	function modifyProject(){
 
