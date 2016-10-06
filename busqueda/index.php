@@ -541,9 +541,9 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                   <button ng-hide="form" type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <img src=".././assets/images/arrow.png" alt="" />
                   </button>
-                  <button ng-show="form" type="button" class="close" aria-label="Close" ng-click="form=false">
+                  <!-- <button ng-show="form" type="button" class="close" aria-label="Close" ng-click="form=false">
                       <img src=".././assets/images/close.png" alt="" />
-                  </button>
+                  </button> -->
 
                   <h4 class="modal-title" id="myModalLabel"></h4>
               </div>
