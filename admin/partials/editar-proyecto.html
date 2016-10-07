@@ -102,10 +102,11 @@
             <input required type="text" class="form-control" id="anio-proyecto" placeholder="Año del Proyecto" name="anio-proyecto" value="{{projectElement[0].anio}}"></input>
           </div>
         </div>
+        <div class="result"></div>
         <div class="col-md-12">
           <button type="button" class="btn btn-danger" onclick="location.reload();">Cancelar</button>
           <button type="submit" class="btn btn-primary" id="buttonSave">Guardar</button>
-          <input type="text" style="display:none" class="bReload" ng-click="loadImages()"></input>
+          <input type="text" style="display:none" class="bReload" ng-click="loadImagesProyectos()"></input>
         </div>
       </div>
     </form>

@@ -80,6 +80,9 @@
 			case 'modalPropiedades':
 				modalPropiedades();
 				break;
+			case 'datosContactaPropiedad':
+				datosContactaPropiedad();
+				break;
 
 
 
@@ -522,9 +525,10 @@
 		$Inmobiliaria = $data['inmobiliaria-propiedad'];
 		$tipoInmobiliaria = $data['tipo-inmobiliaria-propiedad'];
 		$tipoOperacionPropiedad = $data['tipo-operacion-propiedad'];
+		$disponibilidad = $data['disponibilidad-propiedad'];
 
 		$query = "INSERT INTO Propiedades VALUES (NULL,'".$nombre."','".$descripcion."','null','null','".$direccion."','".$colonia."','".$codigoPostal."',
-												'".$telefono."','".$email."','3','".$estado."','".$ciudad."','".$tipoOperacionPropiedad."','".$Inmobiliaria."','".$tipoInmobiliaria."')";
+												'".$telefono."','".$email."','3','".$disponibilidad."','".$estado."','".$ciudad."','".$tipoOperacionPropiedad."','".$Inmobiliaria."','".$tipoInmobiliaria."')";
 		$result = mysql_query($query,Conectar::con()) or die (mysql_error());
 		//Obtenemos el ultimo id añadido en la tabla Productos
 		$rs = mysql_query("SELECT MAX(idPropiedades) AS id FROM Propiedades",Conectar::con()) or die (mysql_error());
@@ -639,8 +643,9 @@
 		$Inmobiliaria = $data['inmobiliaria-propiedad'];
 		$tipoInmobiliaria = $data['tipo-inmobiliaria-propiedad'];
 		$tipoOperacionPropiedad = $data['tipo-operacion-propiedad'];
+		$disponibilidad = $data['disponibilidad-propiedad'];
 		$query = "UPDATE Propiedades SET nombrePropiedad='".$nombre."',descripPropiedad='".$descripcion."',direccionPropiedad='".$direccion."',
-							coloniaPropiedad='".$colonia."',cpPropiedad='".$codigoPostal."',telPropiedad='".$telefono."',emailPropiedad='".$email."',
+							coloniaPropiedad='".$colonia."',cpPropiedad='".$codigoPostal."',telPropiedad='".$telefono."',emailPropiedad='".$email."',disponibilidad='".$disponibilidad."',
 							Estados_idEstados='".$estado."',Ciudades_idCiudades='".$ciudad."',tipoOperacion_idtipoOperacion='".$tipoOperacionPropiedad."',
 							tipoInmobiliaria_idtipoInmobiliaria='".$Inmobiliaria."',subcategoriaInmobiliaria_idsubcategoriaInmobiliaria='".$tipoInmobiliaria."' 
 							WHERE idPropiedades = '".$idPropiedad."'";
@@ -685,6 +690,57 @@
 	    $datatime = date("Y-m-d H:i:s");
 		$query = "INSERT INTO Contactos VALUES(null,'".$data['nombre']."','".$data['correo']."','".$data['telefono']."','".$data['empresa']."','".$data['mensaje']."','".$datatime."')";
 		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
+
+		$nombre = $data['nombre'];
+	    $telefono = $data['telefono'];
+	    $correo = $data['correo'];
+	    $mensaje_contacto = $data['mensaje'];
+	    $empresa = $data['empresa'];
+		// Destinatario
+		$para = 'holabebe@gmail.com';
+
+		// título
+		$titulo = 'Contáctanos - Royal-Home';
+
+		// mensaje
+		$mensaje = '
+		<html>
+		<head>
+		  <title>Información para contactarnos</title>
+		</head>
+		<body>
+		  <table>
+		  	<tr>
+		      <th>Fecha:</th><th>'.$datatime.'</th>
+		    </tr>
+		    <tr>
+		      <th>Empresa:</th><th>'.$empresa.'</th>
+		    </tr>
+		    <tr>
+		      <th>Nombre:</th><th>'.$nombre.'</th>
+		    </tr>
+		    <tr>
+		      <td>Telefono:</td><td>'.$telefono.'</td>
+		    </tr>
+		    <tr>
+		      <td>Mensaje</td><td>'.$mensaje_contacto.'</td>
+		    </tr>
+		  </table>
+		</body>
+		</html>
+		';
+
+		// Para enviar un correo HTML, debe establecerse la cabecera Content-type
+		$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+		$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+		// Cabeceras adicionales
+		$cabeceras .= 'To: Pepe <pepe@gmail.com>, Memo <memo@gmail.com>' . "\r\n";
+		$cabeceras .= 'From: Recordatorio <'.$correo.'>' . "\r\n";
+
+		// Enviarlo
+		mail($para, $titulo, $mensaje, $cabeceras);
+		echo 1;
 	}
 
 	function modalProyecto() {
@@ -727,7 +783,7 @@
                           <div class="titulo col-md-offset-1">
                               <span>'.$row['nombreProyecto'].'</span>
 
-                              <img src=".././assets/images/s-logo2.svg" style="width:42px;height:42px;float:right;" />
+                              <img src="../admin/src/images/logos-proyectos/'.$row['logoProyecto'].'" style="width:42px;height:42px;float:right;" />
                           </div>
                           <hr>
                           <div class="descripcion col-md-offset-1">
@@ -778,7 +834,7 @@
                           <div class="titulo col-md-offset-1">
                               <span>'.$row['nombreDesarrollo'].'</span>
 
-                              <img src=".././assets/images/s-logo2.svg" style="width:42px;height:42px;float:right;" />
+                              <img src="../admin/src/images/logos-desarrollos/'.$row['logoDesarrollo'].'" style="width:42px;height:42px;float:right;" />
                           </div>
                           <hr>
                           <div class="descripcion col-md-offset-1">
@@ -828,7 +884,7 @@
                       </div>
                       <div class="col-md-3 info">
                           <div class="text-center logo-wrapper">
-                              <img class="img-responsive foot-modal" src=".././assets/images/footer/f1.png" alt="" />
+                              <img class="img-responsive foot-modal" src="../admin/src/images/logos-propiedades/'.$row['logoPropiedad'].'" alt="" />
                           </div>
 
                           <div class="address-wrapper">
@@ -843,13 +899,71 @@
                                   <br>
                               </address>
                           </div>
-                          <div class="text-left button-wrapper">
-                              <button class="btn btn-success btn-lg available-button" ng-click="form = true"></button>
-                          </div>
+                          <div class="text-left button-wrapper">';
+                          	if ($row['disponibilidad'] == 1) {
+                          		$modal .= '<button class="btn btn-success btn-lg available-button" ng-click="form = true"></button>';
+                          	} else {
+                          		$modal .= '<span class="btn-danger" style="padding: 10px 16px;font-size: 18px;line-height: 1.3333333;border-radius: 6px;">NO DISPONIBLE</span>';
+                          	}
+              	$modal .= '</div>
                       </div>
 
                   </div>';
         echo $modal;
+	}
+
+	function datosContactaPropiedad() {
+		parse_str($_POST['data'], $data);
+		date_default_timezone_set('UTC');
+	    date_default_timezone_set("America/Mexico_City");
+	    $datatime = date("Y-m-d H:i:s");
+	    $nombre = $data['nombre'];
+	    $telefono = $data['telefono'];
+	    $correo = $data['correo'];
+	    $mensaje_contacto = $data['mensaje'];
+		// Destinatario
+		$para = 'holabebe@gmail.com';
+
+		// título
+		$titulo = 'Información Propiedades - Royal-Home';
+
+		// mensaje
+		$mensaje = '
+		<html>
+		<head>
+		  <title>Desea información sobre la propiedad</title>
+		</head>
+		<body>
+		  <table>
+		  	<tr>
+		      <th>Fecha:</th><th>'.$datatime.'</th>
+		    </tr>
+		    <tr>
+		      <th>Nombre:</th><th>'.$nombre.'</th>
+		    </tr>
+		    <tr>
+		      <td>Telefono:</td><td>'.$telefono.'</td>
+		    </tr>
+		    <tr>
+		      <td>Mensaje</td><td>'.$mensaje_contacto.'</td>
+		    </tr>
+		  </table>
+		</body>
+		</html>
+		';
+
+		// Para enviar un correo HTML, debe establecerse la cabecera Content-type
+		$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+		$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+		// Cabeceras adicionales
+		$cabeceras .= 'To: Pepe <pepe@gmail.com>, Memo <memo@gmail.com>' . "\r\n";
+		$cabeceras .= 'From: Recordatorio <'.$correo.'>' . "\r\n";
+
+		// Enviarlo
+		mail($para, $titulo, $mensaje, $cabeceras);
+		echo 1;
+
 	}
 
 

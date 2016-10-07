@@ -1,17 +1,12 @@
 <div class="select" ng-controller="getListStates">
     <div class="col-md-3 col-xs-12 col-sm-4 select-body">
-        <div class="sl headp texto">TODOS LOS PROYECTOS </div><i class="glyphicon glyphicon glyphicon-chevron-right"></i>
-        <div class="sl optp" ng-click="filtroPropiedades(0)">TODOS LOS PROYECTOS</div>
+        <div class="sl headp texto">TODOS LAS PROPIEDADES </div><i class="glyphicon glyphicon glyphicon-chevron-right"></i>
+        <div class="sl optp" ng-click="filtroPropiedades(0)">TODOS LOS ESTADOS</div>
         <div class="sl optp" ng-repeat="(key, data) in statesListFrontProp" ng-click="filtroPropiedades(data.idEstados)">{{data.nombreEstado | uppercase}}</div>
     </div>
     <div class="col-md-3 col-xs-12 col-sm-4 select-body">
-        <div class="sl headp-2 texto">TODOS LOS PROYECTOS </div><i class="glyphicon glyphicon glyphicon-chevron-right"></i>
-        <div id="todos" class="sl optd2" style="display:none;">TODOS LOS PROYECTOS</div>
-        <div id="queretaro" class="sl optd2" style="display:none;">QUERETARO</div>
-        <div id="leon" class="sl optd2" style="display:none;">LEÓN</div>
-        <div id="jalisco" class="sl optd2" style="display:none;">JALISCO</div>
-        <div id="aguascalientes" class="sl optd2" style="display:none;">AGUASCALIENTES</div>
-        <div id="guanajuato" class="sl optd2" style="display:none;">GUANAJUATO</div>
+        <div class="sl headp-2 texto">CIUDADES </div><i class="glyphicon glyphicon glyphicon-chevron-right"></i>
+        <div class="sl optd2" style="display:none;" ng-repeat="(key, data) in cityList" ng-click="filtroPropiedadesCity(data.idCiudades)">{{data.nombreCiudad | uppercase}}</div>
     </div>
 </div>
 <div class="mask" style="height: 50px; background-color: #3e3e3e"></div>

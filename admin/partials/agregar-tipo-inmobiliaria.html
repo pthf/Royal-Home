@@ -18,31 +18,32 @@
             <input required type="text" class="form-control" id="nombre-tipoInmobiliaria" placeholder="Nombre tipo de inmobiliaria" name="nombre-tipoInmobiliaria"></input>
           </div>
         </div>
+        <div class="result"></div>
         <div class="col-md-12">
           <button type="button" class="btn btn-danger" onclick="location.reload();">Cancelar</button>
           <button type="submit" class="btn btn-primary" id="buttonSave">Guardar</button>
-          <input type="text" style="display:none" class="bReload" ng-click="loadImages()"></input>
+          <input type="text" style="display:none" class="bReload" ng-click="loadTipoInmobiliaria()"></input>
         </div>
       </div>
     </form>
     <form class="form-horizontal" id="formProyecto" name="" enctype="multipart/form-data">
       <div class="col-md-5">
         <h4>Categorías Agregadas</h4>
-        <div class="form-group" ng-controller="getListInmobiliaria">
+        <div class="form-group">
           <label for="inmobiliaria-proyecto" class="col-sm-12 control-label">Inmobiliaria *</label>
           <div class="col-sm-12">
             <select required class="form-control" id="inmobiliaria-proyecto" name="inmobiliaria-proyecto" ng-model="valor.model">
               <option disabled="" selected="" value="">Selecciona..</option>
-              <option ng-repeat="(key, data) in availableOptions" value="{{data.idtipoInmobiliaria}}">{{data.tipoInmobiliaria}}</option>
+              <option ng-repeat="(key, data) in availableOptions1" value="{{data.idtipoInmobiliaria}}">{{data.tipoInmobiliaria}}</option>
             </select>
           </div>
         </div>
-        <div class="form-group" ng-controller="getListTypeInmobiliaria">
+        <div class="form-group">
           <label for="tipo-inmobiliaria-proyecto" class="col-sm-12 control-label">Tipo Inmobiliaria *</label>
           <div class="col-sm-12">
             <select required class="form-control" id="tipo-inmobiliaria-proyecto" name="tipo-inmobiliaria-proyecto">
               <option disabled="" selected="" value="">Selecciona..</option>
-              <option ng-repeat="(key, data) in availableOptions" value="{{data.idsubcategoriaInmobiliaria}}" ng-if="data.tipoInmobiliaria_idtipoInmobiliaria == valor.model">{{data.subcategoriaInmobiliaria}}</option>
+              <option ng-repeat="(key, data) in availableOptions2" value="{{data.idsubcategoriaInmobiliaria}}" ng-if="data.tipoInmobiliaria_idtipoInmobiliaria == valor.model">{{data.subcategoriaInmobiliaria}}</option>
             </select>
           </div>
         </div>

@@ -184,8 +184,15 @@
 		            processData: false,  // tell jQuery not to process the data
 		            contentType: false,   // tell jQuery not to set contentType
 		            success: function(result){
-		            	alert(result);
-		              $('.bReload').trigger('click');
+		                $('.bReload').trigger('click');
+		                $('.clickoculted').trigger('click');
+		                $('#formProyecto')[0].reset();
+						$('.result').html('<div class="alert alert-success" role="alert">Proyecto agregado correctamente.</div>');
+	                    $('.result').css({'opacity' : '1'});
+	                    setTimeout(function () {
+	                        $('.result').css({'opacity' : '0'});
+	                        $('.result').text('');
+	                    }, 4000);
 		            },
 		            error: function(error){
 		              alert(error);
@@ -211,7 +218,6 @@
 							namefunction: namefunction
 						},
 						success: function(result){
-							alert(result);
 							$('.clickoculted').trigger('click');
 						},
 						error: function(error){
@@ -244,8 +250,7 @@
 			            processData: false,  // tell jQuery not to process the data
 			            contentType: false,   // tell jQuery not to set contentType
 			            success: function(result){
-			            	alert(result);
-			              // $('.bReload').trigger('click');
+			              $('.bReload').trigger('click');
 			            },
 			            error: function(error){
 			              alert(error);
@@ -265,8 +270,7 @@
 							idProyecto: idProyecto
 						},
 						success: function(result){
-							alert(result);
-							// $('.clickoculted').trigger('click');
+							$('.bReload').trigger('click');
 						},
 						error: function(error){
 							alert(error);
@@ -303,8 +307,13 @@
 		            processData: false,  // tell jQuery not to process the data
 		            contentType: false,   // tell jQuery not to set contentType
 		            success: function(result){
-		            	alert(result);
-		              // $('.bReload').trigger('click');
+		                $('.bReload').trigger('click');
+						$('.result').html('<div class="alert alert-success" role="alert">Producto modificado.</div>');
+	                    $('.result').css({'opacity' : '1'});
+	                    setTimeout(function () {
+	                        $('.result').css({'opacity' : '0'});
+	                        $('.result').text('');
+	                    }, 4000);
 		            },
 		            error: function(error){
 		              alert(error);
@@ -336,8 +345,7 @@
 			            processData: false,  // tell jQuery not to process the data
 			            contentType: false,   // tell jQuery not to set contentType
 			            success: function(result){
-			            	alert(result);
-			              // $('.bReload').trigger('click');
+			              $('.bReload').trigger('click');
 			            },
 			            error: function(error){
 			              alert(error);
@@ -375,8 +383,15 @@
 		            processData: false,  // tell jQuery not to process the data
 		            contentType: false,   // tell jQuery not to set contentType
 		            success: function(result){
-		            	alert(result);
-		              $('.bReload').trigger('click');
+			            $('.bReload').trigger('click');
+			            $('.clickoculted').trigger('click');
+			            $('#formDesarrollo')[0].reset();
+						$('.result').html('<div class="alert alert-success" role="alert">Desarrollo agregado correctamente.</div>');
+	                    $('.result').css({'opacity' : '1'});
+	                    setTimeout(function () {
+	                        $('.result').css({'opacity' : '0'});
+	                        $('.result').text('');
+	                    }, 4000);
 		            },
 		            error: function(error){
 		              alert(error);
@@ -402,8 +417,7 @@
 							namefunction: namefunction
 						},
 						success: function(result){
-							alert(result);
-							// $('.clickoculted').trigger('click');
+							$('.clickoculted').trigger('click');
 						},
 						error: function(error){
 							alert(error);
@@ -435,8 +449,7 @@
 			            processData: false,  // tell jQuery not to process the data
 			            contentType: false,   // tell jQuery not to set contentType
 			            success: function(result){
-			            	alert(result);
-			              // $('.bReload').trigger('click');
+			              $('.bReload').trigger('click');
 			            },
 			            error: function(error){
 			              alert(error);
@@ -456,8 +469,7 @@
 							idDesarrollo: idDesarrollo
 						},
 						success: function(result){
-							alert(result);
-							// $('.clickoculted').trigger('click');
+							$('.bReload').trigger('click');
 						},
 						error: function(error){
 							alert(error);
@@ -483,8 +495,13 @@
 		            processData: false,  // tell jQuery not to process the data
 		            contentType: false,   // tell jQuery not to set contentType
 		            success: function(result){
-		            	alert(result);
-		              // $('.bReload').trigger('click');
+		              	$('.bReload').trigger('click');
+		              	$('.result').html('<div class="alert alert-success" role="alert">Desarrollo modificado.</div>');
+	                    $('.result').css({'opacity' : '1'});
+	                    setTimeout(function () {
+	                        $('.result').css({'opacity' : '0'});
+	                        $('.result').text('');
+	                    }, 4000);
 		            },
 		            error: function(error){
 		              alert(error);
@@ -516,8 +533,7 @@
 			            processData: false,  // tell jQuery not to process the data
 			            contentType: false,   // tell jQuery not to set contentType
 			            success: function(result){
-			            	alert(result);
-			              // $('.bReload').trigger('click');
+			              $('.bReload').trigger('click');
 			            },
 			            error: function(error){
 			              alert(error);
@@ -555,8 +571,15 @@
 		            processData: false,  // tell jQuery not to process the data
 		            contentType: false,   // tell jQuery not to set contentType
 		            success: function(result){
-		            	alert(result);
-		              $('.bReload').trigger('click');
+		                $('.bReload').trigger('click');
+		                $('.clickoculted').trigger('click');
+		                $('#formPropiedad')[0].reset();
+						$('.result').html('<div class="alert alert-success" role="alert">Propiedad agregada correctamente.</div>');
+	                    $('.result').css({'opacity' : '1'});
+	                    setTimeout(function () {
+	                        $('.result').css({'opacity' : '0'});
+	                        $('.result').text('');
+	                    }, 4000);
 		            },
 		            error: function(error){
 		              alert(error);
@@ -582,8 +605,7 @@
 							namefunction: namefunction
 						},
 						success: function(result){
-							alert(result);
-							// $('.clickoculted').trigger('click');
+							$('.clickoculted').trigger('click');
 						},
 						error: function(error){
 							alert(error);
@@ -615,8 +637,7 @@
 			            processData: false,  // tell jQuery not to process the data
 			            contentType: false,   // tell jQuery not to set contentType
 			            success: function(result){
-			            	alert(result);
-			              // $('.bReload').trigger('click');
+			              $('.bReload').trigger('click');
 			            },
 			            error: function(error){
 			              alert(error);
@@ -636,8 +657,7 @@
 							idPropiedad: idPropiedad
 						},
 						success: function(result){
-							alert(result);
-							// $('.clickoculted').trigger('click');
+							$('.bReload').trigger('click');
 						},
 						error: function(error){
 							alert(error);
@@ -663,8 +683,13 @@
 		            processData: false,  // tell jQuery not to process the data
 		            contentType: false,   // tell jQuery not to set contentType
 		            success: function(result){
-		            	alert(result);
-		              // $('.bReload').trigger('click');
+		              	$('.bReload').trigger('click');
+		              	$('.result').html('<div class="alert alert-success" role="alert">Propiedad modificada.</div>');
+	                    $('.result').css({'opacity' : '1'});
+	                    setTimeout(function () {
+	                        $('.result').css({'opacity' : '0'});
+	                        $('.result').text('');
+	                    }, 4000);
 		            },
 		            error: function(error){
 		              alert(error);
@@ -696,8 +721,7 @@
 			            processData: false,  // tell jQuery not to process the data
 			            contentType: false,   // tell jQuery not to set contentType
 			            success: function(result){
-			            	alert(result);
-			              // $('.bReload').trigger('click');
+			              $('.bReload').trigger('click');
 			            },
 			            error: function(error){
 			              alert(error);
@@ -723,9 +747,15 @@
 			            processData: false,  // tell jQuery not to process the data
 			            contentType: false,   // tell jQuery not to set contentType
 			            success: function(result){
-			            	alert(result);
-			              // $('.bReload').trigger('click');
-			            },
+							$('.bReload').trigger('click');
+							$('#formTipoInmobiliaria')[0].reset();
+							$('.result').html('<div class="alert alert-success" role="alert">Categoría agregada.</div>');
+	                        $('.result').css({'opacity' : '1'});
+	                        setTimeout(function () {
+	                            $('.result').css({'opacity' : '0'});
+	                            $('.result').text('');
+	                        }, 4000);
+				        },
 			            error: function(error){
 			              alert(error);
 			            }

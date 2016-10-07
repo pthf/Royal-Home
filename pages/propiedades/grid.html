@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="body-head">
             <div class="img-header" parallaxs-background parallax-ratio="-0.2" style="position:relative;">
-                <div class="search container text-right search-propiedades">
+               <!--  <div class="search container text-right search-propiedades">
                   <form class="form-inline" method="post">
                       <div class="hidden-xs">
 
@@ -41,7 +41,7 @@
                       </div>
 
                   </form>
-              </div>
+              </div> -->
 
                 <div class="leyends container">
                     <div class="row text-right">
@@ -128,7 +128,9 @@
                             </address>
                         </div>
                         <div class="text-left button-wrapper">
-                            <button class="btn btn-success btn-lg available-button" ng-click="form = true"></button>
+                            <button ng-show="propiedadDetailsList[0].disponibilidad == 1" class="btn btn-success btn-lg available-button disponible" ng-click="form = true" data-id="{{propiedadDetailsList[0].idPropiedad}}"></button>
+                            <!-- <button ng-show="propiedadDetailsList[0].disponibilidad == 1" type="button" class="btn btn-success" ng-click="form = true">DISPONIBLE</button> -->
+                            <span ng-show="propiedadDetailsList[0].disponibilidad == 0" class="btn-danger" style="padding: 10px 16px;font-size: 18px;line-height: 1.3333333;border-radius: 6px;">NO DISPONIBLE</span>
                         </div>
                     </div>
 
@@ -141,21 +143,22 @@
                     </div>
 
                     <div class="form col-md-8 col-md-offset-2">
-                        <form class="" action="" method="post">
+                        <form method="post" id="formContactPropiedades">
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <input  class="form-control input-lg" type="text" name="nombre" placeholder="Nombre:">
+                                    <input required class="form-control input-lg" type="text" name="nombre" placeholder="Nombre:">
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <input  class="form-control input-lg" type="text" name="telefono" placeholder="Teléfono:">
+                                    <input required class="form-control input-lg" type="text" name="telefono" placeholder="Teléfono:">
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <input  class="form-control input-lg" type="text" name="correo" placeholder="Correo:">
+                                    <input required class="form-control input-lg" type="email" name="correo" placeholder="Correo:">
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <textarea name="mensaje" rows="8" cols="40" class="input-lg form-control" placeholder="Mensaje"></textarea>
+                                    <textarea required name="mensaje" rows="8" cols="40" class="input-lg form-control" placeholder="Mensaje"></textarea>
                                 </div>
                             </div>
+                            <div style="height: 0px;" class="resultado"></div>
                             <div class="text-right">
                                 <button type="submit" name="button" class="btn btn-lg btn-success">Enviar</button>
                             </div>

@@ -186,7 +186,7 @@ app.controller('getTypeInmobiliariaController', function($scope){
     model:null,
   };
 })
-app.controller("getListProjects", function($scope, getDataProjects){
+app.controller("getListProjects", function($scope, getDataProjects, getDataCityList, getDataProjectsCity){
   $scope.projectList = [];
   getDataProjects.dataProjects(0).then(function(data){
     $scope.projectList = data;
@@ -197,9 +197,20 @@ app.controller("getListProjects", function($scope, getDataProjects){
     getDataProjects.dataProjects($scope.id).then(function(data){
       $scope.projectList = data;
     });
+    $scope.cityList = [];
+    getDataCityList.dataCity($scope.id).then(function(data){
+      $scope.cityList = data;
+    });
+  }
+  $scope.filtroProyectosCity = function (id) {
+    $scope.id = id;
+    $scope.projectList = [];
+    getDataProjectsCity.dataProjectsCity($scope.id).then(function(data){
+      $scope.projectList = data;
+    });
   }
 })
-app.controller("getListDesarrollos", function($scope, getDataDesarrollos){
+app.controller("getListDesarrollos", function($scope, getDataDesarrollos, getDataCityListDes, getDataDesarrollosCity){
   $scope.desarrolloList = [];
   getDataDesarrollos.dataDesarrollos(0).then(function(data){
     $scope.desarrolloList = data;
@@ -210,9 +221,20 @@ app.controller("getListDesarrollos", function($scope, getDataDesarrollos){
     getDataDesarrollos.dataDesarrollos($scope.id).then(function(data){
       $scope.desarrolloList = data;
     });
+    $scope.cityList = [];
+    getDataCityListDes.dataCityDes($scope.id).then(function(data){
+      $scope.cityList = data;
+    });
+  }
+  $scope.filtroDesarrollosCity = function (id) {
+    $scope.id = id;
+    $scope.desarrolloList = [];
+    getDataDesarrollosCity.dataDesarrollosCity($scope.id).then(function(data){
+      $scope.desarrolloList = data;
+    });
   }
 })
-app.controller("getListPropiedades", function($scope, getDataPropiedades){
+app.controller("getListPropiedades", function($scope, getDataPropiedades, getDataCityListProp, getDataPropiedadesCity){
   $scope.propiedadList = [];
   getDataPropiedades.dataPropiedades(0).then(function(data){
     $scope.propiedadList = data;
@@ -221,6 +243,17 @@ app.controller("getListPropiedades", function($scope, getDataPropiedades){
     $scope.id = id;
     $scope.propiedadList = [];
     getDataPropiedades.dataPropiedades($scope.id).then(function(data){
+      $scope.propiedadList = data;
+    });
+    $scope.cityList = [];
+    getDataCityListProp.dataCityProp($scope.id).then(function(data){
+      $scope.cityList = data;
+    });
+  }
+  $scope.filtroPropiedadesCity = function (id) {
+    $scope.id = id;
+    $scope.propiedadList = [];
+    getDataPropiedadesCity.dataPropiedadesCity($scope.id).then(function(data){
       $scope.propiedadList = data;
     });
   }

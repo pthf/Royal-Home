@@ -17,13 +17,14 @@
 	}])
   //Controladores Proyectos
   .controller('getImagesProjectController', ['$scope', 'RoyalHomeService', function($scope, RoyalHomeService){
-    $scope.listImages = [];
-    $scope.loadImages = function(){
-      RoyalHomeService.getInfomationProjects().then(function(data){
-        $scope.listImages = data;
+    $scope.loadProyectos = function(){
+      $scope.projectList = [];
+      RoyalHomeService.getProjectList().then(function(data){
+        $scope.projectList = data;
       });
     }
-    $scope.loadImages();
+    $scope.loadProyectos();
+
     $scope.valor={};
     $scope.valor1={};
   }])
@@ -32,13 +33,17 @@
     RoyalHomeService.getProjectList().then(function(data){
       $scope.projectList = data;
     });
-    $scope.listImages = [];
-    $scope.loadImages = function(){
-      RoyalHomeService.getInfomationProjects().then(function(data){
-        $scope.listImages = data;
+    $scope.loadProyectos = function(){
+      $scope.projectList = [];
+      RoyalHomeService.getProjectList().then(function(data){
+        $scope.projectList = data;
       });
     }
-    $scope.loadImages();
+    $scope.loadProyectos();
+
+    $scope.valor={};
+    $scope.valor1={};
+
   }])
   .controller('projectDescription', ['$scope', '$routeParams', 'RoyalHomeService', function($scope, $routeParams, RoyalHomeService){
     $scope.projectElement = [];
@@ -46,6 +51,14 @@
     RoyalHomeService.getProjectById($scope.id).then(function(data){
       $scope.projectElement = data;
     });
+    $scope.loadImagesProyectos = function(){
+      $scope.projectElement = [];
+      $scope.id = parseInt($routeParams.id);
+      RoyalHomeService.getProjectById($scope.id).then(function(data){
+        $scope.projectElement = data;
+      });
+    }
+    $scope.loadImagesProyectos();
   }])
   //Controladores Desarrollos
   .controller('getImagesDesarrolloController', ['$scope', 'RoyalHomeService', function($scope, RoyalHomeService){
@@ -56,6 +69,15 @@
       });
     }
     $scope.loadImages();
+
+    $scope.loadDesarrollos = function(){
+      $scope.DesarrolloList = [];
+      RoyalHomeService.getDesarrolloList().then(function(data){
+        $scope.DesarrolloList = data;
+      });
+    }
+    $scope.loadDesarrollos();
+
     $scope.valor={};
     $scope.valor1={};
   }])
@@ -64,13 +86,16 @@
     RoyalHomeService.getDesarrolloList().then(function(data){
       $scope.DesarrolloList = data;
     });
-    $scope.listImages = [];
-    $scope.loadImages = function(){
-      RoyalHomeService.getInfomationDesarrollos().then(function(data){
-        $scope.listImages = data;
+    $scope.loadDesarrollos = function(){
+      $scope.DesarrolloList = [];
+      RoyalHomeService.getDesarrolloList().then(function(data){
+        $scope.DesarrolloList = data;
       });
     }
-    $scope.loadImages();
+    $scope.loadDesarrollos();
+
+    $scope.valor={};
+    $scope.valor1={};
   }])
   .controller('desarrolloDescription', ['$scope', '$routeParams', 'RoyalHomeService', function($scope, $routeParams, RoyalHomeService){
     $scope.desarrolloElement = [];
@@ -78,16 +103,25 @@
     RoyalHomeService.getDesarrolloById($scope.id).then(function(data){
       $scope.desarrolloElement = data;
     });
+    $scope.loadImagesDesarrollos = function(){
+      $scope.desarrolloElement = [];
+      $scope.id = parseInt($routeParams.id);
+      RoyalHomeService.getDesarrolloById($scope.id).then(function(data){
+        $scope.desarrolloElement = data;
+      });
+    }
+    $scope.loadImagesDesarrollos();
   }])
   //Controladores Propiedades
   .controller('getImagesPropiedadesController', ['$scope', 'RoyalHomeService', function($scope, RoyalHomeService){
-    $scope.listImages = [];
-    $scope.loadImages = function(){
-      RoyalHomeService.getInfomationPropiedades().then(function(data){
-        $scope.listImages = data;
+    $scope.loadPropiedades = function(){
+      $scope.PropiedadList = [];
+      RoyalHomeService.getPropiedadList().then(function(data){
+        $scope.PropiedadList = data;
       });
     }
-    $scope.loadImages();
+    $scope.loadPropiedades();
+
     $scope.valor={};
     $scope.valor1={};
   }])
@@ -96,13 +130,16 @@
     RoyalHomeService.getPropiedadList().then(function(data){
       $scope.PropiedadList = data;
     });
-    $scope.listImages = [];
-    $scope.loadImages = function(){
-      RoyalHomeService.getInfomationPropiedades().then(function(data){
-        $scope.listImages = data;
+    $scope.loadPropiedades = function(){
+      $scope.PropiedadList = [];
+      RoyalHomeService.getPropiedadList().then(function(data){
+        $scope.PropiedadList = data;
       });
     }
-    $scope.loadImages();
+    $scope.loadPropiedades();
+
+    $scope.valor={};
+    $scope.valor1={};
   }])
   .controller('propiedadesDescription', ['$scope', '$routeParams', 'RoyalHomeService', function($scope, $routeParams, RoyalHomeService){
     $scope.propiedadElement = [];
@@ -110,16 +147,38 @@
     RoyalHomeService.getPropiedadById($scope.id).then(function(data){
       $scope.propiedadElement = data;
     });
+    $scope.loadImagesPropiedades = function(){
+      $scope.propiedadElement = [];
+      $scope.id = parseInt($routeParams.id);
+      RoyalHomeService.getPropiedadById($scope.id).then(function(data){
+        $scope.propiedadElement = data;
+      });
+    }
+    $scope.loadImagesPropiedades();
   }])
   // Controladores Tipo Inmobiliaria
   .controller('getTypeInmobiliariaController', ['$scope', 'RoyalHomeService', function($scope, RoyalHomeService){
-    $scope.listImages = [];
-    $scope.loadImages = function(){
-      RoyalHomeService.getInfomationProjects().then(function(data){
-        $scope.listImages = data;
+    $scope.availableOptions1 = [];
+    RoyalHomeService.getInmobiliariaList().then(function(data){
+      $scope.availableOptions1 = data;
+    });
+    $scope.availableOptions2 = [];
+    RoyalHomeService.getTypeInmobiliariaList().then(function(data){
+      $scope.availableOptions2 = data;
+    });
+
+    $scope.loadTipoInmobiliaria = function(){
+      $scope.availableOptions1 = [];
+      RoyalHomeService.getInmobiliariaList().then(function(data){
+        $scope.availableOptions1 = data;
+      });
+      $scope.availableOptions2 = [];
+      RoyalHomeService.getTypeInmobiliariaList().then(function(data){
+        $scope.availableOptions2 = data;
       });
     }
-    $scope.loadImages();
+    $scope.loadTipoInmobiliaria();
+
     $scope.valor={};
     $scope.valor1={};
   }])

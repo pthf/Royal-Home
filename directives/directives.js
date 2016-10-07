@@ -89,7 +89,12 @@ angular.module('rhome.directives', [])
                     } else if (idEstado) {
                         location.href="./busqueda/index.php?estado="+idEstado+"";
                     } else {
-                        alert('Selecciona algun elemento para la búsqueda.');
+                        $('.resultado-error').html('<p style="color:white;padding-top: 1%;">SELECCIONA ALGÚN ELEMENTO PARA LA BÚSQUEDA.</p>');
+                        $('.resultado-error').css({'opacity' : '1'});
+                        setTimeout(function () {
+                            $('.resultado-error').css({'opacity' : '0'});
+                            $('.resultado-error').text('');
+                        }, 4000);
                     }
                 });
                 $("select[name=categoria]").change(function(){
@@ -271,8 +276,34 @@ angular.module('rhome.directives', [])
 			restrict: 'E',
 			templateUrl: './pages/propiedades/grid.html',
 			controller: function($document){
-
-
+                $('#formContactPropiedades').submit(function(){
+                    var ajaxData = new FormData();
+                    ajaxData.append("namefunction","datosContactaPropiedad");
+                    ajaxData.append("data", $(this).serialize());
+                    $.ajax({
+                        url: "admin/php/functions.php",
+                        type: "POST",
+                        data: ajaxData,
+                        processData: false,  // tell jQuery not to process the data
+                        contentType: false,   // tell jQuery not to set contentType
+                        success: function(result){
+                            if (result == 1) {
+                                $('form#formContactPropiedades')[0].reset();
+                                $('.resultado').html('<p style="color:white;padding-top: 1%;">MENSAJE ENVIADO CORRECTAMENTE, PRONTO NOS PONEMOS EN CONTACTO CON USTED.</p>');
+                                $('.resultado').css({'opacity' : '1'});
+                                setTimeout(function () {
+                                    $('.resultado').css({'opacity' : '0'});
+                                    $('.resultado').text('');
+                                }, 4000);
+                            };
+                        },
+                        error: function(error){
+                          alert(error);
+                        }
+                    });
+                });
+                // var idPropiedad = $(".disponible").attr('data-id');
+                // alert(idPropiedad);
 			}
 		}
     })
@@ -292,8 +323,15 @@ angular.module('rhome.directives', [])
                         processData: false,  // tell jQuery not to process the data
                         contentType: false,   // tell jQuery not to set contentType
                         success: function(result){
-                            alert(result);
-                          // $('.bReload').trigger('click');
+                            if (result == 1) {
+                                $('form#formContacto')[0].reset();
+                                $('.resultado').html('<p style="color:white;padding-top: 1%;">MENSAJE ENVIADO CORRECTAMENTE, PRONTO NOS PONEMOS EN CONTACTO CON USTED.</p>');
+                                $('.resultado').css({'opacity' : '1'});
+                                setTimeout(function () {
+                                    $('.resultado').css({'opacity' : '0'});
+                                    $('.resultado').text('');
+                                }, 4000);
+                            };
                         },
                         error: function(error){
                           alert(error);

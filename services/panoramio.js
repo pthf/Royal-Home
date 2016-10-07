@@ -19,6 +19,26 @@ app.service('getDataProjects', function($http, $q){
         return deferred.promise;
     }
 });
+app.service('getDataCityList', function($http, $q){
+    this.dataCity = function(idEstado){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getCityList&idEstado='+idEstado)
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+app.service('getDataProjectsCity', function($http, $q){
+    this.dataProjectsCity = function(idCiudad){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getProjectListCity&idCiudad='+idCiudad)
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
 app.service('getDataDetailsProjects', function($http, $q){
     this.dataDetailsProjects = function(id){
         var deferred = $q.defer();
@@ -39,6 +59,26 @@ app.service('getDataDesarrollos', function($http, $q){
         return deferred.promise;
     }
 });
+app.service('getDataCityListDes', function($http, $q){
+    this.dataCityDes = function(idEstado){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getCityListDes&idEstado='+idEstado)
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+app.service('getDataDesarrollosCity', function($http, $q){
+    this.dataDesarrollosCity = function(idCiudad){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getDesarrolloListCity&idCiudad='+idCiudad)
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
 app.service('getDataDetailsDesarrollos', function($http, $q){
     this.dataDetailsDesarrollos = function(id){
         var deferred = $q.defer();
@@ -53,6 +93,26 @@ app.service('getDataPropiedades', function($http, $q){
     this.dataPropiedades = function(idEstado){
         var deferred = $q.defer();
         $http.get('./php/services.php?namefunction=getPropiedadList&idEstado='+idEstado)
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+app.service('getDataCityListProp', function($http, $q){
+    this.dataCityProp = function(idEstado){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getCityListProp&idEstado='+idEstado)
+            .success(function (data) {
+            deferred.resolve(data);
+        });
+        return deferred.promise;
+    }
+});
+app.service('getDataPropiedadesCity', function($http, $q){
+    this.dataPropiedadesCity = function(idCiudad){
+        var deferred = $q.defer();
+        $http.get('./php/services.php?namefunction=getPropiedadListCity&idCiudad='+idCiudad)
             .success(function (data) {
             deferred.resolve(data);
         });

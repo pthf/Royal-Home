@@ -1,4 +1,4 @@
-<div class="row" style="margin-top: 2vw" ng-controller="getImagesDesarrolloController">
+<div class="row" style="margin-top: 2vw" ng-controller="getListDesarrolloController">
   <div class="col-md-10">
     <form class="form-horizontal" id="formDesarrollo" name="" enctype="multipart/form-data">
       <div class="col-md-5">
@@ -99,10 +99,11 @@
             <input required type="file" class="form-control imagenes" id="imagenes-desarrollo" name="imagenes-desarrollo[]" multiple></input>
           </div>
         </div>
+        <div class="result"></div>
         <div class="col-md-12">
           <button type="button" class="btn btn-danger" onclick="location.reload();">Cancelar</button>
           <button type="submit" class="btn btn-primary" id="buttonSave">Guardar</button>
-          <input type="text" style="display:none" class="bReload" ng-click="loadImages()"></input>
+          <input type="text" style="display:none" class="bReload" ng-click="loadDesarrollos()"></input>
         </div>
       </div>
     </form>

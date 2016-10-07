@@ -299,6 +299,7 @@
 				'tipoInmobiliaria' => $line['tipoInmobiliaria'],
 				'subcategoriaInmobiliaria' => $line['subcategoriaInmobiliaria'],
 				'tipoOperacion' => $line['tipoOperacion'],
+				'disponibilidad' => $line['disponibilidad']
 			);
 		}
 		echo json_encode($arrayAux);
@@ -334,6 +335,7 @@
 				'tipoInmobiliaria' => $line['tipoInmobiliaria'],
 				'subcategoriaInmobiliaria' => $line['subcategoriaInmobiliaria'],
 				'tipoOperacion' => $line['tipoOperacion'],
+				'disponibilidad' => $line['disponibilidad']
 				);
 			array_push($arrayListProjects, $arrayAux);
 
