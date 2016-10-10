@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<?php 
-include("../admin/php/connect_bd.php"); 
+<?php
+include("../admin/php/connect_bd.php");
 if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) && isset($_GET['ciudad'])) {
   $categoria = $_GET['categoria'];
   $tipo = $_GET['tipo'];
@@ -38,6 +38,14 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
   <!--script src="bower_components/angular-route/angular-route.min.js"></script-->
 </head>
 <body>
+<style media="screen">
+  header#header {
+    background: rgb(110, 178, 83);
+  }
+  .navbar-fixed-bottom, .navbar-fixed-top{
+    position: relative;
+  }
+</style>
   <header id="header">
   <nav class="navbar navbar-default navbar-fixed-top header">
       <div class="container">
@@ -52,24 +60,6 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
           </div>
           <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
 
-              <ul class="nav navbar-nav navbar-right visible-md visible-sm visible-lg hidden-xs" ng-controller="scroll">
-                  <li class="quienesomosli"><a ng-click="scrollTo($event, 'quienesomos')" ><i class="fa fa-home"></i> QUIÉNES SOMOS</a></li>
-                  <li class="proyectosli"><a ng-click="scrollTo($event, 'proyectos')"><i class="fa fa-shield"></i> PROYECTOS</a></li>
-                  <li class="desarrollosli"><a ng-click="scrollTo($event, 'desarrollos')"><i class="fa fa-comment"></i> DESARROLLOS</a></li>
-                  <li class="propiedadesli"><a ng-click="scrollTo($event, 'propiedades')"><i class="fa fa-comment"></i> PROPIEDADES</a></li>
-                  <li class="contactoli"><a ng-click="scrollTo($event, 'contacto')" ng-href="#"><i class="fa fa-comment"></i> CONTACTO</a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right visible-xs hidden-lg hidden-md" ng-controller="scroll">
-                  <li class="col-xs-12"><a ng-click="scrollTo($event, 'quienesomos')" ><i class="fa fa-home"></i> QUIÉNES SOMOS</a></li>
-                  <li class="col-xs-12"><a ng-click="scrollTo($event, 'proyectos')"><i class="fa fa-shield"></i> PROYECTOS</a></li>
-                  <li class="col-xs-12"><a ng-click="scrollTo($event, 'desarrollos')"><i class="fa fa-comment"></i> DESARROLLOS</a></li>
-                  <li class="col-xs-12"><a ng-click="scrollTo($event, 'propiedades')"><i class="fa fa-comment"></i> PROPIEDADES</a></li>
-                  <li class="col-xs-12"><a ng-click="scrollTo($event, 'contacto')" ng-href="#"><i class="fa fa-comment"></i> CONTACTO</a></li>
-              </ul>
-
-            <div class="logo-right" onclick="window.scrollTo(0, 0);">
-              <img src="../assets/images/s-logo.svg" alt="" />
-            </div>
           </div><!--/.nav-collapse -->
 
       </div><!--/.container-fluid -->
@@ -81,18 +71,18 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
       <div class="container-fluid">
 
           <div class="grid">
-            <?php if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) && isset($_GET['ciudad'])) { 
-              if ($categoria == 3) { 
+            <?php if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) && isset($_GET['ciudad'])) {
+              if ($categoria == 3) {
                 $query = "SELECT * FROM Propiedades p
                           INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
                           INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
                           INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
-                          INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
-                          INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion 
+                          INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
+                          INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion
                           WHERE p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria = '".$tipo."' AND p.Estados_idEstados = '".$estado."' AND p.Ciudades_idCiudades = '".$ciudad."'
                           ORDER BY p.idPropiedades DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
-                while ($row = mysql_fetch_array($result)) { 
+                while ($row = mysql_fetch_array($result)) {
                   $imagenes = explode(',', $row['imagenHomePropiedad']);?>
                   <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco item-searchB" data-id="<?php echo $row['idPropiedades']?>">
                     <img src="../admin/src/images/imagenes-propiedades/<?= $imagenes[0];?>" style="height: 359px;width: 100%;"/>
@@ -106,12 +96,12 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                     </div>
                   </div>
                 <?php } ?>
-              <?php } else if ($categoria == 2) { 
+              <?php } else if ($categoria == 2) {
                 $query = "SELECT * FROM Desarrollos d
                       INNER JOIN Estados e ON e.idEstados = d.Estados_idEstados
                       INNER JOIN Ciudades c ON c.idCiudades = d.Ciudades_idCiudades
                       INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = d.tipoInmobiliaria_idtipoInmobiliaria
-                      INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
+                      INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
                       WHERE d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria = '".$tipo."' AND d.Estados_idEstados = '".$estado."' AND d.Ciudades_idCiudades = '".$ciudad."'
                       ORDER BY d.idDesarrollos DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
@@ -129,12 +119,12 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                     </div>
                   </div>
                 <?php } ?>
-              <?php } else if ($categoria == 1) { 
+              <?php } else if ($categoria == 1) {
                 $query = "SELECT * FROM Proyectos p
                             INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
                             INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
                             INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
-                            INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
+                            INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
                             WHERE p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria = '".$tipo."' AND p.Estados_idEstados = '".$estado."' AND p.Ciudades_idCiudades = '".$ciudad."'
                             ORDER BY p.idProyectos DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
@@ -153,18 +143,18 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                   </div>
                 <?php } ?>
               <?php } ?>
-            <?php } else if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado'])) { 
+            <?php } else if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado'])) {
               if ($categoria == 3) {
                 $query = "SELECT * FROM Propiedades p
                           INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
                           INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
                           INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
-                          INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
-                          INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion  
+                          INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
+                          INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion
                           WHERE p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria = '".$tipo."' AND p.Estados_idEstados = '".$estado."'
                           ORDER BY p.idPropiedades DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
-                while ($row = mysql_fetch_array($result)) { 
+                while ($row = mysql_fetch_array($result)) {
                   $imagenes = explode(',', $row['imagenHomePropiedad']);?>
                   <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco item-searchB" data-id="<?php echo $row['idPropiedades']?>">
                     <img src="../admin/src/images/imagenes-propiedades/<?= $imagenes[0];?>" style="height: 359px;width: 100%;"/>
@@ -178,12 +168,12 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                     </div>
                   </div>
                 <?php } ?>
-              <?php } else if ($categoria == 2) { 
+              <?php } else if ($categoria == 2) {
                 $query = "SELECT * FROM Desarrollos d
                       INNER JOIN Estados e ON e.idEstados = d.Estados_idEstados
                       INNER JOIN Ciudades c ON c.idCiudades = d.Ciudades_idCiudades
                       INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = d.tipoInmobiliaria_idtipoInmobiliaria
-                      INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
+                      INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
                       WHERE d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria = '".$tipo."' AND d.Estados_idEstados = '".$estado."'
                       ORDER BY d.idDesarrollos DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
@@ -201,12 +191,12 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                     </div>
                   </div>
                 <?php } ?>
-              <?php } else if ($categoria == 1) { 
+              <?php } else if ($categoria == 1) {
                 $query = "SELECT * FROM Proyectos p
                             INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
                             INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
                             INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
-                            INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
+                            INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
                             WHERE p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria = '".$tipo."' AND p.Estados_idEstados = '".$estado."'
                             ORDER BY p.idProyectos DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
@@ -225,17 +215,17 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                   </div>
                 <?php } ?>
               <?php } ?>
-            <?php } else if (isset($_GET['categoria']) && isset($_GET['tipo'])) { 
+            <?php } else if (isset($_GET['categoria']) && isset($_GET['tipo'])) {
               if ($categoria == 3) {
                 $query = "SELECT * FROM Propiedades p
                           INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
                           INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
                           INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
-                          INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
-                          INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion 
+                          INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
+                          INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion
                           WHERE p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria = '".$tipo."' ORDER BY p.idPropiedades DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
-                while ($row = mysql_fetch_array($result)) { 
+                while ($row = mysql_fetch_array($result)) {
                   $imagenes = explode(',', $row['imagenHomePropiedad']);?>
                   <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco item-searchB" data-id="<?php echo $row['idPropiedades']?>">
                     <img src="../admin/src/images/imagenes-propiedades/<?= $imagenes[0];?>" style="height: 359px;width: 100%;"/>
@@ -249,12 +239,12 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                     </div>
                   </div>
                 <?php } ?>
-              <?php } else if ($categoria == 2) { 
+              <?php } else if ($categoria == 2) {
                 $query = "SELECT * FROM Desarrollos d
                       INNER JOIN Estados e ON e.idEstados = d.Estados_idEstados
                       INNER JOIN Ciudades c ON c.idCiudades = d.Ciudades_idCiudades
                       INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = d.tipoInmobiliaria_idtipoInmobiliaria
-                      INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
+                      INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
                       WHERE d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria = '".$tipo."' ORDER BY d.idDesarrollos DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
                 while ($row = mysql_fetch_array($result)) {
@@ -271,12 +261,12 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                     </div>
                   </div>
                 <?php } ?>
-              <?php } else if ($categoria == 1) { 
+              <?php } else if ($categoria == 1) {
                 $query = "SELECT * FROM Proyectos p
                             INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
                             INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
                             INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
-                            INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
+                            INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
                             WHERE p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria = '".$tipo."' ORDER BY p.idProyectos DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
                 while ($row = mysql_fetch_array($result)) {
@@ -294,17 +284,17 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                   </div>
                 <?php } ?>
               <?php } ?>
-            <?php } else if (isset($_GET['categoria']) && isset($_GET['estado'])) { 
+            <?php } else if (isset($_GET['categoria']) && isset($_GET['estado'])) {
               if ($categoria == 3) {
                 $query = "SELECT * FROM Propiedades p
                           INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
                           INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
                           INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
-                          INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
-                          INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion 
+                          INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
+                          INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion
                           WHERE p.Estados_idEstados = '".$estado."' ORDER BY p.idPropiedades DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
-                while ($row = mysql_fetch_array($result)) { 
+                while ($row = mysql_fetch_array($result)) {
                   $imagenes = explode(',', $row['imagenHomePropiedad']);?>
                   <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco item-searchB" data-id="<?php echo $row['idPropiedades']?>">
                     <img src="../admin/src/images/imagenes-propiedades/<?= $imagenes[0];?>" style="height: 359px;width: 100%;"/>
@@ -318,12 +308,12 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                     </div>
                   </div>
                 <?php } ?>
-              <?php } else if ($categoria == 2) { 
+              <?php } else if ($categoria == 2) {
                 $query = "SELECT * FROM Desarrollos d
                       INNER JOIN Estados e ON e.idEstados = d.Estados_idEstados
                       INNER JOIN Ciudades c ON c.idCiudades = d.Ciudades_idCiudades
                       INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = d.tipoInmobiliaria_idtipoInmobiliaria
-                      INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
+                      INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
                       WHERE d.Estados_idEstados = '".$estado."' ORDER BY d.idDesarrollos DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
                 while ($row = mysql_fetch_array($result)) {
@@ -340,12 +330,12 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                     </div>
                   </div>
                 <?php } ?>
-              <?php } else if ($categoria == 1) { 
+              <?php } else if ($categoria == 1) {
                 $query = "SELECT * FROM Proyectos p
                             INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
                             INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
                             INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
-                            INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
+                            INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
                             WHERE p.Estados_idEstados = '".$estado."' ORDER BY p.idProyectos DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
                 while ($row = mysql_fetch_array($result)) {
@@ -363,16 +353,16 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                   </div>
                 <?php } ?>
               <?php } ?>
-            <?php } else if (isset($_GET['categoria'])) { 
+            <?php } else if (isset($_GET['categoria'])) {
               if ($categoria == 3) {
                 $query = "SELECT * FROM Propiedades p
                           INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
                           INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
                           INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
-                          INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
+                          INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
                           INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion ORDER BY p.idPropiedades DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
-                while ($row = mysql_fetch_array($result)) { 
+                while ($row = mysql_fetch_array($result)) {
                   $imagenes = explode(',', $row['imagenHomePropiedad']);?>
                   <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco item-searchB" data-id="<?php echo $row['idPropiedades']?>">
                     <img src="../admin/src/images/imagenes-propiedades/<?= $imagenes[0];?>" style="height: 359px;width: 100%;"/>
@@ -386,7 +376,7 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                     </div>
                   </div>
                 <?php } ?>
-              <?php } else if ($categoria == 2) { 
+              <?php } else if ($categoria == 2) {
                 $query = "SELECT * FROM Desarrollos d
                       INNER JOIN Estados e ON e.idEstados = d.Estados_idEstados
                       INNER JOIN Ciudades c ON c.idCiudades = d.Ciudades_idCiudades
@@ -407,7 +397,7 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                     </div>
                   </div>
                 <?php } ?>
-              <?php } else if ($categoria == 1) { 
+              <?php } else if ($categoria == 1) {
                 $query = "SELECT * FROM Proyectos p
                             INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
                             INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
@@ -434,11 +424,11 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                         INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
                         INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
                         INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
-                        INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
-                        INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion 
+                        INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
+                        INNER JOIN tipoOperacion tpo ON tpo.idtipoOperacion = p.tipoOperacion_idtipoOperacion
                         WHERE p.Estados_idEstados = '".$_GET['estado']."' ORDER BY p.idPropiedades DESC";
               $result = mysql_query($query,Conectar::con()) or die(mysql_error());
-              while ($row = mysql_fetch_array($result)) { 
+              while ($row = mysql_fetch_array($result)) {
                 $imagenes = explode(',', $row['imagenHomePropiedad']);?>
                 <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco item-searchB" data-id="<?php echo $row['idPropiedades']?>">
                   <img src="../admin/src/images/imagenes-propiedades/<?= $imagenes[0];?>" style="height: 359px;width: 100%;"/>
@@ -451,12 +441,12 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                       </div>
                   </div>
                 </div>
-              <?php } 
+              <?php }
               $query = "SELECT * FROM Desarrollos d
                       INNER JOIN Estados e ON e.idEstados = d.Estados_idEstados
                       INNER JOIN Ciudades c ON c.idCiudades = d.Ciudades_idCiudades
                       INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = d.tipoInmobiliaria_idtipoInmobiliaria
-                      INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
+                      INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = d.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
                       WHERE d.Estados_idEstados = '".$_GET['estado']."' ORDER BY d.idDesarrollos DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
                 while ($row = mysql_fetch_array($result)) {
@@ -472,12 +462,12 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                         </div>
                     </div>
                   </div>
-                <?php } 
+                <?php }
                 $query = "SELECT * FROM Proyectos p
                             INNER JOIN Estados e ON e.idEstados = p.Estados_idEstados
                             INNER JOIN Ciudades c ON c.idCiudades = p.Ciudades_idCiudades
                             INNER JOIN tipoInmobiliaria ti ON ti.idtipoInmobiliaria = p.tipoInmobiliaria_idtipoInmobiliaria
-                            INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria 
+                            INNER JOIN subcategoriaInmobiliaria si ON si.idsubcategoriaInmobiliaria = p.subcategoriaInmobiliaria_idsubcategoriaInmobiliaria
                             WHERE p.Estados_idEstados = '".$_GET['estado']."' ORDER BY p.idProyectos DESC";
                 $result = mysql_query($query,Conectar::con()) or die(mysql_error());
                 while ($row = mysql_fetch_array($result)) {
@@ -495,7 +485,7 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                   </div>
                 <?php } ?>
             <?php } ?>
-              
+
           </div>
       </div>
 
@@ -830,8 +820,16 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
 
   </script>
 
+
   <script type="text/javascript">
   $( ".item-searchB" ).click(function() {
+    console.log('show slider');
+    $('.container.info').removeClass('hide-content');
+    $('.container.info').addClass('show-content');
+
+    $('.container.frm-contacto').removeClass('show-content');
+    $('.container.frm-contacto').addClass('hide-content');
+
       var idPropiedades = $(this).attr('data-id');
       var namefunction = 'modalPropiedades';
       $.ajax({
@@ -843,6 +841,14 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
         },
         success: function(result){
           $(".modal-propiedades").html(result);
+          $( "button.btn.btn-success.btn-lg.available-button" ).click(function() {
+            console.log('mostrar formulario');
+            $('.container.info').removeClass('show-content');
+            $('.container.info').addClass('hide-content');
+
+            $('.container.frm-contacto').removeClass('hide-content');
+            $('.container.frm-contacto').addClass('show-content');
+          });
         },
         error: function(error){
           alert(error);
@@ -855,10 +861,7 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
 
 
     $('#myModal2').on('shown.bs.modal', function(event){
-
           console.log('modal open');
-
-
           $('body,html').css('overflow','hidden');
 
           setTimeout(function(){
@@ -880,7 +883,28 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
         $('body,html').css('overflow','visible');
     })
   });
-
   </script>
+
+  <script type="text/javascript">
+  $( "button.close" ).click(function() {
+    console.log('boton cerrar');
+    $('.container.info').removeClass('hide-content');
+    $('.container.info').addClass('show-content');
+
+    $('.container.frm-contacto').removeClass('show-content');
+    $('.container.frm-contacto').addClass('hide-content');
+  });
+  </script>
+
+
+  <style media="screen">
+    .hide-content{
+      display: none !important;
+    }
+
+    .show-content{
+      display: block !important;
+    }
+  </style>
 </body>
 </html>

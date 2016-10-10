@@ -247,7 +247,7 @@
   			$result = mysql_query($query,Conectar::con()) or die (mysql_error());
   		}
 
-  		$query = "SELECT p.idProyectos,img.imagenesInmobiliaria FROM Proyectos p 
+  		$query = "SELECT p.idProyectos,img.imagenesInmobiliaria FROM Proyectos p
 					INNER JOIN Proyectos_has_imagenesInmobiliaria phi ON phi.Proyectos_idProyectos = p.idProyectos
 					INNER JOIN imagenesInmobiliaria img ON img.idimagenesInmobiliaria = phi.imagenesInmobiliaria_idimagenesInmobiliaria
 					WHERE p.idProyectos = '".$idProyecto."'";
@@ -404,7 +404,7 @@
   			$query = "INSERT INTO Desarrollos_has_imagenesInmobiliaria VALUES('".$idDesarrollo."','".$idImagenes."')";
   			$result = mysql_query($query,Conectar::con()) or die (mysql_error());
   		}
-  		$query = "SELECT d.idDesarrollos,img.imagenesInmobiliaria FROM Desarrollos d 
+  		$query = "SELECT d.idDesarrollos,img.imagenesInmobiliaria FROM Desarrollos d
 					INNER JOIN Desarrollos_has_imagenesInmobiliaria dhi ON dhi.Desarrollos_idDesarrollos = d.idDesarrollos
 					INNER JOIN imagenesInmobiliaria img ON img.idimagenesInmobiliaria = dhi.imagenesInmobiliaria_idimagenesInmobiliaria
 					WHERE d.idDesarrollos = '".$idDesarrollo."'";
@@ -561,7 +561,7 @@
   			$query = "INSERT INTO Propiedades_has_imagenesInmobiliaria VALUES('".$idPropiedad."','".$idImagenes."')";
   			$result = mysql_query($query,Conectar::con()) or die (mysql_error());
   		}
-  		$query = "SELECT p.idPropiedades,img.imagenesInmobiliaria FROM Propiedades p 
+  		$query = "SELECT p.idPropiedades,img.imagenesInmobiliaria FROM Propiedades p
 					INNER JOIN Propiedades_has_imagenesInmobiliaria phi ON phi.Propiedades_idPropiedades = p.idPropiedades
 					INNER JOIN imagenesInmobiliaria img ON img.idimagenesInmobiliaria = phi.imagenesInmobiliaria_idimagenesInmobiliaria
 					WHERE p.idPropiedades = '".$idPropiedad."'";
@@ -647,7 +647,7 @@
 		$query = "UPDATE Propiedades SET nombrePropiedad='".$nombre."',descripPropiedad='".$descripcion."',direccionPropiedad='".$direccion."',
 							coloniaPropiedad='".$colonia."',cpPropiedad='".$codigoPostal."',telPropiedad='".$telefono."',emailPropiedad='".$email."',disponibilidad='".$disponibilidad."',
 							Estados_idEstados='".$estado."',Ciudades_idCiudades='".$ciudad."',tipoOperacion_idtipoOperacion='".$tipoOperacionPropiedad."',
-							tipoInmobiliaria_idtipoInmobiliaria='".$Inmobiliaria."',subcategoriaInmobiliaria_idsubcategoriaInmobiliaria='".$tipoInmobiliaria."' 
+							tipoInmobiliaria_idtipoInmobiliaria='".$Inmobiliaria."',subcategoriaInmobiliaria_idsubcategoriaInmobiliaria='".$tipoInmobiliaria."'
 							WHERE idPropiedades = '".$idPropiedad."'";
 		$result = mysql_query($query,Conectar::con()) or die (mysql_error());
 	}
@@ -673,13 +673,13 @@
 
 	function agregarTipoInmobiliaria(){
 		parse_str($_POST['data'], $data);
-		$query = "SELECT * FROM subcategoriaInmobiliaria 
+		$query = "SELECT * FROM subcategoriaInmobiliaria
 					WHERE subcategoriaInmobiliaria = '".$data['nombre-tipoInmobiliaria']."' AND tipoInmobiliaria_idtipoInmobiliaria = '".$data['id-tipoInmobiliaria']."'";
 		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
 		$num_row = mysql_num_rows($result);
 		if ($num_row == 0) {
 			$query = "INSERT INTO subcategoriaInmobiliaria VALUES (null,'".$data['nombre-tipoInmobiliaria']."','".$data['id-tipoInmobiliaria']."')";
-			$result = mysql_query($query,Conectar::con()) or die(mysql_error()); 
+			$result = mysql_query($query,Conectar::con()) or die(mysql_error());
 		}
 	}
 
@@ -762,7 +762,7 @@
                         <!-- Swiper -->
                         <div class="swiper-container gallery-top">
                             <div class="swiper-wrapper">';
-                        	for ($i=0; $i < count($imagenes); $i++) { 
+                        	for ($i=0; $i < count($imagenes); $i++) {
                         		$modal .= '<div class="swiper-slide" style="background-image:url(../admin/src/images/imagenes-proyectos/'.$imagenes[$i].')"></div>';
                         	}
                 $modal .= '</div>
@@ -772,7 +772,7 @@
                         </div>
                         <div class="swiper-container gallery-thumbs">
                             <div class="swiper-wrapper">';
-                          	for ($i=0; $i < count($imagenes); $i++) { 
+                          	for ($i=0; $i < count($imagenes); $i++) {
                         		$modal .= '<div class="swiper-slide" style="background-image:url(../admin/src/images/imagenes-proyectos/'.$imagenes[$i].')"></div>';
                 			}
             	$modal .= '</div>
@@ -790,7 +790,7 @@
                           	'.$row['descripProyecto'].'
                           </div>
                       </div>
-                  </div>';	
+                  </div>';
         echo $modal;
 	}
 
@@ -813,7 +813,7 @@
                         <!-- Swiper -->
                         <div class="swiper-container gallery-top">
                             <div class="swiper-wrapper">';
-                        	for ($i=0; $i < count($imagenes); $i++) { 
+                        	for ($i=0; $i < count($imagenes); $i++) {
                         		$modal .= '<div class="swiper-slide" style="background-image:url(../admin/src/images/imagenes-desarrollos/'.$imagenes[$i].')"></div>';
                         	}
                 $modal .= '</div>
@@ -823,7 +823,7 @@
                         </div>
                         <div class="swiper-container gallery-thumbs">
                             <div class="swiper-wrapper">';
-                          	for ($i=0; $i < count($imagenes); $i++) { 
+                          	for ($i=0; $i < count($imagenes); $i++) {
                         		$modal .= '<div class="swiper-slide" style="background-image:url(../admin/src/images/imagenes-desarrollos/'.$imagenes[$i].')"></div>';
                 			}
             	$modal .= '</div>
@@ -841,7 +841,7 @@
                           	'.$row['descripDesarrollo'].'
                           </div>
                       </div>
-                  </div>';	
+                  </div>';
         echo $modal;
 	}
 
@@ -863,7 +863,7 @@
                       <div class="col-md-12 foto text-center ">
                           <div class="swiper-container gallery-top2">
                               <div class="swiper-wrapper">';
-                              for ($i=0; $i < count($imagenes); $i++) { 
+                              for ($i=0; $i < count($imagenes); $i++) {
                                   $modal .= '<div class="swiper-slide" style="background-image:url(../admin/src/images/imagenes-propiedades/'.$imagenes[$i].')"></div>';
                               }
                     $modal .= '</div>
@@ -901,7 +901,7 @@
                           </div>
                           <div class="text-left button-wrapper">';
                           	if ($row['disponibilidad'] == 1) {
-                          		$modal .= '<button class="btn btn-success btn-lg available-button" ng-click="form = true"></button>';
+                          		$modal .= '<button class="btn btn-success btn-lg available-button"></button>';
                           	} else {
                           		$modal .= '<span class="btn-danger" style="padding: 10px 16px;font-size: 18px;line-height: 1.3333333;border-radius: 6px;">NO DISPONIBLE</span>';
                           	}
@@ -989,7 +989,7 @@
 	    $datatime = date("Y-m-d H:i:s");
 
 		$idnote = $arrayData['note-id'];
-		$query = "UPDATE notes SET notesName = '".$arrayData['note-name']."', notesDescription = '".$arrayData['note-description']."', 
+		$query = "UPDATE notes SET notesName = '".$arrayData['note-name']."', notesDescription = '".$arrayData['note-description']."',
 								notesDate = '".$datatime."', notesState = '".$arrayData['note-state']."', notesCity = '".$arrayData['note-city']."' WHERE idnotes =  $idnote";
 		$result = mysqli_query(Conectar::con(),$query) or die(mysqli_error(Conectar::con()));
 
@@ -1141,11 +1141,11 @@
 		date_default_timezone_set('UTC');
 	    date_default_timezone_set("America/Mexico_City");
 	    $datatime = date("Y-m-d H:i:s");
-		
+
 		$query = "INSERT INTO services VALUES ('','".$formData['service-name']."','".$formData['service-description']."')";
 		$result = mysqli_query(Conectar::con(),$query) or die(mysqli_error(Conectar::con()));
 
-		// $id_service = mysql_insert_id(); 
+		// $id_service = mysql_insert_id();
 		$rs = mysqli_query(Conectar::con(),"SELECT MAX(idservices) AS id FROM services") or die (mysql_error());
 		if ($row = mysqli_fetch_row($rs)) {
 			$id_service = trim($row[0]);
@@ -1160,7 +1160,7 @@
 			}
 		}
 	}
-		
+
 	function addImageGalleryService(){
 		foreach ($_FILES['imageGallery']["name"] as $key => $value) {
 			$fileName = $_FILES["imageGallery"]["name"][$key];
@@ -1227,7 +1227,7 @@
 		$num_row = mysqli_num_rows($result);
 
 		if ($num_row == 0) {
-			
+
 			foreach ($_FILES['pdfResults']["name"] as $key => $value) {
 				$fileName = $_FILES["pdfResults"]["name"][$key];
 				$fileName = date("YmdHis").$fileName;
@@ -1240,8 +1240,8 @@
 		    date_default_timezone_set("America/Mexico_City");
 		    $datatime = date("Y-m-d H:i:s");
 
-			$query1 = "UPDATE resultsPatient SET resultsPatientName = '".$formData['patient-name']."', resultsPatientLastName = '".$formData['patient-last-name']."', resultsPatientCompany = '".$formData['patient-company']."', 
-												resultsPatientTypeResult = '".$formData['patient-type-result']."', resultsPatientDate = '".$datatime."', 
+			$query1 = "UPDATE resultsPatient SET resultsPatientName = '".$formData['patient-name']."', resultsPatientLastName = '".$formData['patient-last-name']."', resultsPatientCompany = '".$formData['patient-company']."',
+												resultsPatientTypeResult = '".$formData['patient-type-result']."', resultsPatientDate = '".$datatime."',
 												resultsPatientTicket = '".$formData['patient-ticket']."', resultsPatientPDF = '".$fileName."' WHERE idresultsPatient = '".$formData['patient-id']."'";
 			$result1 = mysqli_query(Conectar::con(),$query1) or die(mysqli_error(Conectar::con()));
 
@@ -1251,8 +1251,8 @@
 		    date_default_timezone_set("America/Mexico_City");
 		    $datatime = date("Y-m-d H:i:s");
 
-			$query1 = "UPDATE resultsPatient SET resultsPatientName = '".$formData['patient-name']."', resultsPatientLastName = '".$formData['patient-last-name']."', resultsPatientCompany = '".$formData['patient-company']."', 
-			 									resultsPatientTypeResult = '".$formData['patient-type-result']."', resultsPatientDate = '".$datatime."', 
+			$query1 = "UPDATE resultsPatient SET resultsPatientName = '".$formData['patient-name']."', resultsPatientLastName = '".$formData['patient-last-name']."', resultsPatientCompany = '".$formData['patient-company']."',
+			 									resultsPatientTypeResult = '".$formData['patient-type-result']."', resultsPatientDate = '".$datatime."',
 			 									resultsPatientTicket = '".$formData['patient-ticket']."' WHERE idresultsPatient = '".$formData['patient-id']."'";
 			$result1 = mysqli_query(Conectar::con(),$query1) or die(mysqli_error(Conectar::con()));
 
@@ -1270,7 +1270,7 @@
 	function addContact () {
 
 		parse_str($_POST['action'], $formData);
-		
+
 		date_default_timezone_set('UTC');
 	    date_default_timezone_set("America/Mexico_City");
 	    $datatime = date("Y-m-d H:i:s");
