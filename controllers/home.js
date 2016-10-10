@@ -34,7 +34,9 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
             backdrop: true
         });
 
+
         $('#myModal').on('shown.bs.modal', function(event){
+
 
           setTimeout(function(){
             var galleryTop = new Swiper('.gallery-top', {
@@ -127,8 +129,20 @@ app.controller('mainController', function($scope, $timeout, $anchorScroll, $loca
 
 
       $('#myModal2').on('shown.bs.modal', function(event){
+        console.log('open modal');
 
-            console.log('modal open');
+        $('.container.frm-contacto').addClass('ng-hide');
+
+        $( "button.close" ).click(function() {
+          $('.container.info').removeClass('ng-hide');
+        });
+
+        $( ".available-button.disponible" ).click(function() {
+          $('.container.info').addClass('ng-hide');
+          $('.container.frm-contacto.ng-hide').removeClass('ng-hide');
+        });
+
+
 
 
             $('body').css('overflow','hidden');
@@ -294,4 +308,3 @@ app.controller('getListCities', function($scope, getDataCity){
     $scope.citiesList = data;
   });
 })
-
