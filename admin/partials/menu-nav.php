@@ -18,7 +18,7 @@
         <li style="background: #32a64a;" role="presentation" ng-class="{active:selected===1}" ng-click="changeNav(1)"><a href="#/proyectos" style="color: #FFF;"><span class="glyphicon glyphicon-briefcase" ></span>PROYECTOS</a></li>
   			<li style="background: #32a64a; color: #FFF;" role="presentation" ng-class="{active:selected===2}" ng-click="changeNav(2)"><a href="#/desarrollos" style="color: #FFF;"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>DESARROLLOS</a></li>
         <li style="background: #32a64a; color: #FFF;" role="presentation" ng-class="{active:selected===3}" ng-click="changeNav(3)"><a href="#/propiedades" style="color: #FFF;"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>PROPIEDADES</a></li>
-        <li style="background: #32a64a; color: #FFF;" role="presentation" ng-class="{active:selected===4}" ng-click="changeNav(4)"><a href="#/tipo-inmobiliaria" style="color: #FFF;"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>CATEGORÍAS GENERALES</a></li>
+        <li style="background: #32a64a; color: #FFF;" role="presentation" ng-class="{active:selected===4}" ng-click="changeNav(4)"><a href="#/tipo-inmobiliaria" style="color: #FFF;"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>CATEGORÍAS GENERALES</a></li>
   		</ul>
 		</div>
 	</div>

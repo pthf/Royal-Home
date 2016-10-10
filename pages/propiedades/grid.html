@@ -88,7 +88,7 @@
                 <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
             <div class="modal-body" ng-controller="mainController">
-                <div class="container info" ng-hide="form">
+                <div class="container info modal-propiedad" ng-hide="form">
                     <div class="col-md-12 foto text-center ">
                         <div class="swiper-container gallery-top2">
                             <div class="swiper-wrapper">
@@ -128,7 +128,8 @@
                             </address>
                         </div>
                         <div class="text-left button-wrapper">
-                            <button ng-show="propiedadDetailsList[0].disponibilidad == 1" class="btn btn-success btn-lg available-button disponible" ng-click="form = true" data-id="{{propiedadDetailsList[0].idPropiedad}}"></button>
+                            <!-- <button ng-show="propiedadDetailsList[0].disponibilidad == 1" class="btn btn-success btn-lg available-button disponible" ng-click="form = true" data-id="{{propiedadDetailsList[0].idPropiedad}}"></button> -->
+                            <span ng-show="propiedadDetailsList[0].disponibilidad == 1" class="btn btn-success btn-lg available-button disponible contactanos" data-id='{{propiedadDetailsList[0].idPropiedad}}' style="cursor:pointer">DISPONIBLE</span>
                             <!-- <button ng-show="propiedadDetailsList[0].disponibilidad == 1" type="button" class="btn btn-success" ng-click="form = true">DISPONIBLE</button> -->
                             <span ng-show="propiedadDetailsList[0].disponibilidad == 0" class="btn-danger" style="padding: 10px 16px;font-size: 18px;line-height: 1.3333333;border-radius: 6px;">NO DISPONIBLE</span>
                         </div>
@@ -136,7 +137,9 @@
 
                 </div>
 
-                <div class="container frm-contacto" ng-show="form">
+                <!-- <div class="container frm-contacto" ng-show="form"> -->
+               <!-- <div class="modal-contacto-propiedad"></div> -->
+               <div class="container frm-contacto modal-contacto-propiedad">
                     <div class="texto col-md-7">
                         <h1 class="contact-title">DEJANOS TUS DATOS PARA COMUNICARNOS CONTIGO</h1>
                         <br><br>
@@ -145,6 +148,8 @@
                     <div class="form col-md-8 col-md-offset-2">
                         <form method="post" id="formContactPropiedades">
                             <div class="row">
+                                <div class="input-id-propiedad">
+                                </div>
                                 <div class="form-group col-md-12">
                                     <input required class="form-control input-lg" type="text" name="nombre" placeholder="Nombre:">
                                 </div>
@@ -166,8 +171,8 @@
                     </div>
                 </div>
 
-                <ng-map id="foo" default-style="true" center="[20.710079593340588, -103.40774611976781]" style="margin-top: 30px;" scrollwheel="false" draggable="true">
-                  <marker position="[20.710079593340588, -103.40774611976781]" title="how"></marker>
+                <ng-map id="foo" default-style="true" center="[{{propiedadDetailsList[0].latitud}}, {{propiedadDetailsList[0].longitud}}]" style="margin-top: 30px;" scrollwheel="false" draggable="true">
+                  <marker position="[{{propiedadDetailsList[0].latitud}}, {{propiedadDetailsList[0].longitud}}]" title="how"></marker>
                 </ng-map>
 
 

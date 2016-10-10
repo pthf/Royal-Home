@@ -1,7 +1,7 @@
 <div class="row" style="margin-top: 2vw" ng-controller="getListPropiedadesController">
   <div class="col-md-10">
     <form class="form-horizontal" id="formPropiedad" name="" enctype="multipart/form-data">
-      <div class="col-md-5">
+      <div class="col-md-4">
         <div class="form-group">
           <label for="nombre-propiedad" class="col-sm-12 control-label">Nombre *</label>
           <div class="col-sm-12">
@@ -45,7 +45,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-4">
         <div class="form-group" ng-controller="getListStates">
           <label for="estado-propiedad" class="col-sm-12 control-label">Estado *</label>
           <div class="col-sm-12">
@@ -100,6 +100,8 @@
             </select>
           </div>
         </div>
+      </div>
+      <div class="col-md-4">
         <div class="form-group">
           <label for="logo-propiedad" class="col-sm-12 control-label" style="text-align: left;">Logo *</label>
           <div class="col-sm-12">
@@ -110,6 +112,19 @@
           <label for="imagenes-propiedad" class="col-sm-12 control-label">Imagenes *</label>
           <div class="col-sm-12">
             <input required type="file" class="form-control imagenes" id="imagenes-propiedad" name="imagenes-propiedad[]" multiple></input>
+          </div>
+        </div>
+        <h4>Mostrar la dirección correspondiente a las coordenadas GPS</h4>
+        <div class="form-group">
+          <label for="latitud-propiedad" class="col-sm-12 control-label">Latitud *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="latitud-propiedad" placeholder="Dirección a partir de medida latitud" name="latitud-propiedad"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="longitud-propiedad" class="col-sm-12 control-label">Longitud *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="longitud-propiedad" placeholder="Dirección a partir de medida longitud" name="longitud-propiedad"></input>
           </div>
         </div>
         <div class="result"></div>

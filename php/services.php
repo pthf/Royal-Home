@@ -494,6 +494,8 @@
 				'subcategoriaInmobiliaria' => $line['subcategoriaInmobiliaria'],
 				'tipoOperacion' => $line['tipoOperacion'],
 				'disponibilidad' => $line['disponibilidad'],
+				'latitud' => $line['latitudMapa'],
+				'longitud' => $line['longitudMapa'],
 				'imagenHome' => $array_images[0],
 				'imagenes' => $array_images
 			);
@@ -502,7 +504,7 @@
 	}
 
 	function getStatesList(){
-		$query = "SELECT * FROM Estados ORDER BY idEstados DESC";
+		$query = "SELECT * FROM Estados ORDER BY idEstados ASC";
 		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
 		$dataStates = array();
 		while($line = mysql_fetch_array($result)){
@@ -556,7 +558,7 @@
 		echo json_encode($dataStates);
 	}
 	function getCitiesList(){
-		$query = "SELECT * FROM Ciudades ORDER BY idCiudades DESC";
+		$query = "SELECT * FROM Ciudades ORDER BY idCiudades ASC";
 		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
 		$dataStates = array();
 		while($line = mysql_fetch_array($result)){
@@ -569,7 +571,7 @@
 		echo json_encode($dataStates);
 	}	
 	function getInmobiliariaList(){
-		$query = "SELECT * FROM tipoInmobiliaria ORDER BY idtipoInmobiliaria DESC";
+		$query = "SELECT * FROM tipoInmobiliaria ORDER BY idtipoInmobiliaria ASC";
 		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
 		$dataStates = array();
 		while($line = mysql_fetch_array($result)){
@@ -581,7 +583,7 @@
 		echo json_encode($dataStates);
 	}	
 	function getTypeInmobiliariaList(){
-		$query = "SELECT * FROM subcategoriaInmobiliaria ORDER BY idsubcategoriaInmobiliaria DESC";
+		$query = "SELECT * FROM subcategoriaInmobiliaria ORDER BY idsubcategoriaInmobiliaria ASC";
 		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
 		$dataStates = array();
 		while($line = mysql_fetch_array($result)){
@@ -594,7 +596,7 @@
 		echo json_encode($dataStates);
 	}	
 	function getTypeOperationList(){
-		$query = "SELECT * FROM tipoOperacion ORDER BY idtipoOperacion DESC";
+		$query = "SELECT * FROM tipoOperacion ORDER BY idtipoOperacion ASC";
 		$result = mysql_query($query,Conectar::con()) or die(mysql_error());
 		$dataStates = array();
 		while($line = mysql_fetch_array($result)){

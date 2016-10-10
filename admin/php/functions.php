@@ -83,7 +83,9 @@
 			case 'datosContactaPropiedad':
 				datosContactaPropiedad();
 				break;
-
+			case 'modalContactanosPropiedad':
+				modalContactanosPropiedad();
+				break;
 
 
 
@@ -526,9 +528,12 @@
 		$tipoInmobiliaria = $data['tipo-inmobiliaria-propiedad'];
 		$tipoOperacionPropiedad = $data['tipo-operacion-propiedad'];
 		$disponibilidad = $data['disponibilidad-propiedad'];
+		$latitud = $data['latitud-propiedad'];
+		$longitud = $data['longitud-propiedad'];
 
 		$query = "INSERT INTO Propiedades VALUES (NULL,'".$nombre."','".$descripcion."','null','null','".$direccion."','".$colonia."','".$codigoPostal."',
-												'".$telefono."','".$email."','3','".$disponibilidad."','".$estado."','".$ciudad."','".$tipoOperacionPropiedad."','".$Inmobiliaria."','".$tipoInmobiliaria."')";
+												'".$telefono."','".$email."','3','".$disponibilidad."','".$latitud."','".$longitud."',
+												'".$estado."','".$ciudad."','".$tipoOperacionPropiedad."','".$Inmobiliaria."','".$tipoInmobiliaria."')";
 		$result = mysql_query($query,Conectar::con()) or die (mysql_error());
 		//Obtenemos el ultimo id añadido en la tabla Productos
 		$rs = mysql_query("SELECT MAX(idPropiedades) AS id FROM Propiedades",Conectar::con()) or die (mysql_error());
@@ -644,8 +649,11 @@
 		$tipoInmobiliaria = $data['tipo-inmobiliaria-propiedad'];
 		$tipoOperacionPropiedad = $data['tipo-operacion-propiedad'];
 		$disponibilidad = $data['disponibilidad-propiedad'];
+		$latitud = $data['latitud-propiedad'];
+		$longitud = $data['longitud-propiedad'];
 		$query = "UPDATE Propiedades SET nombrePropiedad='".$nombre."',descripPropiedad='".$descripcion."',direccionPropiedad='".$direccion."',
-							coloniaPropiedad='".$colonia."',cpPropiedad='".$codigoPostal."',telPropiedad='".$telefono."',emailPropiedad='".$email."',disponibilidad='".$disponibilidad."',
+							coloniaPropiedad='".$colonia."',cpPropiedad='".$codigoPostal."',telPropiedad='".$telefono."',emailPropiedad='".$email."',
+							disponibilidad='".$disponibilidad."',latitudMapa='".$latitud."',longitudMapa='".$longitud."',
 							Estados_idEstados='".$estado."',Ciudades_idCiudades='".$ciudad."',tipoOperacion_idtipoOperacion='".$tipoOperacionPropiedad."',
 							tipoInmobiliaria_idtipoInmobiliaria='".$Inmobiliaria."',subcategoriaInmobiliaria_idsubcategoriaInmobiliaria='".$tipoInmobiliaria."' 
 							WHERE idPropiedades = '".$idPropiedad."'";
@@ -901,7 +909,7 @@
                           </div>
                           <div class="text-left button-wrapper">';
                           	if ($row['disponibilidad'] == 1) {
-                          		$modal .= '<button class="btn btn-success btn-lg available-button" ng-click="form = true"></button>';
+                          		$modal .= '<span class="btn btn-success btn-lg available-button disponible contactanos" data-id="'.$row['idPropiedades'].'" style="cursor:pointer">DISPONIBLE</span>';
                           	} else {
                           		$modal .= '<span class="btn-danger" style="padding: 10px 16px;font-size: 18px;line-height: 1.3333333;border-radius: 6px;">NO DISPONIBLE</span>';
                           	}
@@ -912,11 +920,20 @@
         echo $modal;
 	}
 
+	function modalContactanosPropiedad(){
+		$idPropiedad = $_POST['idPropiedad'];
+		$modal = '<input hidden type="text" value="'.$idPropiedad.'" name="idPropiedad">';
+        echo $modal;
+	}
+
 	function datosContactaPropiedad() {
 		parse_str($_POST['data'], $data);
 		date_default_timezone_set('UTC');
 	    date_default_timezone_set("America/Mexico_City");
 	    $datatime = date("Y-m-d H:i:s");
+	    $query = "SELECT * FROM Propiedades WHERE idPropiedades = '".$data['idPropiedad']."'";
+	    $result = mysql_query($query,Conectar::con()) or die(mysql_error());
+	    $row = mysql_fetch_array($result);
 	    $nombre = $data['nombre'];
 	    $telefono = $data['telefono'];
 	    $correo = $data['correo'];
@@ -931,9 +948,19 @@
 		$mensaje = '
 		<html>
 		<head>
-		  <title>Desea información sobre la propiedad</title>
+		  <title>Contacto para información sobre la propiedad</title>
 		</head>
 		<body>
+		<h2>DATOS DE LA PROPIEDAD</h2>
+		  <table>
+		  	<tr>
+		      <th>ID Propiedad:</th><th>'.$row['idPropiedades'].'</th>
+		    </tr>
+		    <tr>
+		      <th>Nombre Propiedad:</th><th>'.$row['nombrePropiedad'].'</th>
+		    </tr>
+		  </table>
+		<h2>DATOS DEL CONTACTO</h2>
 		  <table>
 		  	<tr>
 		      <th>Fecha:</th><th>'.$datatime.'</th>

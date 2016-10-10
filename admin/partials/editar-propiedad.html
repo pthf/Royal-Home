@@ -118,6 +118,19 @@
             </select>
           </div>
         </div>
+        <h4>Mostrar la dirección correspondiente a las coordenadas GPS</h4>
+        <div class="form-group">
+          <label for="latitud-propiedad" class="col-sm-12 control-label">Latitud *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="latitud-propiedad" placeholder="Dirección a partir de medida latitud" name="latitud-propiedad" value="{{propiedadElement[0].latitud}}"></input>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="longitud-propiedad" class="col-sm-12 control-label">Longitud *</label>
+          <div class="col-sm-12">
+            <input required type="text" class="form-control" id="longitud-propiedad" placeholder="Dirección a partir de medida longitud" name="longitud-propiedad" value="{{propiedadElement[0].longitud}}"></input>
+          </div>
+        </div>
         <div class="result"></div>
         <div class="col-md-12">
           <button type="button" class="btn btn-danger" onclick="location.reload();">Cancelar</button>

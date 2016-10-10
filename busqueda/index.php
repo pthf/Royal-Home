@@ -843,6 +843,11 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
         },
         success: function(result){
           $(".modal-propiedades").html(result);
+          $( ".contactanos" ).click(function() {
+            alert('Disponibilidad');
+            var idPropiedad = $(".disponible").attr('data-id');
+            var namefunction = 'modalContactanosPropiedad';
+          });
         },
         error: function(error){
           alert(error);
