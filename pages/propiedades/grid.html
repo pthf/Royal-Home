@@ -59,7 +59,7 @@
         <div class="grid" ng-controller="getListPropiedades">
             <select-propiedades></select-propiedades>
             <div class="col-md-3 col-xs-6 col-sm-4 b-grid jalisco" ng-repeat="(key, data) in propiedadList" ng-click="getDetailGrid2(data.idPropiedad);">
-                <img src="http://localhost/www/Royal-Home/admin/src/images/imagenes-propiedades/{{data.imagenHome}}" style="height: 359px;width: 100%;">
+                <img src="./admin/src/images/imagenes-propiedades/{{data.imagenHome}}" style="height: 359px;width: 100%;">
                 <div class="cintillo">
                     <div class="title txt">
                         {{data.nombrePropiedad}}
@@ -148,8 +148,7 @@
                     <div class="form col-md-8 col-md-offset-2">
                         <form method="post" id="formContactPropiedades">
                             <div class="row">
-                                <div class="input-id-propiedad">
-                                </div>
+                                <div class="input-id-propiedad"></div>
                                 <div class="form-group col-md-12">
                                     <input required class="form-control input-lg" type="text" name="nombre" placeholder="Nombre:">
                                 </div>

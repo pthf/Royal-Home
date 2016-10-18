@@ -270,6 +270,7 @@
 							idProyecto: idProyecto
 						},
 						success: function(result){
+							// alert(result);
 							$('.bReload').trigger('click');
 						},
 						error: function(error){

@@ -12,7 +12,8 @@
         <th>{{data.idimagenesInmobiliaria}}</th>
         <th><img src="../src/images/imagenes-desarrollos/{{data.imagenesInmobiliaria}}" width="30%;" height="auto;"></th>
         <th>
-          <span class="label label-danger deleteImage" data-id='{{data.idimagenesInmobiliaria}}' data-name="{{data.idDesarrollo}}" style="cursor:pointer">Eliminar</span>
+          <span ng-show="desarrolloElement.length > 1" class="label label-danger deleteImage" data-id='{{data.idimagenesInmobiliaria}}' data-name="{{data.idDesarrollo}}" style="cursor:pointer">Eliminar</span>
+          <span ng-show="desarrolloElement.length == 1" class="label label-warning">No se puede eliminar la última imágen.</span>
         </th>
       </tr>
     </tbody>

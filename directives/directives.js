@@ -276,7 +276,6 @@ angular.module('rhome.directives', [])
 			restrict: 'E',
 			templateUrl: './pages/propiedades/grid.html',
 			controller: function($document){
-                $('.modal-contacto-propiedad').hide();
                 $('#formContactPropiedades').submit(function(){
                     var ajaxData = new FormData();
                     ajaxData.append("namefunction","datosContactaPropiedad");
@@ -288,7 +287,6 @@ angular.module('rhome.directives', [])
                         processData: false,  // tell jQuery not to process the data
                         contentType: false,   // tell jQuery not to set contentType
                         success: function(result){
-                            alert(result);
                             if (result == 1) {
                                 $('#formContactPropiedades')[0].reset();
                                 $('.resultado').html('<p style="color:white;padding-top: 1%;">MENSAJE ENVIADO CORRECTAMENTE, PRONTO NOS PONEMOS EN CONTACTO CON USTED.</p>');
@@ -305,6 +303,7 @@ angular.module('rhome.directives', [])
                     });
                 });
                 $(document).on('click', '.contactanos', function(){
+                $('.modal-contacto-propiedad').hide();
                     var idPropiedad = $(".disponible").attr('data-id');
                     var namefunction = 'modalContactanosPropiedad';
                     $.ajax({
@@ -315,7 +314,6 @@ angular.module('rhome.directives', [])
                             idPropiedad: idPropiedad
                         },
                         success: function(result){
-                            $('.modal-propiedad').hide();
                             $('.modal-contacto-propiedad').show();
                             $('.input-id-propiedad').html(result);
                         },

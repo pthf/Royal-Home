@@ -545,28 +545,31 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                           <h1 class="contact-title">DEJANOS TUS DATOS PARA COMUNICARNOS CONTIGO</h1>
                           <br><br>
                       </div>
-
                       <div class="form col-md-8 col-md-offset-2">
-                          <form class="" action="" method="post">
-                              <div class="row">
-                                  <div class="form-group col-md-12">
-                                      <input  class="form-control input-lg" type="text" name="nombre" placeholder="Nombre:">
-                                  </div>
-                                  <div class="form-group col-md-12">
-                                      <input  class="form-control input-lg" type="text" name="telefono" placeholder="Teléfono:">
-                                  </div>
-                                  <div class="form-group col-md-12">
-                                      <input  class="form-control input-lg" type="text" name="correo" placeholder="Correo:">
-                                  </div>
-                                  <div class="form-group col-md-12">
-                                      <textarea name="mensaje" rows="8" cols="40" class="input-lg form-control" placeholder="Mensaje"></textarea>
-                                  </div>
-                              </div>
-                              <div class="text-right">
-                                  <button type="submit" name="button" class="btn btn-lg btn-success">Enviar</button>
-                              </div>
-                          </form>
-                      </div>
+                        <form method="post" id="formContactPropiedades">
+                            <div class="row">
+                                <div class="input-id-propiedad">
+                                    <input hidden type="text" name="idPropiedad" value="1">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <input required class="form-control input-lg" type="text" name="nombre" placeholder="Nombre:">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <input required class="form-control input-lg" type="text" name="telefono" placeholder="Teléfono:">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <input required class="form-control input-lg" type="email" name="correo" placeholder="Correo:">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <textarea required name="mensaje" rows="8" cols="40" class="input-lg form-control" placeholder="Mensaje"></textarea>
+                                </div>
+                            </div>
+                            <div style="height: 0px;" class="resultado"></div>
+                            <div class="text-right">
+                                <button type="submit" name="button" class="btn btn-lg btn-success">Enviar</button>
+                            </div>
+                        </form>
+                      </diva>
                   </div>
 
                   <ng-map id="foo" default-style="true" center="[20.710079593340588, -103.40774611976781]" style="margin-top: 30px;" scrollwheel="false" draggable="true">
@@ -647,11 +650,11 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                   <div class="col-md-6 col-xs-6">
                       <div class="nav col-md-5 col-xs-12 nav-footer">
                           <p class="nav-m">MENU</p>
-                          <a href="#" ng-click="scrollTo($event, 'quienesomos')" ><p>Quienes somos</p></a>
-                          <a href="#" ng-click="scrollTo($event, 'proyectos')"><p>Proyectos</p></a>
-                          <a href="#" ng-click="scrollTo($event, 'desarrollos')"><p>Desarrollos</p></a>
-                          <a href="#" ng-click="scrollTo($event, 'propiedades')"><p>Propiedades Disponibles</p></a>
-                          <a href="#" ng-click="scrollTo($event, 'contacto')"><p>Contacto</p></a>
+                          <a href="http://localhost/www/Royal-Home/" ng-click="scrollTo($event, 'quienesomos')" ><p>Quienes somos</p></a>
+                          <a href="http://localhost/www/Royal-Home/" ng-click="scrollTo($event, 'proyectos')"><p>Proyectos</p></a>
+                          <a href="http://localhost/www/Royal-Home/" ng-click="scrollTo($event, 'desarrollos')"><p>Desarrollos</p></a>
+                          <a href="http://localhost/www/Royal-Home/" ng-click="scrollTo($event, 'propiedades')"><p>Propiedades Disponibles</p></a>
+                          <a href="http://localhost/www/Royal-Home/" ng-click="scrollTo($event, 'contacto')"><p>Contacto</p></a>
                       </div>
                       <div class="col-md-7 text-right col-xs-12 c-arrow">
                           <a href="#">
@@ -846,12 +849,42 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
           //   var idPropiedad = $(".disponible").attr('data-id');
           //   var namefunction = 'modalContactanosPropiedad';
           $( "button.btn.btn-success.btn-lg.available-button" ).click(function() {
+            var idPropiedad = $(this).attr('data-id');
+            // $('.input-id-propiedad').html('<input hidden type="text" value='+idPropiedad+' name="idPropiedad"');
             console.log('mostrar formulario');
             $('.container.info').removeClass('show-content');
             $('.container.info').addClass('hide-content');
 
             $('.container.frm-contacto').removeClass('hide-content');
             $('.container.frm-contacto').addClass('show-content');
+
+            $('#formContactPropiedades').submit(function(){
+              var ajaxData = new FormData();
+              ajaxData.append("namefunction","datosContactaPropiedad");
+              ajaxData.append("data", $(this).serialize());
+              $.ajax({
+                  url: "../admin/php/functions.php",
+                  type: "POST",
+                  data: ajaxData,
+                  processData: false,  // tell jQuery not to process the data
+                  contentType: false,   // tell jQuery not to set contentType
+                  success: function(result){
+                    // alert(result);
+                      if (result == 1) {
+                          $('#formContactPropiedades')[0].reset();
+                          $('.resultado').html('<p style="color:white;padding-top: 1%;">MENSAJE ENVIADO CORRECTAMENTE, PRONTO NOS PONEMOS EN CONTACTO CON USTED.</p>');
+                          $('.resultado').css({'opacity' : '1'});
+                          setTimeout(function () {
+                              $('.resultado').css({'opacity' : '0'});
+                              $('.resultado').text('');
+                          }, 4000);
+                      };
+                  },
+                  error: function(error){
+                    alert(error);
+                  }
+              });
+            });
           });
         },
         error: function(error){

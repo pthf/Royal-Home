@@ -83,9 +83,9 @@
 			case 'datosContactaPropiedad':
 				datosContactaPropiedad();
 				break;
-			// case 'modalContactanosPropiedad':
-			// 	modalContactanosPropiedad();
-			// 	break;
+			case 'modalContactanosPropiedad':
+				modalContactanosPropiedad();
+				break;
 
 
 
@@ -910,7 +910,7 @@
                           <div class="text-left button-wrapper">';
                           	if ($row['disponibilidad'] == 1) {
                           		// $modal .= '<span class="btn btn-success btn-lg available-button disponible contactanos" data-id="'.$row['idPropiedades'].'" style="cursor:pointer">DISPONIBLE</span>';
-                          		$modal .= '<button class="btn btn-success btn-lg available-button"></button>';
+                          		$modal .= '<button class="btn btn-success btn-lg available-button" data-id="'.$row['idPropiedades'].'"></button>';
                           	} else {
                           		$modal .= '<span class="btn-danger" style="padding: 10px 16px;font-size: 18px;line-height: 1.3333333;border-radius: 6px;">NO DISPONIBLE</span>';
                           	}
@@ -921,11 +921,11 @@
         echo $modal;
 	}
 
-	// function modalContactanosPropiedad(){
-	// 	$idPropiedad = $_POST['idPropiedad'];
-	// 	$modal = '<input hidden type="text" value="'.$idPropiedad.'" name="idPropiedad">';
- //        echo $modal;
-	// }
+	function modalContactanosPropiedad(){
+		$idPropiedad = $_POST['idPropiedad'];
+		$modal = '<input hidden type="text" value="'.$idPropiedad.'" name="idPropiedad">';
+        echo $modal;
+	}
 
 	function datosContactaPropiedad() {
 		parse_str($_POST['data'], $data);
