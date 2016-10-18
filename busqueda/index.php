@@ -21,7 +21,7 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
 } else if (isset($_GET['estado'])) {
   $estado = $_GET['estado'];
 } else {
-  header("Location: http://localhost/www/Royal-Home/");
+  header("Location: ../");
 }
 ?>
 <html>
@@ -56,7 +56,7 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="http://localhost/www/Royal-Home/"><img onclick="window.scrollTo(0, 0);" class="logo" src=".././assets/images/logo.svg" /></a>
+              <a class="navbar-brand" href="../"><img onclick="window.scrollTo(0, 0);" class="logo" src=".././assets/images/logo.svg" /></a>
           </div>
           <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
 
@@ -650,11 +650,11 @@ if (isset($_GET['categoria']) && isset($_GET['tipo']) && isset($_GET['estado']) 
                   <div class="col-md-6 col-xs-6">
                       <div class="nav col-md-5 col-xs-12 nav-footer">
                           <p class="nav-m">MENU</p>
-                          <a href="http://localhost/www/Royal-Home/" ng-click="scrollTo($event, 'quienesomos')" ><p>Quienes somos</p></a>
-                          <a href="http://localhost/www/Royal-Home/" ng-click="scrollTo($event, 'proyectos')"><p>Proyectos</p></a>
-                          <a href="http://localhost/www/Royal-Home/" ng-click="scrollTo($event, 'desarrollos')"><p>Desarrollos</p></a>
-                          <a href="http://localhost/www/Royal-Home/" ng-click="scrollTo($event, 'propiedades')"><p>Propiedades Disponibles</p></a>
-                          <a href="http://localhost/www/Royal-Home/" ng-click="scrollTo($event, 'contacto')"><p>Contacto</p></a>
+                          <a href="../" ng-click="scrollTo($event, 'quienesomos')" ><p>Quienes somos</p></a>
+                          <a href="../" ng-click="scrollTo($event, 'proyectos')"><p>Proyectos</p></a>
+                          <a href="../" ng-click="scrollTo($event, 'desarrollos')"><p>Desarrollos</p></a>
+                          <a href="../" ng-click="scrollTo($event, 'propiedades')"><p>Propiedades Disponibles</p></a>
+                          <a href="../" ng-click="scrollTo($event, 'contacto')"><p>Contacto</p></a>
                       </div>
                       <div class="col-md-7 text-right col-xs-12 c-arrow">
                           <a href="#">
